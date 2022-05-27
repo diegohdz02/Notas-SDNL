@@ -1,0 +1,154 @@
+\section{Ecuaciones de Liénard}
+
+2022-04-25
+
+\begin{tcolorbox}[colback=Black!4, colframe=White, arc=2mm]
+\begin{definicion}[Sistemas de Liénard]
+	Sistema no lineal de la forma
+	$$
+	\ddot{x} + f(x) \dot{x} + g(x) = 0 .
+	$$
+	Es la generalización de un oscilador armónico.
+\end{definicion}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=Black!4, colframe=White, arc=2mm]
+\begin{recordatorio}[Oscilador armónico amortiguado]
+	\begin{gather*}
+		m\ddot{x} = -\gamma\dot{x} - kx  \\
+		\ddot{x} + \frac{\gamma}{m} \dot{x} + \frac{k}{m} x  = 0 
+	\end{gather*}
+	entonces \begin{align*}
+		f(x) &\simeq \frac{\gamma}{m} \\
+		g(x) &\simeq \frac{k}{m}x
+	\end{align*}
+	donde $f(x)$ es la fricción no lineal dependiente de  $x$ y  $g(x)$ es la fuerza del resorte no lineal.
+\end{recordatorio}
+\end{tcolorbox}
+\begin{tcolorbox}[colback=Black!4,colframe=White, arc=2mm]
+\begin{teorema}
+	El sistema \begin{equation*}
+	  \ddot{x} + f(x)\dot{x} + g(x) =0 
+	\end{equation*}
+	tiene un ciclo límite estable si $f$ y  $g$ son tales que
+	 \begin{enumerate}
+		\item $f(x)$ y  $g(x)$ son continuas y diferenciables
+		\item $g(x)$ debe ser impar:  $g(-x)=-g(x)$ 
+	  \item $g(x)>0,\ x>0$ 
+		\item $f(x)$ sea par  $f(x)=f(-x)$. \\
+		\item Existe $p \in \mathbb{R}$ tal que $F(x) = \int_{0}^{x} f(u) d{u} \implies$ \\
+			$$	 
+			\begin{aligned}
+				   a) \ F(p) &= 0 ,\ p>0\\
+					 b) \ F(x) &< 0 ,\ 0<x<p \\
+					 c) \ F(x)&>0,\ x>p
+			\end{aligned}
+			$$
+	\end{enumerate}
+\end{teorema}
+\end{tcolorbox}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.45\textwidth]{lienard2} 
+	\caption{Geometría del punto 5 del teorema anterior.}
+\end{figure}
+\begin{tcolorbox}[colback=Black!4, colframe=White, arc=2mm]
+\begin{nota}[Sobre el teorema anterior]
+			3 debe cumplirse dado que $f(x)$ representa una fricción, por lo tanto, no importa si el resorte va a la derecha o a la izquierda la fricción debe ser la misma. 
+
+			Por otro lado 5 nos está ayudando a que la fricción no detenga por completo el movimiento.
+\end{nota}
+\end{tcolorbox}
+\begin{ejemplo}  \label{ecuacionesLie1} 
+	\begin{equation*}
+	  \ddot{x} -2(\cos x)\dot{x} + \sinh (x) = 0 
+	\end{equation*}
+	donde \begin{align*}
+	  f(x) &= -2\cos x \\ 
+		g(x)&= \sinh x
+	\end{align*}
+	tenemos que $\sinh$ es impar y además es positiva cuando  $x>0$ y $-2\cos x$ es una función par.  
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.4\textwidth]{lienard1}
+		\caption{Curvas solución del ejemplo \ref{ecuacionesLie1} }
+	\end{figure}
+\end{ejemplo}
+\begin{ejemplo}[Oscilador de van der Pol] \label{ecuacionesLieeje2}  
+	\begin{gather*}
+		\ddot{x} + \mu(x^2-1)\dot{x} + x = 0 \\
+		g(x) = x \\
+		f(x) = \mu(x^2-1)
+	\end{gather*}
+	\begin{align*}
+	  F(x) &= \int_{0}^{x} f(u) du  \\
+		&= \int_{0}^{x} \mu(u^2-1) d{u}   \\
+		&= \left.  \mu \left( \frac{u^3}{3}-u \right)  \right|_{0}^{x}  \\
+		&= \mu \left( \frac{x^3}{3}-x \right)
+	\end{align*}
+	Veamos que existe una $p$ tal que  $F(p)=0$:
+	\begin{align*}                                               
+		F \left( \sqrt{3} \right)  &= \mu \left( \frac{\sqrt{3}^3}{3}- \sqrt{3} \right) \\
+															 &= \mu \left( \frac{\sqrt{3}^2 \sqrt{3}}{3} - \sqrt{3} \right) \\
+															 &= \mu \left( \sqrt{3}-\sqrt{3} \right)  \\
+															 &= 0
+	\end{align*}
+	Oscilaciones de relajación $m >{}>1$ ($m$ mucho mayor que 1)
+	 \begin{gather*}
+		\ddot{x}+\mu(x^2-1)\dot{x}+x = 0 \\
+		\ddot{x} + \mu(x^2-1)\dot{x} = -x
+	\end{gather*}
+	notemos que
+	\begin{align*}
+		\ddot{x} + \mu(x^2+1)\dot{x} &= \frac{d}{dt}\left( \dot{x} + \mu \left( \frac{x^3}{3}-x \right)  \right) & \\
+																 &= \frac{d}{dt} (\dot{x}+\mu F(x)) & \left(F(x) \equiv  \frac{x^3}{3}-x \right)  \\
+																 &= \frac{d}{dt}w = \dot{w} & \left( w \equiv  \dot{x}+\mu F(x) \right) \\
+	\end{align*}
+	por lo que ahora tenemos el sistema
+	\begin{align*}
+	  \dot{x} &= w -\mu F(x) \\
+		\dot{w} &= -x
+	\end{align*}
+	haciendo el cambio de variable $$
+	y \equiv \frac{w}{\mu}
+	$$
+	\begin{gather*}
+	  w =y\mu \text{ y } \dot{w}=\mu \dot{y} \\
+		\dot{x} = y\mu - \mu F(x) = \mu(y- F(x)) \\
+		\mu\dot{y} =-x
+	\end{gather*}
+	por lo tanto
+	\begin{align*}
+	  \dot{x} &= \mu(y-F(x)) \\
+		\dot{y} &= -\frac{x}{\mu} \\ 
+	\end{align*}
+
+	\textbf{Ceroclinas}
+
+	\begin{equation*}
+		\begin{split}
+			\dot{x} &= 0 \implies y = F(x) \\
+			\dot{y} &= 0 \implies x=0 
+		\end{split}
+	\end{equation*}
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.4\textwidth]{lienard3}
+		\caption{Direcciones de las velocidades del ejemplo \ref{ecuacionesLieeje2} }
+		\label{lienard3im} 
+	\end{figure}
+	En la figura \ref{lienard3im} podemos apreciar las direcciones de las velocidades y además una trayectoria de color azul, la cual se explicará más adelante.
+\vspace{2mm}
+
+	Por un lado para $x=0$ dado que $\dot{x}=\mu(y-F(x))$ y $ \mu > 0$ entonces si $y>F(x)$ entonces  $\dot{x}>0$ y si $y<F(x)$ entonces  $\dot{x}<0$, es por eso que nos movemos a la derecha por arriba de $F(x)$ y a la izquierda por debajo de  $F(x)$.
+\vspace{2mm}
+
+Para $y=F(x)$ solo tenemos componentes verticales, dado que $\dot{y}=-\frac{x}{\mu}$ entonces si $x<0,\ \dot{y}>0$ y si $x>0,\ \dot{y}<0$. 
+\vspace{2mm}
+
+Ahora, supongamos que empezamos con una condición inicial como se muestra en la figura \ref{ecuacionesLieeje2}, si $y-F(x) = k$ entonces  $ \dot{x} \propto \mu$ y dado que dijimos que $ \mu$ es algo muy grande, entonces nos estamos moviendo muy rápido a la derecha. Por su parte $\dot{y} \propto \frac{1}{\mu}$ (al menos que estemos muy pegados del cero), por lo que nos estamos moviendo muy poco sobre el eje vertical, es por eso que trazamos una linea paralela al eje $x$ que corta en  $F(x)$. Cuando estamos muy cerca de  $F(x)$ entonces  $y-F(x)$ cada vez se vuelve más chiquita, por lo que nuestra velocidad se reduce prácticamente a cero, digamos que  $y-F(x) \propto \frac{1}{\mu^2}$, por lo tanto $\dot{x} \propto \mu \frac{1}{\mu^2} = \frac{1}{\mu}$, y dado que $\dot{y} \propto \frac{1}{\mu}$, entonces se están desplazando a la misma velocidad, y al cruzar la ceroclina solo podemos desplazarnos hacia abajo, y una vez pasándola dado que estaremos debajo de $F(x)$ entonces nuestra dirección en  $\dot{x}$ será negativa, por lo que nos vamos a pegar a la ceroclina. Al llegar al mínimo local, la distancia entre $y$ y  $F(x)$ se hará cada vez mayor, lo que implica que nos vamos a mover cada vez más rápido sobre el eje horizontal, hasta toparnos de nuevo con la ceroclina  $F(x)$ y repetir el mismo comportamiento. 
+
+	
+\end{ejemplo}
+

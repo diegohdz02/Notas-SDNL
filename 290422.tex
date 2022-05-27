@@ -1,0 +1,266 @@
+\textbf{2022-04-29}
+\begin{ejemplo}
+	Sea el sistema definido por
+	\begin{align*}
+	  \dot{x} &= y - ax \\
+	  \dot{y} &= \frac{x^2}{1+x^2}-by 
+	\end{align*}
+	donde $x$ es una proteína y  $y$ es un transcriptor genético.
+
+	En primer lugar vamos a calcular y graficar las ceroclinas:
+	 \begin{align*}
+		 \dot{x} &= 0 & y &= ax \\
+		 \dot{y} &= 0 & y&=\frac{x^2}{b(1+x^2)} 
+	\end{align*}
+
+  \begin{figure}[H]
+  	\centering
+  	\includegraphics[width=0.5\textwidth]{020522fig1.pdf}
+  	\caption{Ceroclinas del ejemplo 1}
+  \end{figure}
+
+	\textbf{Puntos de equilibrio}
+
+	El punto de equilibrio se encuentra en la intersección de ambas ceroclinas por lo tanto:
+	\begin{equation*}
+	    ax = \frac{x^2}{b(1+x^2)} 
+	\end{equation*}
+	por lo que $x^*=0$ es un punto de equilibrio que siempre existe, mientras que si $x^*\neq 0$ entonces
+	\begin{equation}
+		\label{2022-05-02eq1}
+		\begin{split}
+			a&= \frac{x^*}{x(1+x^{{*}^2})} \\
+			x^*&=ab(1+x^{{*}^2})
+		\end{split}
+	\end{equation}
+	\begin{align*}
+		abx^{{*}^2}-x^*+ab&=0 \\
+		x^{{*}^2}-\frac{1}{ab}x^*+1 &= 0  
+	\end{align*}
+	\begin{equation}
+		\label{2022-05-02eq2}
+	    x^*_{1,2} = \frac{\frac{1}{ab}\pm \sqrt{\frac{1}{(ab)^2}-4}}{2} 
+	\end{equation}
+	podemos notar que $x_1=x_2$ si $\frac{1}{(ab)^2}-4=0$, esto quiere decir que
+	\begin{align*}
+	  \frac{1}{(ab)^2} &= 4 \\
+		(ab)^2 &= \frac{1}{4} \\
+		ab &= \frac{1}{2} \\
+		a_c &= \frac{1}{2b} 
+	\end{align*}
+	en la bifurcación vamos a tener que $ab=\frac{1}{2}$ y volviendo a (\ref{2022-05-02eq2}) 
+	\begin{align*}
+	  x^*&= \frac{\frac{1}{ab}}{2} \\
+	   &= \frac{1}{2ab} \\
+	    &= \frac{1}{2 \frac{1}{2}} \\
+	     &= 1
+	\end{align*}
+	Calculando las parciales para obtener la matriz jacobiana:
+	\begin{align*}
+		\frac{\partial f_1}{\partial x} &= -a & \frac{\partial f_1}{\partial y}  &= 1  \\
+				\frac{\partial f_2}{\partial x} &= \frac{2x(1+x^2)-2xx^2}{(1+x^2)^2} & 		\frac{\partial f_2}{\partial y} &= -b  \\
+		 &= \frac{2x+2x^3-2x^3}{(1+x^2)^2} \\
+		 &= \frac{2x}{(1+x^2)^2} 
+	\end{align*}
+	por lo tanto
+		\begin{equation*}
+	    J = \begin{pmatrix} -a & 1 & \\ \dfrac{2x}{(1+x^2)^2} & -b \end{pmatrix}  
+	\end{equation*}
+	por lo que $\operatorname{tr}J = -a-b$, y dado que estamos en un modelo biológico $a>0,b>0$, por lo tanto  $\operatorname{tr}J<0$. Por otro lado
+	\begin{align*}
+	  \operatorname{det}J &= ab - \frac{2x}{(1+x^2)^2} 
+	\end{align*}
+	en el $(0,0),\ \operatorname{det} J = ab>0$ por lo tanto tenemos un punto de equilibrio estable. Ahora queremos saber cuando tenemos un punto silla, es decir cuando $ \operatorname{det} J < 0$, esto es:
+	\begin{align*}
+		ab - \frac{2x^*}{(1+x^{{*}^2})^2} &< 0 \\
+		ab(1+x^{{*}^2})^2 - 2x^* &< 0  \\
+		[ab(1+x^{{*}^2})](1+x^{{*}^2})-2x^* &< 0 
+	\end{align*}
+	donde de (\ref{2022-05-02eq1}) tenemos entonces
+	\begin{equation*}
+		\begin{split}
+			x^*(1+x^{{*}^2})-2x^* &< 0 \\
+			(1+x^{{*}^2})-x^* &< 0 \\
+			x^{{*}^2} - 1 &< 0 \\
+			x^{{*}^2} &< 1 \\
+			x^* &< 1 
+		\end{split}
+	\end{equation*}
+	dado que la bifurcación se da en $x^*=1$ y por el tipo de bifurcación tenemos que 2 puntos de equilibrio surgen a partir de 1, uno de ellos se va a la izquierda y otro a la derecha, por lo tanto el que se va a la izquierda es un punto silla, mientras que el de la derecha cumple que $x^*>1$, por lo que no cumple que el $ \operatorname{det} J <0$; por lo tanto tenemos un punto de equilibrio estable.
+  
+	\begin{figure}[H]
+	  \begin{subfigure}[b]{0.49\textwidth}
+	    \includegraphics[width=\textwidth, height=\textwidth]{020522fig2}
+	  \end{subfigure}
+	  \hfill
+	  \begin{subfigure}[b]{0.49\textwidth}
+	    \includegraphics[width=\textwidth, height=\textwidth]{020522fig3}
+	  \end{subfigure}
+	  \caption{Diagrama de flujo del ejemplo 1}
+	\end{figure}
+
+	\begin{tcolorbox}[colback=Black!4, colframe=White, arc=2mm]
+	\begin{nota}
+		Las variedades estables de punto silla siempre son separatrices.
+	\end{nota}
+	\end{tcolorbox}
+\end{ejemplo}
+
+\subsection{Resumen: Bifurcaciones en 2D}
+\subsection*{Bifurcación transcrítica}
+
+Forma normal
+	\begin{align*}
+	  \dot{x} &= \mu x - x^2 \\
+	  \dot{y} &= -y  
+	\end{align*}
+
+\begin{figure}
+ \centering
+  \subfloat[$\mu<0$]{
+   \label{f:mu<0}
+    \includegraphics[width=0.3\textwidth]{020522fig4.pdf}}
+  \subfloat[$ \mu=0$]{
+   \label{f:mu>0}
+    \includegraphics[width=0.3\textwidth]{020522fig6.pdf}}
+  \subfloat[$ \mu>0$]{
+   \label{f:mu>0}
+    \includegraphics[width=0.3\textwidth]{020522fig7.pdf}}
+		\caption{Diagrama de flujo de una bifurcación transcrítica}
+ \label{f:bif trans 2d}
+\end{figure}
+
+	en la figura (\ref{f:bif trans 2d}) podemos apreciar que para $\mu<0$ tenemos dos puntos de equilibrio, donde uno es un punto silla y el otro es un nodo estable, para $ \mu=0$ los puntos chocan y para $ \mu>0$ se separan conservando su estabilidad.
+
+	\vspace{2mm}
+
+\begin{tcolorbox}[colback=Black!4, colframe=White, arc=0mm]                                                                       
+\begin{nota}
+	La creación o aniquilación de puntos de equilibrio únicamente se da en la bifurcación \textbf{nodo silla}
+\end{nota}
+\end{tcolorbox}                                                                                                                
+
+\subsection*{Bifurcación tridente supercrítica}
+
+Forma normal
+\begin{align*}
+  \dot{x} &= \mu x - x^3 \\
+  \dot{y} &= -y 
+\end{align*}
+el decaimiento hacia el punto de equilibrio pasa de ser exponencial a forma de ley de potencias, conservando la estabilidad, mientras que cuando $ \mu>0$ el punto de equilibrio se transforma en un punto silla y se crean dos nodos estables.
+
+\begin{figure}[H]
+ \centering
+  \subfloat[$\mu<0$]{
+   \label{btp1}
+    \includegraphics[width=0.3\textwidth]{020522fig8.pdf}}
+  \subfloat[$\mu=0$]{
+   \label{btp2}
+    \includegraphics[width=0.3\textwidth]{020522fig9.pdf}}
+  \subfloat[$\mu>0$]{	
+   \label{btp3}
+    \includegraphics[width=0.3\textwidth]{020522fig10.pdf}}
+		\caption{Diagrama de flujo de la bifurcación tridente supercrítica}
+ \label{biftsup}
+\end{figure}
+
+\subsection*{Bifurcación de tridente subcrítica}
+
+Forma normal
+\begin{align*}
+	\dot{x} &= \mu x + x^3 \\
+	\dot{y} &=  -y
+\end{align*}
+
+En este caso cuando $\mu<0$ tenemos que el $(0,0)$ es un punto de equilibrio estable y además 2 puntos de equilibrio que son del tipo nodo silla, cuando $ \mu=0$ tenemos un único punto silla donde las soluciones se acercan a $y=0$ con una velocidad de tipo ley de potencias mientras que para $ \mu>0$ tenemos un único nodo silla. 
+
+\begin{figure}[H]
+ \centering
+  \subfloat[$\mu<0$]{
+   \label{bts1}
+    \includegraphics[width=0.3\textwidth]{020522fig11.pdf}}
+  \subfloat[$\mu=0$]{
+   \label{bts2}
+    \includegraphics[width=0.3\textwidth]{020522fig12.pdf}}
+  \subfloat[$ \mu>0$]{
+   \label{bts3}
+    \includegraphics[width=0.3\textwidth]{020522fig13.pdf}}
+		\caption{Diagrama de flujo de la bifurcación tridente subcrítica}
+\end{figure}
+
+\begin{ejemplo}
+	\begin{align*}
+	 \dot{x} &= \mu x + y + \sin x \\
+	 \dot{y} &= x-y 
+	\end{align*}
+	\textbf{Puntos de equilibrio}
+	
+Sabemos que $\sin 0 = 0$ por lo tanto si $x^*=0=y^*$ tenemos un punto de equilibrio, por lo tanto el $(0,0)$ es un punto de equilibrio que siempre existe.
+
+ \textbf{¿Que tipo de bifurcación tenemos?}
+
+ Analizando el punto de equilibrio
+ \begin{align*}
+	 &J = \begin{pmatrix} \mu + \cos x & 1 \\ 1 & -1 \end{pmatrix} \\
+	 &\left. J \right|_{(0,0)} = \begin{pmatrix} \mu + 1 & 1 \\ 1 & -1 \end{pmatrix}   
+ \end{align*}
+ por lo que $$\operatorname{tr}J = 1 + \mu - 1 = \mu$$ y $$\operatorname{det} J = -\mu - 1 -1 = -\mu-2.$$
+ Si $ \operatorname{det} J < 0$ tenemos un punto silla, por lo que
+ \begin{equation*}
+	 -\mu-2 < 0 \implies \mu>-2
+ \end{equation*}
+ y pasa a ser un punto de equilibrio estable en $ \mu < -2$ dado que $\operatorname{tr}J<0$. Aunque todavía no sabemos que tipo de bifurcación tenemos dado que en los tres tipos de bifurcación pasamos de tener un punto silla a un punto estable así que obtendremos los demás puntos de equilibrio.
+ \vspace{2mm}
+ 
+
+ \textbf{Ceroclinas}
+
+ Recordando que nuestro sistema está definido por
+\begin{equation*}
+\begin{aligned}
+&\dot{x}=\mu x+y+\sin x \\
+&\dot{y}=x-y
+\end{aligned}
+\end{equation*}
+tenemos entonces que 
+\begin{align*}
+	&y=-\mu x - \sin x \\
+	&y=x
+\end{align*}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{020522fig14.pdf}
+	\caption{Ceroclinas ejemplo 2}
+\end{figure}
+por lo tanto el punto de equilibrio se encuentra en la intersección, ie,
+\begin{align*}
+  &x=-\mu x - \sin x \\
+  &0=x(1+\mu)+\sin x  
+\end{align*}
+haciendo una expansión en series de Taylor alrededor del cero:
+\begin{align*}
+  &x(1+\mu)+x - \frac{x^3}{3!} \simeq 0 \\
+  &x(2+\mu)-\frac{x^3}{6} = 0  
+\end{align*}
+por lo que $x_1^*=0$, pero si $x^*\neq 0$
+\begin{equation*}
+	(2+\mu) - \frac{ x^{{*}^2}}{6} = 0 
+\end{equation*}
+entonces
+\begin{equation*}
+  x^*_{2,3} = \pm \sqrt{6(2+\mu)} 
+\end{equation*}
+dado que tenemos 3 puntos de equilibrio donde si $ \mu \le -2$ no existen 2 de ellos y aquel que existe es un nodo estable, mientras que si $ \mu>-2$ se forman los otros 2 nodos estables y además el $(0,0)$ cambia de estabilidad a un punto silla por lo que estamos frente a una bifurcación de tridente supercrítica.
+\begin{figure}[H]
+  \begin{subfigure}[b]{0.49\textwidth}
+		\includegraphics[width=\textwidth, height=\textwidth]{020522fig15.pdf}
+    \caption{$\mu=-3$}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth, height=\textwidth]{020522fig16.pdf}
+    \caption{$\mu=-1$}
+  \end{subfigure}
+  \caption{Diagrama de flujo del ejemplo 2}
+\end{figure}
+\end{ejemplo}

@@ -1,0 +1,161 @@
+\section{Análisis dimensional}
+
+\begin{tcolorbox}[colback=Black!4, colframe=White, title=¿Qué es el analisis dimensional?, coltitle=Black]
+  El análisis dimensional tiene el objetivo de ver cuales son las unidades de todas las variables y constantes que aparecen en las ecuaciones y usarlas para encontrar información antes de resolver la ecuación.
+  Tiene sus orígenes en la segunda guerra mundial, G.I Taylor desarrollo esta teoría con el fin de conocer el poder que tenia una bomba nuclear, se pregunto acerca de la energía que esta emanaba, el contaba con los siguientes datos sobre una bomba nuclear:
+  $$
+  \begin{aligned}
+  R &= 100m \\
+  t &= 0.016s \\
+  \rho &= 1.2 \frac{kg}{m^3}, \\
+\end{aligned}
+  $$ además conocía las unidades de medida de todos los datos
+  $$\begin{aligned}
+    [E] &= \frac{ML^2}{T^2} \\
+    [R] &= L \\
+    [t] &=  T \\
+    [\rho] &= \frac{M}{L^3} \\  
+  \end{aligned}$$
+  ¿De que forma podemos combinar estas cantidades para obtener las de la energía?
+   $$
+    E \propto \frac{\rho}{t^2}R^{5}=\frac{(1.2)(100)^{5}}{(0.016)^2} = 1 \times 10^{13} \operatorname{Joules}
+  $$                                                           
+En unidades de energía 1 kilo ton = $1 \times 10^{12}J$, por lo que $1 \times  10 ^{13} = 10kton$. Para la sorpresa de todos, esto fue un calculo bastante bien aproximado, descubriendo que se pueden obtener resultados importantes únicamente conociendo las unidades de medida de las variables.  
+\end{tcolorbox}
+
+La clase anterior vimos que 
+
+\begin{equation}\label{1}
+    mR \ddot{{\varphi}} = -b \dot{{\varphi}} - mg \sin\varphi + mR \omega^2 \sin\varphi \cos\varphi    
+\end{equation}
+
+\begin{tcolorbox}[colback=Black!4,colframe=White] 
+\begin{nota}
+  Las variables que están dentro de funciones exponenciales o trigonométricas, no pueden tener unidades de medida.
+\end{nota}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=Black!4,colframe=White] 
+\begin{nota}[¿Como podemos entender que está bien que $\varphi$ no tiene unidades?]
+  Si queremos medir la longitud de arco de un círculo entonces tenemos un radio $r$ y un angulo  $\varphi$, por lo que tenemos que calcular $S=r\varphi \implies \varphi=\frac{S}{r} \frac{[L]}{[L]}$ (ambas tienen unidades de longitud)
+\end{nota}
+\end{tcolorbox}
+dividiendo \eqref{1} entre $mg$ tenemos:
+ $$
+  \frac{R}{g}\ddot{{\varphi}} = -\frac{b}{mg}-\sin\varphi + \frac{R\omega^2}{g}\sin\varphi\cos\varphi\\
+$$
+analizando las unidades tenemos que: $$
+[\varphi]= \emptyset, [R]=L, [g]=\frac{L}{T^2}, [m]=M, [\omega]=\frac{1}{T}
+$$
+en términos de derivadas:
+$$
+ [\dot{{\varphi}}] = \left[ \lim_{h \to 0} \frac{\varphi(t+h)-\varphi(t)}{h} \right] = \frac{1}{T} 
+$$
+dado que $\varphi$ no tiene unidades entonces el cociente no tiene unidades, y además como $h$ aparece sumando a $t$ entonces debe tener unidades de tiempo. Bajo el mismo racionamiento entonces:
+ $$
+ [\ddot{{\varphi}}] =\frac{1}{T^2}
+$$
+ $$
+ \left[ \frac{b}{mg}\dot{{\varphi}} \right] = \emptyset = \frac{[b][\varphi]}{[m][g]}=\frac{[b]\frac{1}{T}}{M(\frac{L}{T^2})}= \frac{[b]T^2}{TML} = \frac{[b]T}{ML} \implies [b] = \frac{ML}{T}
+.$$
+Vamos a reescalar el tiempo para que no tenga unidades, esto quiere decir que:
+ $$
+t=t^{*} \tau
+$$
+donde $t^{*}$ es una constante que tiene unidades de tiempo multiplicado por algo que no tiene unidades.
+$$
+\left[ \frac{b}{mg} \dot{\varphi} \right] = \emptyset = \left[ \frac{b}{mg}\right][ \dot{\varphi}  ] = \left[ \frac{b}{mg} \right] \frac{1}{T}= \emptyset
+$$
+ $$
+\therefore t \equiv \frac{b}{mg} \tau, t^{*} \equiv \frac{b}{mg} 
+$$
+ $$
+\frac{d}{dt}=\frac{d\tau}{dt}\frac{d}{d\tau}
+$$
+de esta manera:
+$$
+\tau=\frac{mg}{b}t \implies \frac{d\tau}{dt}=\frac{mg}{b}
+$$
+$$
+\frac{d^2}{dt^2}=\frac{d}{dt}\left( \frac{d}{dt} \right) = \frac{d}{dt}\left( \frac{mg}{b} \frac{d}{d\tau} \right) = \frac{mg}{b}\frac{d}{d\tau} \left( \frac{mg}{b}\frac{d}{d\tau} \right)  =\left( \frac{mg}{b} \right)^2 \frac{d^2}{d\tau^2} 
+$$
+y por \eqref{1} tenemos entonces
+ $$
+\frac{R}{g} \left( \frac{mg}{b} \right) ^2 \frac{d^2\varphi}{d\tau^2} = -\frac{b}{mg} \left( \frac{mg}{b} \right) \frac{d\varphi}{d\tau}-\sin\varphi+ \frac{R\omega^2}{g}\sin\varphi\cos\varphi
+$$
+ $$
+ \frac{Rm^2}{b^2}g \frac{d^2\varphi}{d\tau^2}=-\frac{d\varphi}{d\tau}-\sin\varphi+\frac{R\omega^2}{g}\sin\varphi\cos\varphi
+$$
+definiendo
+ $$
+\varepsilon \equiv \frac{Rm^2}{b^2}g \quad \gamma \equiv \frac{R\omega^2}{g}
+$$
+entonces nuestra ecuación \eqref{1} se transforma en:
+
+\begin{equation}\label{2}
+  \varepsilon \frac{d^2\varphi}{d\tau^2}=-\frac{d\varphi}{d\tau}+\sin\varphi\left[ \gamma\cos\varphi-1 \right]
+\end{equation}
+
+\begin{tcolorbox}[colback=Black!4,colframe=White] 
+  \begin{nota}[Reducción de parámetros]
+  Notemos que de 5 parámetros pasamos a solamente 2. Al hacer este análisis reducimos nuestro parámetros al mínimo, y estos son los únicos que importan para el comportamiento de nuestra ecuación, en este caso $\varepsilon$ y $\gamma$ .
+\end{nota}
+\end{tcolorbox}
+
+reescribiendo \eqref{2}:
+
+\begin{equation}
+  \varepsilon \frac{d^2\varphi}{d\tau^2}+\frac{d\varphi}{d\tau}=\sin\varphi \left[ \gamma\cos\varphi-1 \right] 	
+\end{equation}
+si $\varepsilon<1$ (muy muy chiquita) $\implies$ 
+$$
+\frac{d\varphi}{d\tau} = \sin\varphi \left[ \gamma\cos\varphi-1 \right] 
+$$
+por otro lado si $\frac{Rm^2g}{b^2}<1 \implies b^2>Rm^2g$   
+
+Dividiendo \eqref{2} en dos ecuaciones:
+$$
+\begin{aligned}
+  \label{eq:3}
+  \varepsilon \ddot{\varphi} &= - \dot{\varphi} + \sin\varphi \left[ \gamma\cos\varphi -1 \right] \\
+  \ddot{\varphi} &= \frac{1}{\varepsilon} \left[ \sin\varphi [\gamma\varphi-1]- \dot{\varphi}   \right] \\
+  \ddot{\varphi} &= \frac{1}{\varepsilon}[f(\varphi) - \dot{\varphi} ] \\  
+\end{aligned} 
+$$
+renombrando
+$$
+\begin{aligned}
+  \Omega &\equiv \dot{\varphi} \\
+  \dot{\Omega} &\equiv \ddot{\varphi}   
+\end{aligned}
+$$
+por lo que obtenemos:
+$$
+\begin{aligned}
+  \dot{\varphi} &= \Omega \\
+  \dot{\Omega} &= \frac{1}{\varepsilon}[y(\varphi)-\Omega] \\
+\end{aligned}
+$$
+Ahora lo que haremos será graficar en el eje $y$ a $\Omega$ y en el eje $x$ a $\varphi$ con sus respectivas ecuaciones como un campo vectorial. \\
+
+Caso 1) Cuando $\varepsilon$ es muy chiquita. Notemos que $\Omega$ se mueve prácticamente en linea recta, hasta que llega a la función $f(\varphi)$ sin importar la condición inicial.
+\begin{tcolorbox}[colback=Black!5,colframe=White] 
+  \begin{nota}[Nos movemos muy rápido]
+    Dado que $ \dot{\Omega} $ es la velocidad con la que nos desplazamos, si $\varepsilon$ es muy chiquita y estamos lejos de $f(\varphi)$ entonces $[f(\varphi)-\Omega]$ es diferente de cero, por lo que tenemos algo grande dividido entre algo super chiquito entonces $ \dot{\Omega} $ es muy grande. A los comportamientos que tenga el sistema lejos de $f(\varphi)$ (que no los describa) y de un momento a otro se pegan a $f(\varphi)$ les llamaremos  \textbf{transitorios}.   
+\end{nota}
+\end{tcolorbox}
+
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[width=0.8\textwidth]{/Users/diego/Documents/NotasFac/SNL/imagenes/diagrama.png}
+  \caption{Campo vectorial de $(\Omega,\varphi)$ con $\varepsilon$ chiquita}
+\end{figure}
+             
+Caso 2) Cuando $\varepsilon \simeq 1$ . En este caso podemos apreciar en la figura 2 que si es importante la condición inicial en $\Omega$.
+\begin{figure}[htpb]
+  \centering
+\includegraphics[width=0.4\textwidth]{/Users/diego/Documents/NotasFac/SNL/imagenes/ad2.png}
+  \caption{Campo vectorial de $(\Omega,\varphi)$, con $\varepsilon \simeq 1 $ }
+\end{figure}
+

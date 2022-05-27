@@ -1,0 +1,254 @@
+\section{Clasificación puntos de equilibrio en dos dimensiones}
+
+Dado el sistema
+$$
+\dot{\vec{x}}=A \vec{x} \\
+$$
+$$
+\vec{x}=\begin{pmatrix} 0 \\ 0 \end{pmatrix} 
+$$
+siempre es punto de equilibrio.
+$$
+\dot{\vec{x}}=A \vec{x}
+$$
+\begin{tcolorbox}[colback=Black!4, colframe=White, title=Ansatz,fonttitle=\bfseries]
+\textbf{Ansatz}: Un ansatz es una solución estimada a una ecuación inicial. 
+\end{tcolorbox}
+
+Ansatz: $\vec{x} = \vec{\xi}e^{\lambda t}$, donde $\vec{\xi}$ es un vector constante y $\lambda$ es una constante, sustituyendo en nuestro sistema:
+$$
+\begin{aligned}
+  \lambda \vec{\xi} e^{\lambda t} &= A \vec{\xi} e^{\lambda t} \\
+  \lambda \vec{\xi} &= A \vec{\xi}
+\end{aligned}
+$$
+(ecuación de eigenvalores), $\lambda$ es el eigenvalor y $\vec{\xi}$ es el eigenvector. 
+ \vspace{2mm}
+ 
+Solución general del sistema
+
+$$
+\begin{aligned}
+  \vec{x}(t) &= c_1\vec{\xi_1}e^{\lambda_1 t} + c_2 \vec{\xi_2} e^{\lambda_2 t} , \ \vec{x(0)}=\vec{x_0} 
+\end{aligned}
+$$
+Si
+$$
+A = \begin{pmatrix} a & b \\ c & d \end{pmatrix} 
+$$
+
+obteniendo los eigenvalores:
+
+$$
+\begin{bmatrix} a - \lambda & b \\ c & d-\lambda \end{bmatrix} = 0
+$$
+$$
+\begin{aligned}
+  (a-\lambda)(d-\lambda)-bc &= 0 \\
+  ad -\lambda d -\lambda a+\lambda^2-bc &= 0 \\
+  \lambda^2-\lambda(a+d)+ad-bc &= 0 \\
+  \lambda^2 - \operatorname{tr}A\lambda + \operatorname{det}A &= 0 \\ 
+\end{aligned}
+$$
+$$
+\lambda = \frac{\operatorname{tr}A \pm \sqrt{\operatorname{tr}A^2 - 4 \operatorname{det}A}}{2}
+$$
+
+\textbf{Caso 1:} $\lambda_1, \lambda_2 \in \mathbb{R}, \ \lambda_1 \neq \lambda_2, \ \lambda_1\lambda_2 >0$
+
+Supongamos que $\lambda_1 > \lambda_2$ entonces $\lambda_2 - \lambda_1 <0$.
+
+$$
+\vec{x}= c_1 \vec{\xi_1} e^{\lambda_1 t} + c_2\vec{\xi_2}e^{\lambda_2 t} = e^{\lambda_1 t} \left( c_1\vec{\xi_1} + c_2\vec{\xi}_2 e^{(\lambda_2 - \lambda_1)t} \right) 
+$$
+notemos que
+$$
+\lim_{t \to \infty} \vec{x} \simeq e^{\lambda t}c_1\vec{\xi}_1  \mid   \mid  \vec{\xi_1}  
+$$
+$$
+\lim_{t \to -\infty} \vec{x} \simeq c_2\vec{\xi_2} e^{\lambda_2 t}  \mid  \mid \vec{\xi_2} 
+$$
+Si $\lambda_1, \lambda_2<0$ tenemos un nodo estable, mientras que si $\lambda_1, \lambda_2>0$ tenemos un nodo inestable.
+
+\begin{figure}[!tbp]
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth, height=\textwidth]{cpe11}
+    \caption{$\lambda_1,\lambda_2<0$}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth, height=\textwidth]{cpe12}
+    \caption{$\lambda_1,\lambda_2>0$}
+  \end{subfigure}
+  \caption{\textbf{Caso 1:} $\lambda_1, \lambda_2 \in \mathbb{R}, \ \lambda_1 \neq \lambda_2, \ \lambda_1\lambda_2 >0$}
+\end{figure}
+
+\textbf{Caso 2:} $\lambda_1 = \lambda_2, \ \lambda_1 \in \mathbb{R} , \ \vec{\xi_1}= \vec{\xi_2}$. La solución estará dada por:
+$$
+\vec{x}(t) = c_1 \vec{\xi} e^{\lambda t} + c_2 \left[ \vec{\xi}te^{\lambda t} + \vec{\eta}e^{\lambda t} \right] 
+$$
+donde $\vec{\eta}$ es un eigenvalor generalizado. En este caso tenemos:
+$$
+\lim_{t \to \infty} \vec{x}  \mid   \mid \vec{\xi}
+$$
+ $$
+\lim_{t \to -\infty} \vec{x}  \mid   \mid \vec{\xi} 
+$$
+Si $\lambda<0$ tenemos un nodo impropio estable y si $\lambda>0$ tenemos un nodo impropio inestable.
+
+\begin{figure}[!tbp]
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth, height=\textwidth]{cpe13}
+    \caption{$\lambda<0$}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth, height=\textwidth]{cpe14}
+    \caption{$\lambda>0$}
+  \end{subfigure}
+  \caption{\textbf{Caso 2:} $\lambda_1 = \lambda_2, \ \lambda_1 \in \mathbb{R} , \ \vec{\xi_1}= \vec{\xi_2}$}
+\end{figure}
+\textbf{Caso 3:} $\lambda_1 = \lambda_2 , \ \lambda_1 \in \mathbb{R}, \ \vec{\xi_1} \neq \vec{\xi_2} $. La solución estará dada por:
+$$
+\vec{x} = c_1 \vec{\xi_1} e^{\lambda t} + c_2\vec{\xi_2} e^{\lambda t} = e^{\lambda t} (c_1\vec{\xi_1}+c_2\vec{\xi_2})
+$$
+Suponiendo que $\vec{x}(0)=\vec{x}_0=(c_1\xi_1+c_2\xi_2)$ por lo que podemos escribir la solución como
+$$
+\vec{x}(t) = e^{\lambda t} \vec{x_0} , \ \forall t , \ \vec{x}  \mid   \mid  \vec{x_0}   
+$$
+si $\lambda<0$ tenemos un nodo estrella estable y si $\lambda>0$ tenemos un nodo estrella inestable.
+
+\begin{figure}[!tbp]
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth, height=\textwidth]{cpe15}
+    \caption{$\lambda<0$, nodo estrella estable}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth, height=\textwidth]{cpe16}
+    \caption{$\lambda>0$, nodo estrella inestable}
+  \end{subfigure}
+  \caption{\textbf{Caso 3:} $\lambda_1 = \lambda_2 , \ \lambda_1 \in \mathbb{R}, \ \vec{\xi_1} \neq \vec{\xi_2}$}
+\end{figure}
+
+\textbf{Caso 4:} $\lambda_1,\lambda_2 \in \mathbb{C}/\mathbb{R},\ \lambda_1=\overline{\lambda}_2$
+
+$$
+\vec{x}(t) = e^{\operatorname{Re}(\lambda)t} \left[ c_1 \begin{pmatrix} \cos(\operatorname{Im}(\lambda)t) \\ -\sin(\operatorname{Im}(\lambda)t) \end{pmatrix} + c_2 \begin{pmatrix} \sin(\operatorname{Im} (\lambda)t) \\ \cos(\operatorname{Im}(\lambda)t) \end{pmatrix}   \right]   
+$$
+\begin{figure}[!tbp]
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth, height=\textwidth]{cpe17}
+    \caption{$\operatorname{Re}(\lambda)<0$}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth, height=\textwidth]{cpe18}
+    \caption{$\operatorname{Re}(\lambda)>0$}
+  \end{subfigure}
+  \caption{\textbf{Caso 4:} $\lambda_1,\lambda_2 \in \mathbb{C}/\mathbb{R},\ \lambda_1=\overline{\lambda}_2$}
+\end{figure}
+
+Si $\operatorname{Re}(\lambda)<0$ tenemos una espiral estable y si $\operatorname{Re}(\lambda)>0$ tenemos una espiral inestable.
+
+\textbf{Caso 5:} $\lambda_1, \lambda_2 \in \mathbb{C}/\mathbb{R},\ \operatorname{Re}(\lambda)=0,\ \lambda_1=\overline{\lambda}_2$. En este caso únicamente tenemos un centro.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.4\textwidth]{cpe19}
+  \caption{\textbf{Caso 5:} $\lambda_1, \lambda_2 \in \mathbb{C}/\mathbb{R},\ \operatorname{Re}(\lambda)=0,\ \lambda_1=\overline{\lambda}_2$}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{estabilidadpuntos}
+  \caption{Estabilidad de los puntos de equilibrio de acuerdo a la traza y el determinante.}
+\end{figure}
+
+\subsection{Cómo saber que punto de equilibrio tenemos.}
+$$
+\begin{aligned}
+  \lambda &= \frac{ \operatorname{tr}A \pm \sqrt{\operatorname{tr}A^2-4\operatorname{det}A}}{2} \\  
+\end{aligned}
+$$
+Caso 1: Si $\operatorname{tr}A^2 - 4\operatorname{det}A<0$ entonces $\lambda_1, \lambda_2 \in  \mathbb{C}$, y además $\operatorname{tr}A<0$ entonces tenemos espirales estables, si $\operatorname{tr}A>0$ entonces tenemos espirales inestables, si $\operatorname{tr}A=0$ tenemos un centro.
+
+Caso 2: Si $\operatorname{tr}A^2-4\operatorname{det}A=0$ entonces $\lambda=\frac{\operatorname{tr}A}{2}$, por lo que tenemos nodos impropios o estrella.
+
+Caso 3: Si $\operatorname{det}A<0$ entonces $-4\operatorname{det}A=c$ con $c>0$
+
+ $$
+\operatorname{tr}A^2 < \operatorname{tr}A^2 + c \implies \operatorname{tr}A < \sqrt{\operatorname{tr}A^2+c}
+$$
+por lo que
+$$
+\begin{aligned}
+  \operatorname{tr}A - \sqrt{\operatorname{tr}A^2+c} &= \operatorname{tr}A - \sqrt{\operatorname{tr}A^2 - 4 \operatorname{det}A} <0 \\  
+\end{aligned}
+$$
+si $\lambda_1<0$ entonces
+
+$$
+\frac{\operatorname{tr}A + \sqrt{\operatorname{tr}A^2-4\operatorname{det}A}}{2} = \lambda_2 >0
+$$
+entonces $\lambda_1 \lambda_2 <0$ por lo que tenemos un punto silla.
+
+Caso 4: Si $\operatorname{det}A>0$ entonces $$
+\begin{aligned}
+  \operatorname{tr}A^2 &> \operatorname{tr}A^2 - 4 \operatorname{det}A \\
+  \operatorname{tr}A &> \sqrt{\operatorname{tr}A^2-4\operatorname{det}A} \\
+  0&<\operatorname{tr}A - \sqrt{\operatorname{tr}A^2 - 4 \operatorname{det}A}
+\end{aligned}
+$$
+en este caso tanto $\lambda_1,\lambda_2>0$ o $\lambda_1,\lambda_2<0$.
+
+\subsection{Tipo de puntos de equilibrio}
+
+\begin{figure}[ht]
+    \centering
+    \incfig[0.4]{cpe1}
+    \caption{Lyapunov estable}
+    \label{fig:cpe1}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \incfig[0.4]{cpe2}
+    \caption{Lyapunov inestable}
+    \label{fig:cpe2}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \incfig[0.4]{cp3}
+    \caption{Lyapunov atractor}
+    \label{fig:cp3}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \incfig[0.4]{cp4}
+    \caption{Lyapunov repulsor}
+    \label{fig:cp4}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \incfig[0.4]{cp5}
+    \caption{Lyapunov estable pero no atractor}
+    \label{fig:cp5}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering        
+    \incfig[0.4]{cp6}
+    \caption{Lyapunov estable y repulsor. Ciclo límite 2D}
+    \label{fig:cp6}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \incfig[0.4]{cp7}
+    \caption{Lyapunov estable y atractor. Asintóticamente estable}
+    \label{fig:cp7}
+\end{figure}  

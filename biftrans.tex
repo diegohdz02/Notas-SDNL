@@ -1,0 +1,288 @@
+
+\section{Bifurcación transcrítica}
+
+El sistema más sencillo que tiene esta bifurcación es su forma normal:
+  $$
+\dot{x} = rx-x^2
+$$
+\subsection*{Análisis de estabilidad lineal}
+
+1.Primero tenemos que encontrar los puntos de equilibrio constantes reales:
+$$
+rx-x^2=0 \implies x(r-x)=0
+$$
+por lo que tenemos un punto de equilibrio en $\hat{x}_1=0$ que no depende de los parámetros (su valor será el mismo sin importar el valor de $r$)
+por otro lado $\hat{x}_2=r$, y cuando $ r=0 $ entonces  $\hat{x}_1=\hat{x}_2$.
+
+2.Calculamos la estabilidad de los puntos de equilibrio
+$$ \frac{df}{dx}=r-2x $$
+
+Para $\hat{x}_1$ :
+
+$$  \left. \frac{df}{dx}  \right|_{x=0}=r-2(0)=r  $$
+si $r>0$ entonces $$
+\left. \frac{df}{dx} \right|_{x=0}>0 
+$$
+por lo tanto es un punto de equilibrio inestable, mientras que si $r<0$ entonces
+ $$
+\left. \frac{df}{dx} \right|_{x=0}<0
+$$
+por lo que es estable.
+
+\begin{tcolorbox}[colback=Black!4, colframe=White, arc=2mm]
+\begin{nota}
+  Si $r=0$ no se puede determinar que es lo que está pasando, los puntos de equilibrio se fusionan y pasan cosas raras en cuanto a la estabilidad. Cuando un punto de equilibrio es cero es indicación de que hay una bifurcación en ese punto.
+
+\end{nota}
+\end{tcolorbox}
+
+Para $\hat{x}_2$ :
+$$
+\left. \frac{df}{dx} \right|_{x=r} = r-2r=-r
+$$
+por lo tanto para $r>0$ entonces  $-r<0$ por lo tanto es estable, y cuando  $r<0$ entonces $-r>0$ por lo tanto es inestable (ver figura 2).
+\vspace{2mm}
+\begin{tcolorbox}[colback=Black!4, colframe=White, arc=2mm]
+\begin{nota}[Caracterización de la bifurcación transcritica]
+  Este tipo de bifurcación se caracteriza por el cambio de estabilidad en sus puntos de equilibrio al encontrarse.
+\end{nota}
+\end{tcolorbox}
+\vspace{2mm}
+
+\begin{figure}[H]
+ \centering
+  \subfloat[$r<0$]{
+    \includegraphics[width=0.3\textwidth]{/Users/diego/Documents/NotasFac/SNL/imagenes/bf<0.pdf}}
+  \subfloat[$r=0$]{
+    \includegraphics[width=0.3\textwidth]{/Users/diego/Documents/NotasFac/SNL/imagenes/bf=0.pdf}}
+  \subfloat[ $r>0$]{
+    \includegraphics[width=0.3\textwidth]{/Users/diego/Documents/NotasFac/SNL/imagenes/bf>0.pdf}}
+    \caption{Diagrama de flujo del sistema $\dot{x}=rx-x^2$}
+\end{figure}
+
+\begin{figure}[!tbp]
+  \centering
+  \includegraphics[width=0.5\textwidth]{/Users/diego/Documents/NotasFac/SNL/imagenes/bifgr.pdf}
+  \caption{Diagrama de bifurcación del sistema $\dot{x}=rx-x^2$.}
+\end{figure}   
+
+\begin{lstlisting}[language=Mathematica]
+biftn = Show[
+  Plot[0, {r, -3, 0}, AxesLabel -> {r, SuperStar[x]}, 
+   PlotStyle -> {Red, Thick}, PlotRange -> {{-3, 3}, {-3, 3}}, 
+   AspectRatio -> 1], 
+  Plot[0, {r, 0, 3}, AxesLabel -> {r, SuperStar[x]}, 
+   PlotStyle -> {Red, Dashed}, PlotRange -> {{-3, 3}, {-3, 3}}, 
+   AspectRatio -> 1], 
+  Plot[r, {r, -3, 0}, AxesLabel -> {r, SuperStar[x]}, 
+   PlotStyle -> {Blue, Dashed}, PlotRange -> {{-3, 3}, {-3, 3}}, 
+   AspectRatio -> 1], 
+  Plot[r, {r, 0, 3}, AxesLabel -> {r, SuperStar[x]}, 
+   PlotStyle -> {Blue, Thick}, PlotRange -> {{-3, 3}, {-3, 3}}, 
+   AspectRatio -> 1]]
+\end{lstlisting}  
+
+\begin{ejemplo}
+  Probar que $ \dot{x}=x-a(1-e^{-bx}) $ presenta una bifurcación transcritica
+\end{ejemplo}
+
+Si $x=0$ entonces tenemos:  $$
+0-a(1-e^{0})=0-a(1-1)=0 \implies f(0)=0 \quad \forall a,b \in \mathbb{R}
+$$
+es decir que $\hat{x}=0$ siempre es punto de equilibrio. \\
+
+Dado que la ecuación no es lineal y además es del tipo trascendental no es tan fácil probar a mano que tiene este tipo de bifurcación,pero localmente de la bifurcación todas las ecuaciones se parecen a la forma normal, por lo que vamos a expandir $f(x)$ en series de Taylor alrededor de cero:
+$$
+f( \hat{x} )=0, \frac{df}{dx}=1-a(be^{-bx}), \left. \frac{df}{dx} \right|_{\hat{x}=0} =1-ab
+$$
+por lo que
+$$
+\frac{d^2f}{dx^2}=-a(-b^2e^{-bx}), \left. \frac{d^2f}{dx^2} \right|_{\hat{x}=0} = ab^2
+$$
+  \begin{tcolorbox}[colback=Black!4, colframe=White, arc=2mm]
+  \begin{recordatorio}[Serie de Taylor]
+    Una serie de Taylor es una aproximación de funciones mediante una serie de potencias alrededor de un numero real o complejo $a$ es la siguiente serie de potencias:
+$$
+\begin{aligned}
+  \label{eq:}
+  f(x) &\simeq f(a)+\frac{f'(a)}{1!}(x-a)+\frac{f''(a)}{2!}(x-a)^2 + \cdots + \frac{f^{(n)}(a)}{n!}(x-a)^{n}+ \cdots \\ &= \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!}(x-a)^{n}
+\end{aligned}
+$$   
+  \end{recordatorio}
+\end{tcolorbox}
+
+De esta manera
+
+\begin{equation}
+  f(x) = \dot{x}  \simeq x(1-ab)+\frac{ab^2}{2}x^2
+\end{equation}
+
+y como siguiente paso vamos a acercar esta aproximación a su forma normal. 
+
+Haciendo un cambio de variable
+$$
+y=\frac{ab^2}{2}x
+$$
+$$
+\dot{y}=-\frac{ab^2}{2}x 
+$$
+multiplicando la ecuación (1) por $ \dot{y}$:
+
+$$
+-\frac{ab^2}{2} \dot{x}=-\frac{ab^2}{2}x(1-ab) - \left( \frac{ab^2}{2} \right) ^2x^2
+$$
+$$
+\dot{y}=y(1-ab)-y^2 
+$$
+definiendo $R=(1-ab)$
+entonces
+ \begin{equation}
+  \dot{y}=Ry-y^2 
+\end{equation}
+
+\begin{tcolorbox}[colback=Black!4, colframe=White, arc=2mm]
+\begin{nota}
+Dado que ya llegamos a la forma normal, esta es una prueba suficiente para mostrar que tiene una bifurcación transcritica. 
+\end{nota}
+\end{tcolorbox}
+
+Recordando que la bifurcación ocurre cuando $R=0$ entonces  $(1-ab)=0$ es decir $ab=1$. \\
+
+Análisis de estabilidad con $\hat{x}=0$:
+
+$$
+\left. \frac{df}{dx} \right|_{\hat{x}=0} = 1-ab
+$$
+Si $ab>1$ entonces $$
+\left. \frac{df}{dx} \right|_{\hat{x}=0} <0
+$$
+por lo tanto es estable.
+Si $ab<1$ entonces
+ $$
+\left. \frac{df}{dx} \right|_{\hat{x}=0} >0, 
+$$
+por lo tanto es inestable.
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[width=0.8\textwidth]{/Users/diego/Documents/NotasFac/SNL/imagenes/db1.pdf}
+  \caption{Diagrama de bifurcación ejemplo 1}
+\end{figure}
+
+\begin{lstlisting}[language=Mathematica]
+Manipulate[
+ Plot[x - a*(1 - Exp[-b*x]), {x, -4, 4}, 
+  PlotRange -> {{-4, 4}, {-1, 4}}, 
+  AxesLabel -> {x, OverDot[x]}], {a, -3.5, 3.5}, {b, -2/3, 2/3}]
+\end{lstlisting}  
+
+\begin{lstlisting}[language=Mathematica]
+ststex1ust = 
+  ParallelTable[{a, 
+    x /. 
+     FindRoot[x - a*(1 - Exp[2*x/3]) == 0, {x, -4}]}, {a, -3.5, -3/2, 
+    0.01}];
+
+ststex1st = 
+  ParallelTable[{a, 
+    x /. FindRoot[x - a*(1 - Exp[2*x/3]) == 0, {x, 4}]}, {a, -3/2, -1/
+     3, 0.01}];
+
+ex1bdiag = 
+ Show[ListPlot[ststex1ust, Joined -> True, 
+   PlotStyle -> {Blue, Dashed}, AxesLabel -> {a, SuperStar[x]}, 
+   PlotRange -> {{-3.5, -1/3}, {-4, 4}}], 
+  ListPlot[ststex1st, Joined -> True, PlotStyle -> {Blue, Thick}, 
+   AxesLabel -> {a, SuperStar[x]}, 
+   PlotRange -> {{-3.5, -1/3}, {-4, 4}}], 
+  Plot[0, {a, -3.5, -3/2}, PlotStyle -> {Red, Thick}, 
+   AxesLabel -> {a, SuperStar[x]}, 
+   PlotRange -> {{-3.5, -3/2}, {-4, 4}}], 
+  Plot[0, {a, -3/2, -1/3}, PlotStyle -> {Red, Dashed}, 
+   AxesLabel -> {a, SuperStar[x]}, 
+   PlotRange -> {{-3.5, -1/3}, {-4, 4}}]]
+\end{lstlisting}  
+
+\begin{ejemplo}
+  Probar que $ \dot{x}=r\ln x+x-1=f(x)$
+\end{ejemplo}
+Notemos que $f(1)=r\ln 1+1-1=0$, por lo que $\hat{x}=1$ es un punto de equilibrio para toda $r$.
+
+Haciendo una expansión en series de Taylor alrededor de 1:
+$$
+\frac{df}{dx}=\frac{r}{x}+1, \ \left. \frac{df}{dx} \right|_{\hat{x}=1} = r+1, \ \frac{d^2f}{dx^2}=-\frac{r}{x^2}, \ \left. \frac{d^2f}{dx^2} \right|_{\hat{x}=1} =-r
+$$
+por lo que:
+\begin{equation}
+ f(x) \simeq (x-1)(r+1)+\frac{(x-1)^2}{2}(-r) = (x-1)(r+1)-\frac{r}{2}(x-1)^2
+\end{equation}
+haciendo un cambio de variable:
+$$
+\begin{aligned}
+  y &= \frac{r}{2}(x-1) \\
+  \dot{y} &= \frac{r}{2}  \\ 
+\end{aligned}
+$$multiplicando $ \dot{x}  $ por $\frac{r}{2}$ : 
+$$
+\begin{aligned}
+  \frac{r}{2} \dot{x} &= \frac{r}{2}(x-1)(r+1)- \left( \frac{r}{2} \right) ^2 (x-1)^2  \\
+  \dot{y} &= y(r+1)-y^2 \quad (R=r+1) \\
+  \dot{y} &= Ry-y^2 \\ 
+\end{aligned}
+$$ con esta forma normal el punto de bifurcación se va a dar en $R=0$, es decir  $r=-1$. \\
+
+Análisis de estabilidad para el punto $\hat{x}=1$ :
+$$
+\left. \frac{df}{dx} \right|_{\hat{x}=1} = r+1 
+$$
+Si $r>-1$ entonces
+$$
+\left. \frac{df}{dx} \right|_{\hat{x}=1} >0, \
+$$
+por lo tanto $\hat{x}=1$ es inestable. \\
+
+Si $r<-1$ entonces
+ $$
+\left. \frac{df}{dx} \right|_{\hat{x}=1} < 0, \
+$$
+por lo tanto $\hat{x}=1$ es estable.
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[width=0.8\textwidth]{/Users/diego/Documents/NotasFac/SNL/imagenes/bf2.pdf}
+  \caption{Diagrama de flujo ejemplo 2}
+\end{figure}
+
+\begin{lstlisting}[language=Mathematica]
+Manipulate[
+ Plot[r*Log[x] + x - 1, {x, 0, 2}, PlotRange -> {{0, 2}, {-1, 1}}, 
+  AxesLabel -> {x, OverDot[x]}], {r, -2, 0}]
+\end{lstlisting}  
+
+\begin{lstlisting}[language=Mathematica]
+ststex2ust = 
+  ParallelTable[{r, 
+    x /. FindRoot[r*Log[x] + x - 1 == 0, {x, 2}]}, {r, -1.5, -1, 
+    0.01}];
+
+ststex2st = 
+  ParallelTable[{r, 
+    x /. FindRoot[r*Log[x] + x - 1 == 0, {x, 0.1}]}, {r, -1, -1/2, 
+    0.01}];
+
+ex2bdiag = 
+ Show[ListPlot[ststex2ust, Joined -> True, 
+   PlotStyle -> {Blue, Dashed}, AxesLabel -> {r, SuperStar[x]}, 
+   PlotRange -> {{-1.5, -1/2}, {0, 2.5}}], 
+  ListPlot[ststex2st, Joined -> True, PlotStyle -> {Blue, Thick}, 
+   AxesLabel -> {r, SuperStar[x]}, 
+   PlotRange -> {{-1.5, -1/2}, {0, 2.5}}], 
+  Plot[1, {r, -1.5, -1}, PlotStyle -> {Red, Thick}, 
+   AxesLabel -> {r, SuperStar[x]}, 
+   PlotRange -> {{-1.5, -1/2}, {0, 2.5}}], 
+  Plot[1, {r, -1, -1/2}, PlotStyle -> {Red, Dashed}, 
+   AxesLabel -> {r, SuperStar[x]}, 
+   PlotRange -> {{-1.5, -1/2}, {0, 2.5}}]]
+\end{lstlisting}  
+
+

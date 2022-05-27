@@ -1,0 +1,167 @@
+\section{Bifurcaciones globales}
+Este tipo de bifurcaciones se caracteriza a diferencia de las bifurcaciones anteriores en que \textbf{no involucran puntos de equilibrio individuales que cambien de estabilidad, sino regiones amplias del espacio donde hay un cambio en el comportamiento de las soluciones}. 
+\subsection{Bifurcación de silla-nodo de ciclos}
+\begin{ejemplo}
+  \begin{align*}
+    \dot{r} &= \mu r + r^2- r^{5} \\
+    \dot{\theta} &= \omega + br^2 
+  \end{align*}
+  Tomando $\dot{r}=\mu r + r^3-r^{5}$ lo podemos reescribir:
+  \begin{align*}
+    \dot{r} &= r (\mu + r^2 - r^{4})
+  \end{align*}
+  por lo que $r^*=0$ es un punto de equilibrio, además:
+  \begin{align*}
+    \mu+r^2-r^{4} &= 0  \quad  \left( s \equiv r^{{*}^2} \right)  \\
+    \mu + s - s^2&= 0 \\              
+    s^2-s-\mu &= 0
+  \end{align*}
+  utilizando la chicharronera:
+  \begin{align*}
+      s &= \frac{1\pm \sqrt{1+4\mu}}{2} \\
+    	r^{{*}^2} &= \frac{1\pm \sqrt{1+4\mu}}{2} \\
+    	r^* &= \sqrt{\frac{1\pm \sqrt{1+4\mu}}{2}}
+  \end{align*}
+  dado que $r^*$ es un radio, entonces tenemos únicamente 2 puntos de equilibrio:
+  \begin{align*}
+    	r^*_{1,2} &= \sqrt{\frac{1\pm \sqrt{1+4\mu}}{2}}
+  \end{align*}
+  por lo tanto tenemos 2 soluciones que se convierten en una sola cuando $r_1^*=r_2^*$ es decir:
+  \begin{align*}
+    1+4\mu_c &= 0 \\
+    4\mu_c&= -1 \\
+    \mu_c&= -\frac{1}{4}
+  \end{align*}
+  entonces
+  \begin{equation*}
+    r_c^*=\sqrt{\frac{1}{2}} = \frac{1}{\sqrt{2}} = \frac{\sqrt{2}}{2} \simeq 0.7071 
+  \end{equation*}
+
+  \begin{figure}[H]
+   \centering
+   \subfloat[$ \mu<\mu_c$]{
+   \includegraphics[width=0.3\textwidth]{gb1.pdf}}
+   \subfloat[$ \mu=\mu_c$]{
+   \includegraphics[width=0.3\textwidth]{gb2.pdf}}
+   \subfloat[$ \mu>\mu_c$]{
+   \includegraphics[width=0.3\textwidth]{gb3.pdf}}
+  \end{figure}
+  las soluciones se ven como se sigue:
+  \begin{figure}[H]
+   \centering
+   \subfloat[$ \mu<\mu_c$]{
+   \includegraphics[width=0.3\textwidth]{gb4.pdf}}
+   \subfloat[$ \mu = \mu_c$]{
+   \includegraphics[width=0.3\textwidth]{gb5.pdf}}
+    \subfloat[$ \mu>\mu_c$]{
+      \includegraphics[width=0.3\textwidth]{gb6}}
+  \end{figure}
+  podemos observar que de $ \mu<\mu_c$ no existe ningún ciclo limite, para $\mu=\mu_c$ se crea de la nada un ciclo límite que no es estable ni inestable, y para $ \mu>\mu_c$ se divide en dos el ciclo límite, donde uno es estable y el otro es inestable.  
+\end{ejemplo}
+
+\subsection{Bifurcación de periodo infinito}
+
+\begin{ejemplo}
+  \begin{align*}
+    \dot{r} &= r(1-r) \\
+    \dot{\theta}&= \mu-\sin\theta
+  \end{align*}
+  Notemos que $\dot{r}=r(1-r)$ es la ecuación logística, y tiene un punto de equilibrio en $r^*=0$ inestable, mientras que en $r^*=1$ es un punto de equilibrio estable. Esto nos dice que siempre nos vamos a pegar a un circulo de radio 1.
+
+  Por otro lado
+  $\dot{\theta}=\mu-\sin\theta$ tiene un punto de equilibrio en $ \mu=\sin\theta^*$, si  $ \mu>1$ entonces no hay $\theta^*$, si $ \mu=1$ entonces $\theta^*=\frac{\pi}{2}$ eso quiere decir que en este punto nos vamos a detener, por lo que ya no vamos a girar, si $-1<\mu<1$ tenemos $\theta_1^*, \theta_2^*$ en los cuales ya no podemos seguir rotando. Esto gráficamente se ve como:
+
+  \begin{figure}[H]
+   \centering
+    \subfloat[$ \mu>1$]{
+      \includegraphics[width=0.3\textwidth]{gb7}}
+    \subfloat[$ \mu=1$]{
+      \includegraphics[width=0.3\textwidth]{gb8}}
+    \subfloat[$ \mu>1$]{
+      \includegraphics[width=0.3\textwidth]{gb9}}
+  \end{figure}
+  y las soluciones:
+  \begin{figure}[H]
+   \centering
+    \subfloat[$ \mu>1$]{
+      \includegraphics[width=0.3\textwidth]{gb10}}
+    \subfloat[$ \mu=1$]{
+      \includegraphics[width=0.3\textwidth]{gb11}}
+    \subfloat[$mu>1$]{
+      \includegraphics[width=0.3\textwidth]{gb12}}
+  \end{figure}
+
+  \begin{tcolorbox}[colback=Black!4, colframe=White,arc=2mm]
+  \begin{recordatorio}[Velocidad angular]
+    $\dot{\theta}$ representa la velocidad angular (que tan rápido recorro el angulo). 
+  \end{recordatorio}
+  \end{tcolorbox}
+\end{ejemplo}
+si tomamos una solución particular para cada caso se verían de la siguiente forma:
+\begin{figure}[H]
+ \centering
+  \subfloat[Tenemos una solución oscilatoria puesto que el periodo aproximadamente es de $T \simeq 10$]{
+    \includegraphics[width=0.3\textwidth]{gb13}}
+  \subfloat[$T = \infty$]{
+    \includegraphics[width=0.3\textwidth]{gb14}}
+    \subfloat[La solución no oscila]{
+    \includegraphics[width=0.3\textwidth]{gb15}}
+\end{figure}
+
+\subsection{Bifurcación homoclínica}
+En estos casos será muy complicado llegar a resolver las ecuaciones de manera analítica, para poder obtener los puntos de bifurcación, por lo tanto estas bifurcaciones las abordaremos de manera computacional.
+\begin{ejemplo}
+  \begin{equation}
+    \label{bh1} 
+    \begin{split}
+      \dot{x} &= y \\
+      \dot{y} &= \mu y + x - x^2 + xy 
+    \end{split}
+  \end{equation}
+  \begin{figure}[H]
+   \centering
+    \subfloat[]{
+     \label{}
+      \includegraphics[width=0.45\textwidth]{gb16}}
+    \subfloat[]{
+     \label{bh3}
+      \includegraphics[width=0.45\textwidth]{gb17}}
+      \caption{Diagrama de flujo del sistema (\ref{bh1}) para $ \mu< \mu_c$ }
+   \label{}
+  \end{figure} 
+  del sistema (\ref{bh1}) podemos observar que $(0,0)$ y $(0,1)$ son puntos de equilibrio; donde $(0,0)$ es un punto silla y  $(0,1)$ es un punto inestable. A primera instancia podemos notar algunos detalles de la gráfica (\ref{bh3}); en primer lugar las flechas de color rojo (variedad inestable del punto silla) tienden a un ciclo límite, y la variedad estable (flechas negras) nos llevan al punto de equilibrio.
+  \begin{figure}[H]   
+    \centering
+    \includegraphics[width=0.6\textwidth]{gb18}
+    \caption{Solución del sistema con $ \mu<\mu_c$ con condiciones iniciales $(0.98,0.01)$} 
+    \label{bh4}
+  \end{figure}
+  En la gráfica (\ref{bh4}) podemos ver el comportamiento de la solución rosa de la gráfica (\ref{bh3}) la cual oscila en el ciclo límite.
+  \begin{figure}[H]
+   \centering
+    \subfloat[A la trayectoria roja le llamaremos variedad homoclínica, dado que conecta a un punto consigo mismo.]{
+     \label{}
+      \includegraphics[width=0.4\textwidth]{gb19}} 
+    \subfloat[Solución con condiciones iniciales $(0.98,0.01)$]{
+     \label{bh5}
+      \includegraphics[width=0.49\textwidth]{gb20}}
+      \caption{$ \mu=\mu_c$}
+  \end{figure} 
+  En la figura (\ref{bh5}) podemos apreciar como a la solución le cuesta cada vez más llegar al mismo punto, el periodo de oscilación se vuelve infinito para oscilaciones posteriores. Mientras que en la figura (\ref{bh6}) podemos apreciar que si partimos muy cerca del punto inestable, vamos a irnos a menos infinito. 
+  \begin{tcolorbox}[colback=Black!4, colframe=White,arc=2mm]
+  \begin{definicion}[Variedad homoclínica]
+    Trayectoria que conecta un punto consigo mismo.
+  \end{definicion}
+  \end{tcolorbox}
+  \begin{figure}[H]
+   \centering
+    \subfloat[]{
+      \includegraphics[width=0.4\textwidth]{gb21}} 
+    \subfloat[Solución con condiciones iniciales $(0.98,0.01)$]{
+      \includegraphics[width=0.49\textwidth]{gb22}}
+      \caption{$ \mu<\mu_c$}
+      \label{bh6}
+  \end{figure} 
+  
+\end{ejemplo}
+

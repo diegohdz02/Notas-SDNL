@@ -1,0 +1,144 @@
+\section{Ciclos límites}
+
+\begin{tcolorbox}[colback=Black!4, colframe=White, arc=2mm]
+\begin{definicion}[Ciclo límite]
+  Trayectoria (solución) que es cerrada. Pueden ser inestables, estables o semiestables y solo puede existir un único ciclo límite.
+  
+\end{definicion}
+\end{tcolorbox}
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[width=0.8\textwidth]{cl}
+  \caption{Tipos de ciclos límite.}
+  \label{tiposCiclos}
+\end{figure}
+En la figura \ref{tiposCiclos} podemos apreciar los tipos de ciclos que existen, si es estable, sin importar que condición inicial tomemos la curva solución va a llegar al ciclo límite, por el contrario si es inestable, la curva solución podrá estar muy cerca del ciclo, pero terminará alejándose de el, por último si es semiestable puede ser estable por adentro pero inestable por afuera podemos apreciar los tipos de ciclos que existen, si es estable, sin importar que condición inicial tomemos la curva solución va a llegar al ciclo límite, por el contrario si es inestable, la curva solución podrá estar muy cerca del ciclo, pero terminará alejándose de el, por último si es semiestable puede ser estable por adentro pero inestable por afuera.
+
+\begin{ejemplo} Sea el sistema $$
+\begin{aligned}
+  \dot{r} &= r(1-r) \\ 
+  \dot{\theta}&=1
+\end{aligned}
+$$
+dado que es un sistema desacoplado podemos estudiar cada ecuación por separado. 
+
+Si $\dot{\theta}=1$ entonces $\theta=t+c$, dado que los ángulos se miden hacia la izquierda entonces las soluciones cuando $t$ crecen van a rotar a la izquierda.
+\end{ejemplo}
+
+\begin{ejemplo}[Ecuación de vander Pol]
+  $$
+  \begin{aligned}
+    \ddot{x} &= -\mu(x^2-1)\dot{x}-x \\  
+  \end{aligned}
+  $$
+  podemos ver la ecuación anterior como un oscilador armónico: $$
+  \begin{aligned}
+    \ddot{x} &= -\gamma \dot{x}-kx,\ \gamma \equiv -\mu(x^2-1),\ k=1 \\   
+  \end{aligned}
+  $$
+\end{ejemplo}
+
+\subsection{Criterios para la existencia de ciclos límite: Sistemas potenciales}
+
+\begin{tcolorbox}[colback=Black!4,colframe=White, arc=2mm]
+\begin{teorema}
+Sea $V: \mathbb{R}^2 \to \mathbb{R} $, si nuestro sistema no lineal $\dot{\vec{x}}=\vec{f}(x)$ es tal que $$
+    \begin{aligned}
+      \vec{f}(x) &= -\nabla V  \\  
+    \end{aligned}
+    $$
+    donde $V$ es el potencial del sistema, entonces no hay ciclos.     \\
+\end{teorema}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=Black!4, colframe=White, arc=2mm]
+\begin{demostracion} 
+  Supongamos que si hay un ciclo.  
+    Vamos a definir $$V(t) \equiv V(\vec{x}(t))$$ (el potencial evaluado en una de las soluciones del ciclo), y la solución \textbf{debe ser periódica} por lo que definimos $\tau$ como el periodo del ciclo, esto quiere decir que $$
+    \vec{x}(0) = \vec{x}(\tau)
+    $$
+    por lo que $$
+    V(0) \equiv V(\vec{x}(0)) = V(\vec{x}(\tau)) = V(\tau)$$
+    $$
+    \begin{aligned}
+      0 = V(\tau) - V(0) &= \int_{{0}}^{{\tau}} {\frac{dV}{dt}} \: d{t} \\
+		      &= \int_{0}^{\tau} {\nabla V \cdot \dot{\vec{x}}}  d{t}   \\
+                      &= \int_{0}^{\tau} (-\dot{\vec{x}}\cdot(\dot{\vec{x}})) d{t}  \\
+                      &= -\int_{0}^{\tau} \|\dot{\vec{x}}\|^2 d{t} \\ 
+    \end{aligned}
+    $$
+    lo cual implica que $\dot{\vec{x}}=\begin{pmatrix} 0 \\ 0 \end{pmatrix} \bot$ pues entonces $\dot{\vec{x}}$ no es un ciclo si no es un punto de equilibrio.     
+\end{demostracion}
+\end{tcolorbox}
+    
+\begin{ejemplo} Sea el sistema
+  $$
+  \begin{aligned}
+    \dot{x} &= \sin y  \\
+    \dot{y} &= x\cos y \\ 
+  \end{aligned}
+  $$
+  demuestra que no tiene ciclos.
+
+  \begin{tcolorbox}[colback=Black!4, colframe=White, arc = 2mm]
+  \textbf{Solución}
+
+  Podemos encontrar una función tal que $V = -x\sin y$
+  $$
+  \begin{aligned}
+    -\nabla V &= - \left( \frac{\partial V}{\partial x} , \frac{\partial V}{\partial y}  \right)   \\
+    &= -(-\sin y , -x\cos y) \\
+    &= (\sin y, x\cos y) \\
+    &= (f_1,f_2) 
+  \end{aligned}
+  $$
+  \end{tcolorbox}
+\end{ejemplo}
+\begin{tcolorbox}[colback=Black!4, colframe=White, arc=2mm]
+\begin{nota} Este criterio no es muy útil dado que es muy complicado que el sistema se pueda escribir como el gradiente de una función.
+\end{nota}
+\end{tcolorbox}
+\begin{tcolorbox}[colback=Black!4,colframe=White, arc=2mm]
+  \begin{teorema}[Función de Lyapunov] Sea $\vec{x}^*$ un punto de equilibrio de $\dot{\vec{x}}=\vec{f}(\vec{x})$ y $V: \mathbb{R}^2 \to \mathbb{R} $ tal que $$
+  V(\vec{x}^*)=0,\ \frac{dV}{dt}(\vec{x}^*)=0,\ V(\vec{x})>0 \ \forall \vec{x} \neq \vec{x}^* $$ en una región $D \subset \mathbb{R}^2$ y $$\frac{dV}{dt}(\vec{x})<0 \ \forall \vec{x} \neq \vec{x}^*$$ entonces $\vec{x}^*$ es \textbf{asintoticamente estable} y \textbf{no hay ciclos en $D$}. Podemos pensar esto geométricamente como las soluciones proyectadas en un paraboloide, por lo que estas solo pueden bajar (ver figura  \ref{flyapun}).
+  \label{teoremaflyapun}
+\end{teorema}
+\end{tcolorbox}
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[width=0.5\textwidth]{flyapun}
+  \caption{Geometría del teorema \ref{teoremaflyapun}}
+  \label{flyapun}
+\end{figure}
+
+\begin{tcolorbox}[colback=Black!4, colframe=White, arc=2mm]
+\begin{nota}El teorema de la función de Lyapunov es más útil que el teorema anterior, pero no hay ningún método para calcular esta función (si es que existe).
+\end{nota}
+\end{tcolorbox}
+
+\begin{ejemplo} Sea el sistema $$
+\begin{aligned}
+  \dot{x} &= -x + 4y \\ 
+  \dot{y} &= -x-y^3
+\end{aligned}
+$$
+demuestra que no hay ciclos utilizando el teorema de Lyapunov.
+\begin{tcolorbox}[colback=Black!4, colframe=White, arc = 2mm]
+\textbf{Solución}
+Proponemos $V(x,y)=x^2+4y^2$ como la función de Lyapunov, notemos que
+$$
+V(0,0) = 0 ,\ V(x,y)>0 ,\ x,y \neq_0
+$$
+por otro lado $$
+\begin{aligned}
+  \frac{dV}{dt} &= 2x \dot{x} + 8y\dot{y} \\ 
+  &= 2x(-x+4y)+8y(-x-y^3) \\
+  &= -2x^2+8xy-8xy-8y^{4} \\
+  &= -2x^2-8y^{4} < 0 \\ 
+\end{aligned}
+$$
+por lo tanto $V$ es una función de Lyapunov.
+\end{tcolorbox} 
+\end{ejemplo}

@@ -1,0 +1,116 @@
+\section{Bifurcaciones imperfectas}
+
+\begin{tcolorbox}[colback=Black!4, colframe=White]
+\begin{recordatorio}
+    Bifurcaciones de tridente supercrítica  
+    $$
+  \dot{x}= rx-x^{3}   
+    $$
+    $$
+    \dot{x}=h+rx-x^{3}
+    $$
+    si $h>0$ entonces  $\dot{x}$ será un poco más positivo, ie, las soluciones van a crecer un poco más, análogamente con $h<0$ habrá una preferencias hacia soluciones negativas. De esta manera diremos que  $h$ es un parámetro de imperfección, rompe la simetría de la ecuación.
+\end{recordatorio}
+\end{tcolorbox}
+ \begin{figure}[ht]
+    \centering
+      \incfig[0.4]{bifh1}
+      \subcaption{$h<0$ }
+      \label{fig:bifh1}
+    \incfig[0.4]{bifh2}
+      \subcaption{$h>0$}
+      \label{fig:bifh2}
+    \caption{Diagrama de flujo del sistema $\dot{x}=h+rx-x^3$}
+\end{figure}  
+
+Puntos de equilibrio
+
+$$
+\begin{aligned}
+  0 &= h+r\hat{x}-\hat{x}^3 \\
+\end{aligned}
+$$                            
+resolver la ecuación anterior puede ser complicado, por lo que vamos a definir
+$$
+-h = rx-x^3
+$$
+y hacemos $$
+f(x)=-h , \ g(x)=rx-x^3  
+$$
+por lo tanto las soluciones de la ecuación estará dado por los puntos $f(x)=g(x)$. \
+
+\begin{figure}[ht]
+    \centering
+    \incfig[0.4]{bi1}
+    \subcaption{$r=2,\ h=-1.11 $ }
+    \label{fig:bifurcación1}
+    \incfig[0.4]{bi2}
+    \subcaption{$r=2, \ h=0$}
+    \label{fig:bifurcación2}
+    \incfig[0.4]{bi3}
+    \subcaption{$r=2, \ h=1.11$}
+\end{figure}
+
+
+
+Podemos apreciar que únicamente habrá un punto de equilibrio para $r<0$ y  $r=0$, mientras que para  $r>0$ para ciertas  $h$ podemos tener de 1 a 3 puntos de equilibrio. Para $r=2$ y  $h=-1.11$ tenemos una bifurcación de tipo nodo-silla, pues \textbf{hay dos puntos de equilibrio que aparecen de la nada} y para $r=2$ y  $h=1.11$ volvemos a tener una bifurcación de nodo silla pues  \textbf{dos puntos de equilibrio se encuentran y se aniquilan.}
+
+$$
+\begin{aligned}
+  \frac{d}{dx}g(x) &= 0 \\ 
+  r-3x^2 &= 0 \\ 
+  3x^2 &= r  \\
+  x_c &= \pm \sqrt{\frac{r}{3}} \\ 
+\end{aligned}
+$$
+Evaluando:
+
+$$
+\begin{aligned}
+  g(x_c)&=rx_c - x_c^3  \\
+	&= r \left( \pm \sqrt{\frac{r}{3}} \right) - \left( \pm \sqrt{\frac{r}{3}} \right)^2 \left( \pm \sqrt{\frac{r}{3}} \right) \\
+  &= \pm r \sqrt{\frac{r}{3}} - \frac{r}{3} \left( \pm \sqrt{\frac{r}{3}} \right)  \\ 
+  &= \pm r \sqrt{\frac{r}{3}} \mp \frac{r}{3} \sqrt{\frac{r}{3}} \\
+  &= \sqrt{\frac{r}{3}} \left( \pm r \mp \frac{r}{3} \right)  \\
+  &= \pm \frac{2r}{3} \sqrt{\frac{r}{3}} \\
+  &= \pm h_c \\ 
+\end{aligned}
+$$
+de esta manera ya tenemos una ecuación que me representa a ambos parámetros, graficando $h_c$:
+
+\begin{figure}[ht]
+    \centering
+    \incfig[0.4]{pc1}
+    \caption{Diagrama de estabilidad}
+    \label{fig:pc1}
+\end{figure}
+
+En el diagrama de estabilidad podemos apreciar la cúspide, donde los puntos de equilibrio se encuentran y las curvas definidas por $h_c = \pm \frac{2r}{3} \sqrt{\frac{r}{3}}$. En la parte amarilla del diagrama tenemos únicamente un punto de equilibrio mientras que en la azul tenemos 3.  
+
+\begin{tcolorbox}[colback=Black!4,colframe=White] 
+  \begin{nota}[Espacio de parámetros y diagrama de estabilidad]
+  Al espacio $h$ vs $r$, se le llama \textbf{espacio de parámetros} y lo que graficamos sobre el espacio se le llama \textbf{diagrama de estabilidad. } 
+\end{nota}
+\end{tcolorbox}
+
+\begin{figure}[ht]
+    \centering
+    \incfig[0.4]{4bif1}
+    \caption{Diagrama de bifurcación fijando $h=0.01$}
+    \label{fig:4bif1}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \incfig[0.4]{4bif2}
+    \caption{Diagrama de bifurcación fijando $r=1$}
+\end{figure}    
+
+\begin{figure}[H]
+    \centering
+    \incfig[0.45]{supcat}
+    \caption{Superficie de catástrofe $h+r\hat{x}-\hat{x}^3$}
+    \label{fig:supcat}
+\end{figure}   
+ 
+

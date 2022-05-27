@@ -1,0 +1,74 @@
+\subsection{Oscilaciones de relajación y bifurcaciones}
+
+\begin{equation*}
+  T \simeq 2 \int_{a}^{b}   d{t} = 2 \int_{x=2}^{x=1}  {dt}   
+\end{equation*}                  
+
+necesitamos expresar $dt$ como una función de  $x$. Las soluciones son  $x=x(t)$, usando la regla de la cadena:
+\begin{align*}
+  dt &= \frac{dt}{dx} dx 
+\end{align*}
+con el \textbf{teorema de funciones inversas} podemos hacer lo siguiente:
+\begin{equation} \label{eq0_270422} 
+	\frac{dt}{dx} = \frac{1}{\frac{dx}{dt}} = \frac{1}{\dot{x}} 
+\end{equation}
+queremos el intervalo que está entre 2 y 1, y cuando la solución esta en este intervalo la solución esta pegada a la ceroclina, por lo que la trayectoria es casi la ceroclina es decir $y \simeq F(x)$
+\begin{equation} \label{eq1_270422} 
+	\begin{split}
+		\dot{y} &= \frac{dy}{dt} \\
+		 &= \frac{d}{dt} \left( F(x) \right) \\
+		  &= \frac{dF}{dx} \frac{dx}{dt} \\
+			&= (x^2-1) \dot{x} 
+	\end{split}
+\end{equation}
+y del sistema de ecuaciones sabemos que \begin{equation}   \label{eq2_270422} 
+  \dot{y} = -\frac{x}{\mu}
+\end{equation}
+igualando (\ref{eq1_270422}) y (\ref{eq2_270422}) 
+\begin{equation}  \label{eq3_270422} 
+  \dot{x} = -\frac{x}{\mu(x^2-1)}
+\end{equation}
+y sustituyendo (\ref{eq3_270422}) en (\ref{eq0_270422}) 
+\begin{align*}
+	\frac{dt}{dx} &= \frac{1}{\dot{x}} \\
+	 &= \frac{\mu(x^2-1)}{-x} \\
+	  &= -\mu \left( x-\frac{1}{x} \right)  
+\end{align*}
+de esta manera 
+\begin{align*}
+	T &\simeq \int_{x=2}^{x=1}  d{t} \\
+	 &= 2 \int_{x=2}^{x=1} \frac{dt}{dx} d{x} \\
+	  &= 2 \int_{x=2}^{x=1} -\mu \left( x-\frac{1}{x} \right)  d{x} \\
+	   &= 2 \int_{1}^{2} \mu \left( x-\frac{1}{x} \right)  d{x} \\
+	    &= 2\mu \left. \left( \frac{x^2}{2} - \ln(x) \right)   \right|_{1}^2         \\
+	     &= 2\mu \left( 2-\ln(2)-\frac{1}{2}+ln(1) \right)  \\
+	      &= 2\mu \left( \frac{3}{2} - \ln(2) \right) \\
+	       &= \mu (3-2\ln(2)) 
+\end{align*}
+por lo tanto si $ \mu=50$ entonces $T = 50(3-2\ln(2)) = 80.7$
+\section{Bifurcaciones en 2D}
+
+\subsection{Bifurcación de nodo silla en 2D}
+
+\textbf{Forma normal}
+$$\begin{aligned}
+		\dot{x} &= \mu-x^2 \\
+	\dot{y} &= -y
+  \end{aligned}$$
+
+	Para $ \mu<0$ tenemos un ``fantasma`` como se ve en la figura (\ref{bns-l1}) que apachurra nuestras soluciones dado que hace que la velocidad vaya hacia a la izquierda y mientras se hace pequeño reduce la velocidad del sistema. Para $ \mu=0$ tenemos un punto de equilibrio en $(0,0)$, y para $ \mu>0$ tenemos un nodo silla y un nodo estable. 
+\begin{figure}[H]
+ \centering
+  \subfloat[$ \mu<0$]{
+   \label{bns-l1}
+    \includegraphics[width=0.3\textwidth]{bns2d-0.pdf}}
+		\subfloat[$ \mu=0$]{
+		\includegraphics[width=0.3\textwidth]{bns2d-1.pdf}}
+		\subfloat[$ \mu>0$]{
+		\includegraphics[width=0.3\textwidth]{bns2d-2.pdf}}
+		\caption{}
+ \label{}
+\end{figure}
+
+
+

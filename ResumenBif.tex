@@ -1,0 +1,114 @@
+\documentclass[letterpaper]{article}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\geometry{top=1.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+\usepackage{setspace}
+\setlength{\parindent}{0cm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{setspace} 
+\usepackage{amsmath,amsfonts,amssymb,mathtools}
+\usepackage{graphicx,float}
+\newtheorem{ejemplo}{Ejemplo}
+\newtheorem{teorema}{Teorema}
+\newtheorem{corolario}{Corolario}
+\newtheorem{preposicion}{Preposici\'on}
+\newtheorem{lema}{Lema}
+\newtheorem{definicion}{Definici\'on}
+\newtheorem{nota}{Nota}
+\newtheorem{notacion}{Notaci\'on}
+\newtheorem{conclusion}{Conclusi\'on}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\title{Resumen: Bifurcaciones}
+\author{Diego Eduardo Hernández Cerda\\
+}
+
+\begin{document}
+\maketitle
+
+\begin{tcolorbox}[colback=YellowGreen!10, colframe=YellowGreen, title=Tipos de bifurcaciones y características, center title, fonttitle=\bfseries]
+
+  \tcbsubtitle{Bifurcación de Nodo-Silla}
+
+  Forma normal. $$
+  \dot{x}=r+x^2
+  $$
+  Puntos de equilibrio 
+
+  Para $r<0$ hay dos puntos de equilibrio en  $\hat{x}_{1,2}= \pm \sqrt{-r}$, donde $-\sqrt{-r}$ es estable y $\sqrt{-r}$ es inestable.
+  Para $r=0$ hay un punto de equilibrio en $r=0$ el cual es semiestable.
+  
+  Para $r>0$ no hay puntos de equilibrio.
+
+  \tcbsubtitle{Bifurcación transcrítica}
+
+  Forma normal.
+  $$
+  \dot{x}=rx-x^2  $$
+
+  Puntos de equilibrio
+
+  Siempre existe $\hat{x}_1=0$ como punto de equilibrio sin importar el valor de $r$, donde:
+  \begin{enumerate}
+    \item Si $r>0$ entonces es inestable.
+      \item Si $r < 0$ entonces es estable
+	\item Si $r = 0$ no se puede determinar que es lo que está pasando con el equilibrio, ya que los puntos se fusionan.
+  \end{enumerate}
+
+  Hay un punto de equilibrio en $\hat{x}_{2}=r$, donde:
+  \begin{enumerate}
+    \item Si $r>0$ entonces es estable.
+      \item Si $r<0$ entonces es inestable.
+	\item Si $r=0$ no se puede determinar la estabilidad. 
+  \end{enumerate}
+
+  \textbf{Este tipo de bifurcación se caracteriza por el cambio de estabilidad en sus puntos de equilibrio al encontrarse}      
+
+  \tcbsubtitle{Bifurcación de tridente supercrítica}
+  Forma normal.
+  $$
+  \dot{x} =rx-x^3
+  $$
+  Puntos de equilibrio.
+
+  Tiene un punto de equilibrio en $\hat{x}_1=0$ que siempre existe, además de $$
+  \hat{x}_{2,3} = \pm \sqrt{-r} \text{ si } r<0.
+  $$
+  Estabilidad.
+
+  Si $r>0$ entonces $\hat{x}_1$ es inestable, si $r<0$ entonces $\hat{x}_1$ es estable.
+  Por otro lado, dado que para que existan $\hat{x}_{2,3} \ r>0$ entonces $\hat{x}_{2,3}$ siempre son inestables. 
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=YellowGreen!10, colframe=YellowGreen, title=Tipos de bifurcaciones y sus características  ,fonttitle=\bfseries, center title]
+
+\tcbsubtitle{Bifurcación de tridente subcrítica}
+
+Forma normal. $$
+\dot{x}=rx+x^3
+$$
+Puntos de equilibrio.
+
+Siempre existe un punto de equilibrio  en $\hat{x}_1=0$, por otro lado $\hat{x}_{2,3}=\pm \sqrt{-r}$ si $r<0$.
+
+Estabilidad.
+
+Si  $r<0$ entonces $\hat{x}_1$ es estable, mientras que si $r>0$ entonces es inestable.
+
+Para $\hat{x}_{2,3}$, dado que $r>0$ entonces siempre son inestables.
+
+Para casi todas las aplicaciones la bifurcación tridente supercrítica tendrá la forma normal  $$
+\dot{x} =rx+x^3-x^{5}
+$$
+\textbf{Su característica principal es que este tipo de bifurcaciones se dan en funciones simétricas.}
+
+Para $r>0$ las soluciones siempre explotan (se van a infinito en tiempos finitos.)
+
+\end{tcolorbox}
+
+\end{document}
+

@@ -1,0 +1,201 @@
+\section{Bifurcación de Tridente Supercrítica}
+
+Este tipo de bifurcación tiene una forma normal del tipo  $$      
+\dot{{x}} {=rx+x^3}$$
+
+\section*{Análisis de estabilidad lineal}
+Puntos de equilibrio
+$$
+\begin{aligned}
+  r\hat{x}+\hat{x}^{3} &= 0 \\
+  \hat{x}(r+\hat{x}^2) &= 0 \\
+  \therefore \hat{x}_1 &= 0 \\
+\end{aligned}                       
+$$
+Por otro lado  $$
+r+\hat{x}^2=0 \implies \hat{x}^2 =-r \\\ \therefore \hat{x}_{2,3}= \pm \sqrt{-r} \quad \exists \text{ si } r<0
+$$
+Estabilidad de los puntos de equilibrio
+
+Para $\hat{x}_1$:
+$$
+\frac{df}{dx}=r+3x^2, \quad \left. \frac{df}{dx}\right|_{\hat{x}_1=0}=r
+$$                                                             
+por lo tanto si $r>0$ entonces $\hat{x}_1$ es inestable, si $r<0$ entonces $\hat{x}_1$ es estable.
+
+Para $\hat{x}_{2,3}$:
+ $$
+ \left. \frac{df}{dx} \right|_{\hat{x}_{2,3}}=r+3(\pm \sqrt{-r})^2=r+3(-r)=r-3r=-2r<0 
+$$
+como $r>0$ entonces  $\hat{x}_{2,3}$ siempre son inestables
+
+\begin{figure}[!tbp]
+  \begin{subfigure}[b]{0.35\textwidth}
+    \includegraphics[width=\textwidth, height=\textwidth]{/Users/diego/Documents/NotasFac/SNL/imagenes/superc.pdf}
+    \caption{Gráfica de bifurcación supercrítica}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.35\textwidth}
+    \includegraphics[width=\textwidth, height=\textwidth]{/Users/diego/Documents/NotasFac/SNL/imagenes/sub.pdf}
+    \caption{Gráfica de bifurcación subcrítica}
+  \end{subfigure}
+  \caption{Comparación de bifurcaciones}
+\end{figure}
+
+
+\begin{figure}[!tbp]
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth, height=\textwidth]{/Users/diego/Documents/NotasFac/SNL/imagenes/r<0.pdf}
+    \caption{$r<0$}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth, height=\textwidth]{/Users/diego/Documents/NotasFac/SNL/imagenes/r=0.pdf}
+    \caption{$r=0$}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth, height=\textwidth]{/Users/diego/Documents/NotasFac/SNL/imagenes/r>0.pdf}
+    \caption{$r>0$}
+  \end{subfigure}
+  \caption{Diagrama de flujo de $\dot{{x}} {=rx+x^3}$}
+\end{figure}
+
+Código para realizar la figura 1a):
+\begin{lstlisting}[language=Mathematica]
+bdiag = Show[
+  Plot[0, {r, -2, 0}, PlotStyle -> {Red, Thick}, 
+   PlotRange -> {{-2, 2}, {-3/2, 3/2}}, 
+   AxesLabel -> {r, SuperStar[x]}], 
+  Plot[0, {r, 0, 2}, PlotStyle -> {Red, Dashed}, 
+   PlotRange -> {{-2, 2}, {-3/2, 3/2}}, 
+   AxesLabel -> {r, SuperStar[x]}], 
+  Plot[Sqrt[r], {r, 0, 2}, PlotStyle -> {Blue, Thick}, 
+   PlotRange -> {{-2, 2}, {-3/2, 3/2}}, 
+   AxesLabel -> {r, SuperStar[x]}], 
+  Plot[-Sqrt[r], {r, 0, 2}, PlotStyle -> {Blue, Thick}, 
+   PlotRange -> {{-2, 2}, {-3/2, 3/2}}, 
+   AxesLabel -> {r, SuperStar[x]}]]
+\end{lstlisting}  
+Código para realizar la figura 1b):
+\begin{lstlisting}[language=Mathematica]
+bdsub = Show[
+  Plot[0, {r, -4, 0}, AxesLabel -> {r, SuperStar[x]}, 
+   PlotStyle -> {Red, Thick}, PlotRange -> {{-4, 4}, {-2, 2}}], 
+  Plot[0, {r, 0, 4}, AxesLabel -> {r, SuperStar[x]}, 
+   PlotStyle -> {Red, Dashed}, PlotRange -> {{-4, 4}, {-2, 2}}], 
+  Plot[Sqrt[-r], {r, -4, 0}, AxesLabel -> {r, SuperStar[x]}, 
+   PlotStyle -> {Blue, Dashed}, PlotRange -> {{-4, 4}, {-2, 2}}], 
+  Plot[-Sqrt[-r], {r, -4, 0}, AxesLabel -> {r, SuperStar[x]}, 
+   PlotStyle -> {Blue, Dashed}, PlotRange -> {{-4, 4}, {-2, 2}}]]
+\end{lstlisting}
+Código para realizar las gráficas de la figura 2:
+\begin{lstlisting}[language=Mathematica]
+pl1 = Plot[-3*x + x^3, {x, -2, 2}, AxesLabel -> {x, OverDot[x]}, 
+  PlotRange -> {{-2, 2}, {-8, 8}}]
+
+pl2 = Plot[0*x + x^3, {x, -2, 2}, AxesLabel -> {x, OverDot[x]}, 
+  PlotRange -> {{-2, 2}, {-8, 8}}]
+
+pl3 = Plot[3*x + x^3, {x, -2, 2}, AxesLabel -> {x, OverDot[x]}, 
+  PlotRange -> {{-2, 2}, {-8, 8}}]
+\end{lstlisting}
+ 
+\begin{tcolorbox}[colback=Black!4,colframe=White] 
+\begin{nota}[Representación de la estabilidad en una gráfica]
+Vamos a representar a un punto de equilibrio estable con un color solido mientras por otro lado los puntos de equilibrio inestables serán representados por lineas punteadas
+\end{nota}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=Black!4,colframe=White] 
+\begin{nota}
+  Por la gráfica 1 podemos apreciar que si aumentábamos el valor de $r$ pasábamos de un punto de equilibrio estable a 2 puntos, mientras que en el caso subcrítico pasamos de tener 1 punto de equilibrio estable y 2 puntos de equilibrio inestables, a únicamente un solo punto de equilibrio inestable. 
+\end{nota}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=Black!4,colframe=White] 
+\begin{nota}
+Se puede demostrar que para el caso subcrítico para $r>0$ las soluciones siempre explotan.  
+\end{nota}
+\end{tcolorbox}
+
+
+
+\begin{tcolorbox}[colback=Black!4,colframe=White] 
+\begin{nota}
+  Para casi todas las aplicaciones la bifurcación tridente supercrítica tendrá la forma normal $$
+  \dot{{x}} {=rx+x^3-x^{5}}
+  $$
+  es importante recalcar que las bifurcaciones de tridente se dan en funciones que tengan simetría por lo que el último termino de nuestra forma normal debe tener una potencia impar, para que se conforme dicha simetría. 
+\end{nota}
+\end{tcolorbox}
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[width=0.8\textwidth]{/Users/diego/Documents/NotasFac/SNL/imagenes/gb3.pdf}
+  \caption{Gráfica de bifurcación para el sistema $\dot{{x}} {=rx+x^3-x^{5}}
+  $}
+\end{figure}
+
+\begin{figure}[H]
+ \centering
+  \subfloat[$r<r_c$]{
+    \includegraphics[width=0.5\textwidth]{/Users/diego/Documents/NotasFac/SNL/imagenes/apr1.pdf}}
+    \vfill
+  \subfloat[$r>r_c$]{
+    \includegraphics[width=0.5\textwidth]{/Users/diego/Documents/NotasFac/SNL/imagenes/apr2.pdf}}
+  \subfloat[$r>0$]{
+    \includegraphics[width=0.5\textwidth]{/Users/diego/Documents/NotasFac/SNL/imagenes/apr3.pdf}}
+    \caption{Diagramas de flujo para el sistema $\dot{x}=rx+x^3-x^{5}$}
+\end{figure}
+
+Para valores menores que $r_c$ (-0.25) el sistema se llamará \textbf{monoestable} , pues únicamente tenemos un punto de equilibrio estable, para valores entre $r_c$ y el cero, se llamará  \textbf{multiestable} pues hay tres opciones donde las soluciones pueden acabar dependiendo de las condiciones iniciales, mientras que para $r>0$ es sistema es \textbf{biestable}, pues únicamente tenemos dos opciones.
+
+  Primero encontramos las soluciones númericas a la ecuación normal igualada a cero:  
+  \begin{lstlisting}[language=Mathematica, caption=Código para realizar la gráfica de la figura 3]
+  sols11 = 
+  ParallelTable[{r, 
+    x /. FindRoot[r*x + x^3 - x^5 == 0, {x, 1.5}]}, {r, -1/4, 1/2, 
+    0.001}];
+sols21 = 
+  ParallelTable[{r, 
+    x /. FindRoot[r*x + x^3 - x^5 == 0, {x, -1.5}]}, {r, -1/4, 1/2, 
+    0.001}];
+sols12 = 
+  ParallelTable[{r, 
+    x /. FindRoot[r*x + x^3 - x^5 == 0, {x, 1/2}]}, {r, -1/4, 0, 
+    0.001}];
+sols22 = 
+  ParallelTable[{r, 
+    x /. FindRoot[r*x + x^3 - x^5 == 0, {x, -1/2}]}, {r, -1/4, 0, 
+    0.001}];
+
+    bdsubext = 
+ Show[Plot[0, {r, -1/2, 0}, AxesLabel -> {r, SuperStar[x]}, 
+   PlotStyle -> {Red, Thick}, 
+   PlotRange -> {{-1/2, 1/2}, {-3/2, 3/2}}], 
+  Plot[0, {r, 0, 1/2}, AxesLabel -> {r, SuperStar[x]}, 
+   PlotStyle -> {Red, Dashed}, 
+   PlotRange -> {{-1/2, 1/2}, {-3/2, 3/2}}], 
+  ListPlot[sols11, AxesLabel -> {r, SuperStar[x]}, 
+   PlotStyle -> {Blue, Thick}, Joined -> True, 
+   PlotRange -> {{-1/2, 1/2}, {-3/2, 3/2}}], 
+  ListPlot[sols21, AxesLabel -> {r, SuperStar[x]}, 
+   PlotStyle -> {Blue, Thick}, Joined -> True, 
+   PlotRange -> {{-1/2, 1/2}, {-3/2, 3/2}}], 
+  ListPlot[sols12, AxesLabel -> {r, SuperStar[x]}, 
+   PlotStyle -> {Blue, Dashed}, Joined -> True, 
+   PlotRange -> {{-1/2, 1/2}, {-3/2, 3/2}}], 
+  ListPlot[sols22, AxesLabel -> {r, SuperStar[x]}, 
+   PlotStyle -> {Blue, Dashed}, Joined -> True, 
+   PlotRange -> {{-1/2, 1/2}, {-3/2, 3/2}}]]
+\end{lstlisting}
+
+\begin{tcolorbox}[colback=Black!4,colframe=White] 
+\begin{nota}[Funciones Mathematica]
+  $\operatorname{FindRoot}[f,\{x,x_0\}]$ busca una raíz numérica de $f$ empezando cerca de  $x=x_0$.
+    $\operatorname{ParallelTable}$ crea una tabla en paralelo, la utilizaremos para almacenar los resultados que nos arroje findroot. 
+\end{nota}
+\end{tcolorbox}
+
+
+

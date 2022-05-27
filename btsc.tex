@@ -1,0 +1,313 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\geometry{top=1.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+\usepackage{setspace}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{setspace} 
+\usepackage{amsmath,amsfonts,amssymb,mathtools}
+\usepackage{graphicx,float}
+\newtheorem{ejemplo}{Ejemplo}
+\newtheorem{teorema}{Teorema}
+\newtheorem{corolario}{Corolario}
+\newtheorem{preposicion}{Preposici\'on}
+\newtheorem{lema}{Lema}
+\newtheorem{definicion}{Definici\'on}
+\newtheorem{nota}{Nota}
+\newtheorem{notacion}{Notaci\'on}
+\newtheorem{conclusion}{Conclusi\'on}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{tcolorbox}
+\setlength{\parindent}{0cm}
+\usepackage{listings}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
+
+\title{Bifurcación tridente supercrítica}
+\author{Diego Eduardo Hernández Cerda\\
+  \small Universidad Autónoma de México\\
+  \small eduardohdz02@ciencias.unam.mx\\
+  \small Ciudad de México
+  \date{Marzo 23}
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{tcolorbox}[colback=YellowGreen!10, colframe=YellowGreen, title=Forma normal]
+Los sistemas con este tipo de bifurcación tendrán una forma normal del tipo:
+$$
+\dot{x}=rx-x^3 
+$$			
+\end{tcolorbox}
+
+\section{Propiedades}
+
+\begin{enumerate}
+  \item Es invariante o tiene simetrías.
+    
+    Para ver esto hacemos un cambio de variable:
+    $$
+    \xi \equiv -x, \ \dot{\xi}=-\dot{x} 
+    $$
+    sustituyendo en la forma normal:
+    $$
+    \begin{aligned}
+      - \dot{\xi} &= -r\xi-(-\xi)^3 \\
+      - \dot{\xi}&=-r\xi+\xi^3 \\
+      \dot{\xi} &=r\xi-\xi^3
+    \end{aligned}
+    $$
+    notemos que tanto $\dot{x}=rx-x^3$ y $ \dot{\xi} = r\xi-\xi^3$ tienen la misma forma, es decir, la solución es simétrica con respecto de cero (ver figura y).
+
+    ¿Que pasa cuando variamos $r$?
+    
+    Para $r=-2$ tenemos un único punto de equilibrio en  $r=0$. Dado que nuestra ecuación está dada por $\dot{x}=rx-x^3$ es punto de equilibrio es estable, puesto que si derivamos y sustituimos el punto de equilibrio obtenemos: $$
+    \left. \frac{df}{dx} \right|_{\hat{x}=0} = r < 0 $$
+
+      \begin{figure}[!tbp]
+        \begin{subfigure}[b]{0.49\textwidth}
+          \includegraphics[width=\textwidth, height=\textwidth]{/Users/diego/.config/nvim/NotasFac/SistemasNLineales/imagenes/1tsc.pdf}
+          \caption{$r=-2$}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.49\textwidth}
+          \includegraphics[width=\textwidth, height=\textwidth]{/Users/diego/.config/nvim/NotasFac/SistemasNLineales/imagenes/2tsc.pdf}
+          \caption{$r=0$}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.49\textwidth}
+          \includegraphics[width=\textwidth, height=\textwidth]{/Users/diego/.config/nvim/NotasFac/SistemasNLineales/imagenes/3tsc.pdf}
+          \caption{$r=2$}
+        \end{subfigure}
+        \caption{Comparación del diagrama de flujo para diferentes $r$}
+      \end{figure}
+
+      \begin{tcolorbox}[colback=Orange!10, colframe=Orange, title=Código para graficar la figura 1]
+      \begin{lstlisting}[language=Mathematica]
+      Manipulate[
+      Plot[r*x - x^3, {x, -2, 2}, AxesLabel -> {x, OverDot[x]}, 
+      PlotRange -> {{-2, 2}, {-10, 10}}, AspectRatio -> 1], {r, -2, 2}]
+      \end{lstlisting}  
+      \end{tcolorbox}
+                                                
+    A medida que $r$ crece podemos observar como empieza a formarse una recta sobre el cero, hasta que se forman 3 puntos de equilibrio, los puntos que se forman son simétricos respecto al cero y además nuestro punto de equilibrio paso a ser estable a inestable, puesto que:
+    $$
+         \left. \frac{df}{dx} \right|_{\hat{x}=0} = r > 0
+    $$
+    
+    Soluciones para $r<0$ y $r=0$.
+    
+    Resolviendo numéricamente en Mathematica encontramos las siguientes dos soluciones para $r=-2$ y  $r=0$:
+    \begin{figure}[htpb]
+      \centering
+      \includegraphics[width=0.8\textwidth]{/Users/diego/.config/nvim/NotasFac/SistemasNLineales/imagenes/soltsc.pdf}
+      \caption{Soluciones para \textcolor{Orange}{$r=0$} y \textcolor{Blue}{$r=-2$}}
+    \end{figure}
+    \begin{tcolorbox}[colback=Orange!10, colframe=Orange, title= Código figura 2]
+    \begin{lstlisting}[language=Mathematica]
+    sol1 = NDSolve[{x'[t] == -2*x[t] - x[t]^3, x[0] == 1}, x, {t, 0, 10}]
+    
+    sol2 = NDSolve[{x'[t] == -x[t]^3, x[0] == 1}, x, {t, 0, 10}]
+    
+    psol1 = Plot[{Evaluate[x[t]/.sol1], Evaluate[x[t]/.sol2]}, {t, 0, 10}, AxesLabel -> {t, x}, PlotLegends -> {r == -2, r == 0}]
+    \end{lstlisting}  
+    \end{tcolorbox}
+    Como podemos observar en la figura 2, tenemos dos tipos de curva para $r=-2$ y $r=0$, donde además la curva solución de $r=-2$ decrece mucho más rápido que $r=0$. Esto es importante de diferenciar puesto que cuando tenemos una solución que no está en un punto e bifurcación (punto critico), la forma de decaimiento va a ser de la forma $\alpha e^{-kt}$, mientras que si nuestra solución está en un punto de bifurcación entonces tendrá la forma $\alpha t^{-k}$.
+
+    \begin{tcolorbox}[colback=Orchid!5,colframe=Orchid] 
+    \begin{nota}[Decaimiento de la forma $\alpha e^{-kt}$ y $\alpha t^{-k}$]
+      Si una solución de nuestro sistema \textbf{no está en un punto de bifurcación} entonces tendrá la forma $$\alpha e^{-kt}.$$
+
+      Si la solución \textbf{está en un punto de bifurcación} entonces decae de la forma: $$
+      \alpha t^{-k},
+      $$      
+      a esta forma se le llama \textbf{Ley de potencias (power law)}      
+    \end{nota}
+    \end{tcolorbox}
+
+    \begin{tcolorbox}[colback=YellowGreen!10, colframe=YellowGreen, title=¿Como diferenciar las curvas $\alpha e^{-et}$ y $\alpha t^{-a}$?]
+
+      Para saber si es una solución del tipo $\alpha e^{-kt}$ graficamos las soluciones de manera \textbf{log-lineal} (eje $y$ logaritmo, eje $x$ lineal) si la gráfica es una recta, entonces decae de manera $\alpha e^{-kt}$, lo cual es fácil de demostrar:
+      $$
+      \begin{aligned}
+        x &= ce^{-kt} \\
+	\ln x &= \ln(ce^{-kt}) \\
+	X &= \ln c+\ln(e^{-kt}) \\
+	&= \ln c +(-kt)\ln e\\
+	&= \ln c - kt \\
+	&= a-kt \quad (a=\ln c) \\
+      \end{aligned}
+      $$
+      por lo tanto tenemos una recta que corta al eje $y$ en $a$ con pendiente $-k$
+      
+      Para identificar las soluciones de la forma $\alpha t^{-k}$ tenemos que graficar nuestras soluciones de manera \textbf{log-log}, y debe ser una recta:
+      $$
+      \begin{aligned}
+        x &= ct^{-k} \\
+	\ln x &= \ln(ct^{-k}) \\
+	X &= \ln c + \ln t^{-k} \\
+	&= \ln c - k\ln t \\
+	&= a - kT \\
+      \end{aligned}
+      $$
+      por lo tanto estamos frente a una recta con intersecciones $a=\ln c$ y pendiente $k$ 
+    \end{tcolorbox}
+
+    \begin{figure}[H]
+      \begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth, height=\textwidth]{/Users/diego/.config/nvim/NotasFac/SistemasNLineales/imagenes/1log.pdf}
+        \caption{Gráfica log-lineal de las soluciones de $\dot{x}$}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth, height=\textwidth]{/Users/diego/.config/nvim/NotasFac/SistemasNLineales/imagenes/2log.pdf}
+        \caption{Gráfica log-log de las soluciones de $\dot{x}$}
+      \end{subfigure}
+      \caption{Comparación de las soluciones}
+    \end{figure}
+
+    \begin{tcolorbox}[colback=Orange!10, colframe=Orange, title=Código figura 3]
+    \begin{lstlisting}[language=Mathematica]
+psol2 = LogPlot[{Evaluate[x[t] /. sol1], Evaluate[x[t] /. sol2]}, {t, 2, 10},
+AxesLabel -> {t, x}, PlotLegends -> {r == -2, r == 0}]
+
+psol3 = LogLogPlot[{Evaluate[x[t] /. sol1], 
+   Evaluate[x[t] /. sol2]}, {t, 2, 10}, AxesLabel -> {t, x}, 
+  PlotLegends -> {r == -2, r == 0}]
+    \end{lstlisting}  
+    \end{tcolorbox}
+
+    Un análisis desde el potencial. 
+    
+    Pensemos el potencial como una colina en la cual se está desplazando algo por la altura de la colina, si obtenemos el potencial de $ \dot{x}$ podemos apreciar gráficamente porque la solución se va más lento a cero:
+    $$
+    V=-\int_{{}}^{{}} {(rx-x^3)} \: d{x} = -\left( \frac{rx^2}{2}-\frac{x^{4}}{4} \right) = -\frac{rx^2}{2}+\frac{x^{4}}{4}
+    $$
+    \begin{figure}[H]
+      \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth, height=\textwidth]{/Users/diego/.config/nvim/NotasFac/SistemasNLineales/imagenes/p-2.pdf}
+        \caption{$r=-2$}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth, height=\textwidth]{/Users/diego/.config/nvim/NotasFac/SistemasNLineales/imagenes/p0.pdf}
+        \caption{$r=0$}
+      \end{subfigure}
+       \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth, height=\textwidth]{/Users/diego/.config/nvim/NotasFac/SistemasNLineales/imagenes/p2.pdf}
+        \caption{$r=2$}
+      \end{subfigure}  
+      \caption{Comparación del potencial de $\dot{x}$}
+    \end{figure}
+
+    para $r=0$ podemos apreciar en la gráfica que cerca del cero el potencial es muy pequeño, la colina es practicante plana, por lo que se va a cercar muy lentamente a cero. En $r>0$ si la condición inicial está en los negativos, entonces nuestra solución va a tender aproximadamente a -1.5, análogamente si empezamos en los positivos.
+
+    Diagrama de bifurcación.
+
+    \begin{enumerate}
+      \item Puntos de equilibrio
+	$$
+	r\hat{x}-\hat{x}^3=0 \implies \hat{x}(r-\hat{x}^2)=0
+	$$
+	Caso 1) $\hat{x}_1=0$
+
+	Caso 2) $r-\hat{x}^2=0 \implies \hat{x}^2=r \implies \hat{x}_{2,3}= \pm \sqrt{r}$
+
+      \item Estabilidad.
+
+	Para $\hat{x}_1$, si $r<0$ entonces $\hat{x}_1$ es estable, si $r>0$ entonces es inestable. 
+
+	Para $\hat{x}_{2,3}$:
+
+	$$
+	\frac{df}{dx}=r-3x^2, \ \left. \frac{df}{dx} \right|_{\hat{x}_{2,3}} = r-3(\pm \sqrt{r})^2 = r-3r=-2r
+	$$
+	de esta manera $-2r<0$ cuando $r>0$ (no es necesario evaluar para $r>0$ pues la raíz no existe), por lo tanto $\hat{x}_{2,3}$ son estables.
+    \end{enumerate}
+
+    \begin{figure}[htpb]
+      \centering
+      \includegraphics[width=0.8\textwidth]{/Users/diego/.config/nvim/NotasFac/SistemasNLineales/imagenes/bfsc.pdf}
+      \caption{Diagrama de bifurcación tridente supercrítica}
+    \end{figure}
+
+    \begin{tcolorbox}[colback=Orange!10, colframe=Orange,title=Código figura 5]
+    \begin{lstlisting}[language=Mathematica]
+    bdiag = Show[
+  Plot[0, {r, -2, 0}, PlotStyle -> {Red, Thick}, 
+   PlotRange -> {{-2, 2}, {-3/2, 3/2}}, 
+   AxesLabel -> {r, SuperStar[x]}], 
+  Plot[0, {r, 0, 2}, PlotStyle -> {Red, Dashed}, 
+   PlotRange -> {{-2, 2}, {-3/2, 3/2}}, 
+   AxesLabel -> {r, SuperStar[x]}], 
+  Plot[Sqrt[r], {r, 0, 2}, PlotStyle -> {Blue, Thick}, 
+   PlotRange -> {{-2, 2}, {-3/2, 3/2}}, 
+   AxesLabel -> {r, SuperStar[x]}], 
+  Plot[-Sqrt[r], {r, 0, 2}, PlotStyle -> {Blue, Thick}, 
+   PlotRange -> {{-2, 2}, {-3/2, 3/2}}, 
+   AxesLabel -> {r, SuperStar[x]}]]
+    \end{lstlisting}  
+    \end{tcolorbox}
+
+    \begin{ejemplo}
+      Muestra que $\dot{x}=x-\beta\tan(hx) $ tiene una bifurcación de tridente supercrítica. 
+    \end{ejemplo}
+    Sabemos que $\tan(hx)=0$ cuando $x=0$ por lo que $\hat{x}=0$ es un punto de equilibrio que siempre existe. Haciendo una expansión en series de Taylor cerca de cero:
+    $$
+    f(x) \simeq (\beta-1)x - \frac{\beta}{3}x^3
+    $$
+    haciendo $R=\beta-1$, encontramos su forma normal, por lo tanto la bifurcación se da en $R=\beta-1=0 \ \therefore \beta=1$.
+
+    \begin{figure}[htpb]
+      \centering
+      \includegraphics[width=0.8\textwidth]{/Users/diego/.config/nvim/NotasFac/SistemasNLineales/imagenes/ebts.pdf}
+      \caption{Diagrama de bifurcación del sistema $\dot{x}=x-\beta\tan(hx)$}
+    \end{figure}
+
+    \begin{tcolorbox}[colback=Orange!10, colframe=Orange,title=Código figura 6]
+    \begin{lstlisting}[language=Mathematica]
+    bdex1 = Show[
+  Plot[0, {r, 0, 1}, PlotStyle -> {Red, Thick}, 
+   PlotRange -> {{0, 4}, {-4, 4}}, 
+   AxesLabel -> {\[Beta], SuperStar[x]}], 
+  Plot[0, {r, 1, 4}, PlotStyle -> {Red, Dashed}, 
+   PlotRange -> {{0, 4}, {-4, 4}}, 
+   AxesLabel -> {\[Beta], SuperStar[x]}], 
+  ListPlot[solex11, Joined -> True, PlotStyle -> {Blue, Thick}, 
+   PlotRange -> {{0, 4}, {-4, 4}}, 
+   AxesLabel -> {\[Beta], SuperStar[x]}], 
+  ListPlot[solex12, Joined -> True, PlotStyle -> {Blue, Thick}, 
+   PlotRange -> {{0, 4}, {-4, 4}}, 
+   AxesLabel -> {\[Beta], SuperStar[x]}]]
+    \end{lstlisting}  
+    \end{tcolorbox}
+    
+\end{enumerate}
+
+
+\end{document}

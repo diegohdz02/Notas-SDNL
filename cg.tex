@@ -1,0 +1,177 @@
+\subsection{Ciclo de la glicólisis} (como se rompe el azúcar para obtener energía)
+
+\begin{align*}
+  \dot{x}  &= -x+ay + x^2y \\ 
+  \dot{y}  &= b-ay -x^2y
+\end{align*}
+con $a,b >0$.  \\
+
+\textbf{Ceroclinas} (puntos donde $\dot{x},\dot{y} = 0$)
+\begin{align*}
+  0  &= -x+ay+x^2y \\ 
+   &= -x+(a+x^2)y \\
+   \intertext{por lo que} 
+   x  &= (a+x^2)y \\ 
+   y  &= \frac{x}{a+x^2} \\
+   \intertext{por otro lado}
+   0  &= x-ay-x^2y \\ 
+    &= b-y(a+x^2) \\ 
+    \intertext{de esta manera}
+    b  &= y(a+x^2) \\ 
+    y  &= \frac{b}{a+x^2} \\ 
+\end{align*}
+Por lo tanto las ceroclinas están dadas por:
+\begin{align}
+  y_1  &= \frac{x}{a+x^2} \\ 
+  y_2  &= \frac{b}{a+x^2}
+\end{align}
+\begin{figure}[H]
+  \begin{subfigure}[c]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{ciclosglicoeje1}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[c]{0.5\textwidth}
+    \includegraphics[width=\textwidth]{ciclosglicoeje11}
+  \end{subfigure}
+  \caption{Direcciones de las velocidades $\dot{x},\dot{y}.$}
+  \label{dirrglic}
+\end{figure}
+
+\begin{tcolorbox}[colback=Black!4, colframe=White, arc = 2mm]
+¿Como hacer la figura \ref{dirrglic}?
+\begin{enumerate}
+  \item Fijarte en los ejes. \\ 
+  Para $x=0$
+  \begin{align*}
+    \dot{x}  &= -0 + ay + (0)^2y \\ 
+	     &= ay \\ 
+    \dot{y}&= b-ay-(0)^2y \\ 
+	   &= b-ay
+  \end{align*}
+  dado que estamos suponiendo que $a,b,y>0$ y ademas $a,b$ son tales que $x,y \ge  0$ entonces $\dot{y}>0.$
+  Para $y=0$
+  \begin{align*}
+    \dot{x} &= -x+a(0)+x^2(0) \\ 
+	    &= -x \\ 
+    \dot{y} &= b-a(0)-x^2(0) \\ 
+     &= b 
+  \end{align*}
+  por lo tanto $\dot{x}<0$ y $\dot{y}>0.$
+  \item Graficar las ceroclinas.
+
+    Tenemos que
+    \begin{align*}
+      \dot{x} &> 0 \iff y > \frac{x}{a+x^2}\\  
+      \dot{y} &> 0 \iff y < \frac{b}{a+x^2}
+    \end{align*}
+\end{enumerate}
+
+\end{tcolorbox}
+
+Ahora necesitamos definir una región en la que no se puedan escapar las soluciones. 
+Notemos que
+\begin{align*}
+  \lim_{x \to \infty} \dot{x}  &= \lim_{x \to \infty}  -x+ay+x^2y \\ 
+		  &\simeq x^2y  \\ 
+\intertext{dado que $x^2>x$ mientras crezca más $x,\ \dot{x}$ se va a parecer mucho más a $x^2y$. Análogamente para $\dot{y}:$}
+\lim_{y \to \infty} \dot{y}  &= \lim_{y \to \infty} b-ay-x^2y \\
+		&= -x^2y
+\end{align*}
+esto significa que si nos movemos mucho a la derecha las velocidades van a ser casi $x^2y,-x^2y$:
+\begin{equation*}
+  \vec{V} \simeq (x^2y,-x^2y)
+\end{equation*}   
+con pendiente $\vec{V}_m=-1$ pues:
+$$
+m = \frac{-x^2y}{x^2y} = -1 
+$$
+Si hacemos la suma $\dot{x},\dot{y}:$
+\begin{gather*}
+  \dot{x} + \dot{y} = -x+ay+x^2y+b-ay-x^2y = b-x
+\end{gather*}
+si $x>b$ entonces  $b-x<0 $ por lo que $\dot{x}+\dot{y}<0 $ y por ende $\dot{x}<-\dot{y}$. Dado que estamos en el cuadrante I, tenemos que $\dot{x}= |\dot{x}|$, y al ser el valor absoluto una función creciente en el cuadrante I:
+\begin{gather*}
+  \dot{x}=|\dot{x}|<|\dot{y}|
+  \intertext{si estamos lo suficientemente a la derecha entonces $\dot{y}<0$ por lo que:}
+  \dot{x}=|\dot{x}|<|\dot{y}|=-\dot{y}
+\end{gather*}
+por lo tanto si $x>b$ entonces $|\dot{x}|<|\dot{y}|$.
+
+Ya casi tenemos completo el \textbf{teorema de Poincare-Bendixson}, solo falta hacerle un hoyo al punto de equilibrio que tiene nuestro sistema como se muestra en la figura \ref{hoyoglic} , y debemos demostrar que atreves de este hoyo no se salen nuestras soluciones, es decir que sea  un punto de equilibrio repulsor, así que veamos las condiciones para que esto se cumpla:
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{ciclogl12}
+  \caption{Punto de equilibrio del sistema}
+  \label{hoyoglic}
+\end{figure} 
+\begin{align*}
+  y^*  &= \frac{x ^*}{a+x^{{*}^2}} \\  
+  y^*  &= \frac{b}{a+x^{{*}^2}} 
+\end{align*}
+esto es 
+\begin{equation*}
+   \frac{x^*}{a+x^{{*}^2}} = \frac{b}{a+x^{{*}^2}} \implies x^* = b 
+\end{equation*}
+\begin{equation*}
+ \therefore y^*=\frac{b}{a+b^2}
+\end{equation*}
+\textbf{Estabilidad del punto de equilibrio}
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[width=0.5\textwidth]{estabilidadpuntos}
+  \caption{Estabilidad de los puntos de equilibrio de acuerdo a la traza y el determinante.}
+\end{figure}
+
+Necesitamos que el punto de equilibrio sea un nodo inestable o es espiral inestable.
+
+Matriz Jacobiana
+
+\begin{equation*}
+  J = \begin{pmatrix} -1+2xy & a + x^2 \\ -2xy &-(a+x^2) \end{pmatrix}
+\end{equation*}
+Evaluando en el punto de equilibrio:
+\begin{equation*}
+   \left. J \right|_{x^*,y^*} = \begin{pmatrix} -1+2 \frac{b^2}{a+x^2} & a+b^2 \\ -2 \frac{b^2}{a+b^2} & -(a+b^2) \end{pmatrix}  
+\end{equation*}
+
+\begin{align*}
+  \operatorname{det} J  &= a+b^2-2b^2+2b^2 \\
+   &= a+b^2\\
+   &>0  \\
+   \operatorname{tr}J  &= -1 + \frac{2b^2}{a+b^2} - (a+b^2) \\
+    &= \frac{-(a+b^2)+2b^2-(a+b^2)^2}{a+b^2} \\
+    &= \frac{-a-b^2+2b^2-a^2-2ab^2-b^{4} }{a+b^2} \\
+    &= - \frac{b^{4}+b^2(2a-1)+(a+a^2)}{a+b^2}
+\end{align*}
+
+Frontera de estabilidad $  \operatorname{tr}J =0$
+\begin{gather*}
+  0 = \operatorname{tr}J = \frac{-b^{4}+b^2(2a-1)+(a+a^2)}{a+b^2} \implies b^{4}+b^2(2a-1)+(a+a^2)=0 \\
+\end{gather*}
+Utilizando la chicharronera:
+\begin{align*}
+   b^2  &= \frac{1-2a\pm \sqrt{(2a-1)^2-4(a+a^2)}}{2}  \\ 
+    &= \frac{1-2a\pm \sqrt{4a^2-4a+1-4a+4a^2}}{2} \\ 
+     &= \frac{1-2a\pm \sqrt{1-8a}}{2} \\
+\end{align*}
+en la figura \ref{regglic5} podemos apreciar de en la región azul donde el punto de equilibrio es un repulsor, y en su complemento donde es atractor.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.4\textwidth]{ciclogl13}
+  \caption{Región definida por $b^2=\frac{1-2a\pm \sqrt{1-8a}}{2}$}
+  \label{regglic5} 
+\end{figure}
+Tomando el punto $(a,b)=(0.06,0.06)$, resolviendo la ecuación numéricamente podemos apreciar las soluciones y que justamente se cumple que hay un ciclo límite.
+\begin{figure}[H]
+ \centering
+  \subfloat[Solución numérica del sistema de ecuaciones]{
+    \includegraphics[width=0.4\textwidth]{ciclogl14.pdf}} \vfill
+  \subfloat[Salución númerica $x,y$.]{
+    \includegraphics[width=0.6\textwidth]{ciclogl15.pdf}}
+\end{figure}
+
+            
+
+
+
+

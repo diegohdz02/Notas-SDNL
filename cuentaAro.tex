@@ -1,0 +1,150 @@
+\section{La cuenta en el aro}
+
+Sea un aro con una cuenta (bolita) que se puede mover libremente alrededor del aro, por otro lado el aro va a rotar de manera horizontal, el movimiento se traduce en el angulo que forma la bolita.
+
+$$
+m\ddot{x}=F
+$$
+dado que nos interesa el desplazamiento en función del angulo, por definición de aceleración tangencial:
+$$
+m\ddot{x}=F=mR \ddot{\varphi}
+$$
+\begin{figure}[ht]
+    \centering
+    \incfig{cuenta}
+    \caption{Cuenta en el aro}
+    \label{fig:cuenta-en-el-aro}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \incfig{detalles}               
+    \caption{Componentes}
+    \label{fig:detalles}
+\end{figure}
+
+dado que la suma de los ángulos de un \textcolor{Green}{triangulo} deben sumar 180 grados, tenemos entonces:
+$$
+\pi = \frac{\pi}{2} + \theta + \frac{\pi}{2}-\varphi \implies \theta=\varphi
+$$
+a su vez, recordemos que $$
+\cos\varphi=\frac{\text{ady}}{\text{hip}} \implies \text{ady} = m\rho\omega^2\cos\varphi
+$$
+de igual manera:
+$$
+\sin\theta=  \sin\varphi=\frac{\text{op}}{\text{hip}} \implies \text{op}=mg\sin\varphi 
+$$
+además $$
+\rho = R\sin\varphi
+$$
+Ahora, dado que $F=mR \ddot{\varphi}$ tiene que ser igual a todas las fuerzas tangenciales tenemos que:
+$$
+\begin{aligned}
+  mR \ddot{\varphi} &= -mg\sin\varphi+\cos\varphi m \rho \omega^2 - b \dot{\varphi} \\
+		    &= -mg\sin\varphi+\cos\varphi m R \sin\varphi\omega^2 - b \dot{\varphi} \\
+		    &= -b \dot{\varphi}+m\sin\varphi \left( -g + cos\varphi R \omega^2 \right)  \\
+		    &= -b \dot{\varphi}+mg\sin\varphi \left( \frac{R\omega}{g}\cos\varphi - 1 \right) 	 \\ 
+\end{aligned}
+$$
+Aproximando esta ecuación suponiendo que $mR\varphi \simeq 0$:
+$$
+\begin{aligned}
+  0 &= -b\dot{\varphi}+mg\sin\varphi \left( \frac{R\omega^2}{g}\cos\varphi-1 \right)   \\
+  \dot{\varphi} &= \frac{mg}{b}\sin\varphi \left( \frac{R\omega^2}{g}cos\varphi-1 \right)=f(\varphi)   \\ 
+\end{aligned}
+$$
+cuales serian los puntos de equilibrio? Serán aquellos donde la bolita nunca se va a mover, como cero y $\pi$
+
+Puntos de equilibrio:
+$$
+  \frac{mg}{b}\sin \varphi^* \left( \frac{R\omega^2}{g}\cos\varphi^{*}-1 \right)=0  
+$$
+Caso 1: $\sin\varphi^{*}=0 \implies \varphi_1^{*}=0 , \varphi_2^{*}=-\pi $
+
+Caso 2: $\frac{R\omega^2}{g}\cos\varphi^{*}-1=0$
+
+Definiendo  $$
+\gamma=\frac{R\omega^2}{g} >0
+$$
+$$
+\begin{aligned}
+  \gamma\cos\varphi^{*}-1 &= 0 \\
+  \gamma \cos\varphi^{*}&=1  \\ 
+  \cos\varphi^{*}&=\frac{1}{\gamma}>0 \ (\cos x \in [-1,1]  ) \implies \frac{1}{\gamma}<1 , \ \therefore \gamma>1	\\
+\end{aligned}
+$$
+si $\gamma>1 \implies$ $$\varphi_{3,4}^{*}=\cos^{-1} \left( \frac{1}{\gamma} \right) $$
+
+\begin{tcolorbox}[colback=Black!4,colframe=White] 
+\begin{nota}
+  Si $\gamma>1$ estamos diciendo que $\gamma $ es lo suficientemente grande, donde $g,R$ son constantes que ya están fijas, pero $\omega^2$ es la velocidad de giro, por lo que si giramos suficientemente rápido aparecen 2 puntos de equilibrio.
+  
+\end{nota}
+\end{tcolorbox}
+
+Estabilidad de los puntos de equilibrio.
+$$
+\begin{aligned}
+  f'(\varphi)&=\frac{mg}{b} \left[ \cos\varphi(\gamma\cos\varphi-1)-\gamma\sin^2\varphi \right]  
+\end{aligned}
+$$
+
+$$
+f'(0)=\frac{mg}{b} \left[ 1(\gamma-1)-0 \right] =\frac{mg}{b}(\gamma-1)<0 \text{ si } \gamma<1
+$$
+esto significa que $\varphi=0$ es estable si $\gamma<1$
+
+por otro lado
+
+$$
+f'(\pi)=\frac{mg}{b} \left[ -1(-\gamma-1) \right] = \frac{mg}{b}(\gamma+1) > 0 
+$$
+por lo que $\varphi=-\pi$ siempre es inestable, lo que tiene mucho sentido pues corresponde a la bolita en el punto más alto y con cualquier perturbación se va a mover.
+
+$$
+\begin{aligned}
+  f' \left( \cos^{-1} \left( \frac{1}{\gamma} \right)  \right)&=\frac{mg}{b} \left( \cos \left( \cos^{-1} \left( \frac{1}{\gamma} \right)  \right) \right) \left( \gamma\cos \left( \cos^{-1} \left( \frac{1}{\gamma} -1 \right)  \right)  \right) - \gamma\sin^2 \left( \cos^{-1} \left( \frac{1}{\gamma} \right)  \right)  \\
+&= \frac{mg}{b} \left[ \frac{1}{\gamma} \left( \gamma \frac{1}{\gamma} \right) - \gamma\sin^2 \left( \cos^{-1} \left( \frac{1}{\gamma} \right)  \right)   \right] - \frac{mg}{b} \gamma \sin^2 \left( \cos^{-1} \left( \frac{1}{\gamma} \right)  \right)   \\ 
+\end{aligned}
+$$
+\begin{tcolorbox}[colback=Black!4,colframe=White] 
+\begin{nota}[¿Quien en el arco coseno de un angulo?]
+Dada la aplicación arco coseno:
+  $$
+\operatorname{arccos} \left( \frac{1}{\gamma} \right)= \theta 
+$$
+eso implica que  $$
+\frac{1}{\gamma}=\cos\theta = \frac{\operatorname{CA}}{\operatorname{H}}
+$$
+por lo que podemos construir un triangulo como se muestra en la figura 3, tal que la hipotenusa sea $\gamma$ y el cateto adyacente sea 1 y por pitagoras $h=\sqrt{\gamma^2-1}$, de esta manera tenemos que
+$$
+\sin\theta= \frac{\sqrt{\gamma^2-1}}{\gamma}
+$$
+solo si $\gamma^2-1>0 \implies \gamma>1$
+\end{nota}
+\end{tcolorbox}
+
+\begin{figure}[ht]
+    \centering
+    \incfig[0.35]{triangulo}
+    \caption{$\operatorname{arccos}$ de un ángulo}
+    \label{fig:triangulo}
+\end{figure}
+
+Por lo que regresando a la ecuación anterior:
+$$
+\begin{aligned}
+  -\frac{mg}{b}\gamma\sin^2 \left( \cos^{-1} \left( \frac{1}{\gamma} \right)  \right) &= -\frac{mg}{b}\gamma\sin^2(\theta) \\
+  &= -\frac{mg}{b}\gamma(\sin\theta)^2 \\ 
+  &= -\frac{mg}{b}\gamma \left( \frac{ \sqrt{\gamma^2 - 1}}{\gamma} \right)^2  \\
+  &= -\frac{mg}{b}\frac{\gamma^2-1}{\gamma} \\
+  &= \frac{mg}{b} \left( \frac{1-\gamma^2}{\gamma}  \right) \\ 
+\end{aligned}
+$$
+notemos que $$
+\left( \frac{1-\gamma^2}{\gamma} \right)<0 \text{ si } 1-\gamma^2<0 \text{ ie } \gamma>1 
+$$
+lo cual siempre es verdad. Por lo que $\varphi^{*}_{3,4}$ siempre son estables cuando existen. Dado que tenemos un punto de equilibrio que pasa de estable a inestable, y 2 puntos de equilibrio que siempre son estables entonces tenemos una bifurcación de tipo tridente.
+
+
+

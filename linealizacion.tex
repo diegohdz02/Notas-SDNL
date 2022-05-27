@@ -1,0 +1,238 @@
+\subsection{Linealización.}
+
+\begin{tcolorbox}[colback=Black!4,colframe=White] 
+\begin{nota}[Si no sabes que hacer]
+  Haz una expansión en series de Taylor
+\end{nota}
+\end{tcolorbox}
+Sea el sistema
+$$
+\begin{aligned}
+  f_1(x_1^*,x_2^*) &= 0 \\
+  f_2(x_1^*,x_2^*) &= 0 \\ 
+\end{aligned}
+$$
+aproximamos $f_1$ y $f_2$ cerca de $\vec{x}^*=\begin{pmatrix} x_1^* \\ x_2^* \end{pmatrix} $, suponemos que tenemos una solución del sistema $$
+\vec{x}(t)=\vec{x}^*+\vec{u}(t) ,\ \text{donde $u$ es una perturbación}
+$$
+lo que estamos diciendo es que $\vec{x}(t)$ está muy cerca de $\vec{x}^*$, escribiéndolo en $\mathbb{R}^2$
+
+$$
+\begin{aligned}
+  x_1(t) &= x_1^*+u_1(t) \\ 
+  x_2(t) &= x_2^* + u_2(t) 
+\end{aligned}
+$$
+$$
+\begin{aligned}
+  \dot{\vec{x}} &= \vec{f}(\vec{x}) \\ 
+  \dot{x_1} &= f_1(x_1,x_2) \\
+  \dot{x_2} &= f_2(x_1,x_2) \\ 
+\end{aligned}
+$$
+$$
+\begin{aligned}
+  \dot{x_1}=\dot{u_1}=f_1(x_1,x_2) = f_1(x_1^*+u_1(t), x_2^*+u_2(t)) 
+\end{aligned}
+$$
+haciendo la expansión en series de Taylor alrededor de $(x_1^*,x_2^*)$:
+
+$$
+ \begin{aligned}
+  \dot{x_1} &\simeq f_1(x_1^*,x_2^*)+u_1(t)\left. \frac{\partial f_1}{\partial x_1} \right|_{(x_1^*,x_2^*)} + u_2(t)\left. \frac{\partial f_1}{\partial x_2} \right|_{(x_1^*,x_2^*)} \\
+      &= f_1(x_1^*,x_2^*) + au_1(t)+bu_2(t) \\ 
+\end{aligned}
+$$
+con $$
+\begin{aligned}
+  a &\equiv \left. \frac{\partial f_1}{\partial x_1} \right|_{(x_1^*,x_2^*)} \\
+    b&\equiv \left. \frac{\partial f_1}{\partial x_2} \right|_{(x_1^*,x_2^*)}
+\end{aligned}
+$$
+dado que $(x_1,x_2)$ son un punto de equilibrio:
+
+$$
+\dot{x_1} = \dot{u_1} \simeq au_1+bu_2 
+$$
+Análogamente para la segunda entrada tenemos que $$
+\dot{u_2}\simeq cu_1+du_2
+$$
+con $$
+\begin{aligned}
+  c &\equiv \left. \frac{\partial f_2}{\partial x_1} \right|_{(x_1^*,x_2^*)} \\
+    d &\equiv \left. \frac{\partial f_2}{\partial x_2} \right|_{(x_1^*,x_2^*)}
+\end{aligned}
+$$
+escribiéndolo como una ecuación vectorial
+
+$$
+\dot{\vec{u}}=A\vec{u} ,\ A = \begin{pmatrix} a & b \\ c & d \end{pmatrix} = \left. \begin{pmatrix} \frac{\partial f_1}{\partial x_1} & \frac{\partial f_1}{\partial x_2} \\ \frac{\partial f_2}{\partial x_1} & \frac{\partial f_2}{\partial x_2}  \end{pmatrix} \right|_{(x_1^*,x_2^*)}
+$$
+donde $$
+\begin{pmatrix} \frac{\partial f_1}{\partial x_1} & \frac{\partial f_1}{\partial x_2} \\ \frac{\partial f_2}{\partial x_1} & \frac{\partial f_2}{\partial x_2}  \end{pmatrix} 
+$$ es la matriz Jacobiana. 
+\begin{tcolorbox}[colback=Black!4, colframe=Black!9, coltitle=Black] 
+ \tcbsubtitle{Caso 1}
+Si el sistema está linealizado y ahí tenemos que el punto de equilibrio es punto silla, espiral (in)estable o nodo (in)estable entonces tenemos lo mismo en el sistema no lineal.
+ \tcbsubtitle{Caso 2}                   
+Si en el sistema lineal tenemos nodos impropios o estrella, entonces en el sistema no lineal podríamos tener espirales o nodos normales con la misma estabilidad.
+\tcbsubtitle{Caso 3}
+Si tenemos centros en el sistema lineal entonces en el sistema no lineal podríamos tener espirales estables o inestables.
+
+\tcbsubtitle{Caso especial}
+Si $\operatorname{Re}(\lambda)=0$ no puedo concluir nada acerca de la estabilidad a partir del sistema lineal.
+\end{tcolorbox}
+
+\begin{ejemplo} \label{ejemplo lin6 1} 
+  Tenemos el siguiente sistema no lineal
+  $$
+  \begin{aligned}
+    \dot{x_1} &= -x_1+x_1^3 \\ 
+    \dot{x_2} &= -2x_2 \\ 
+  \end{aligned}
+  $$
+  Puntos de equilibrio
+  $$
+  \begin{aligned}
+    0 &= -x_1^*+x_1^{*^3}\\
+    0 &= -2x_2^{{*}} \\
+  \end{aligned}
+  \implies \begin{aligned}
+    x_1^{{*}}(x_1^{{*}^2}-1) &= 0 \\ 
+    x_2^{{*}} &= 0 \\ 
+  \end{aligned}
+  $$
+  por lo que $x_1^*=0,1,-1$, de esta manera tenemos tres puntos de equilibrio: $(0,0),(1,0),(-1,0).$ Ahora tenemos que calcular la matriz jacobiana:
+
+  $$
+  \begin{aligned}
+    \frac{\partial f_1}{\partial x_1} &=  -1 + 3x_2^2 \\
+    \frac{\partial f_1}{\partial x_2} &= 0 \\ 
+    \frac{\partial f_2}{\partial x_1} &= 0 \\ 
+    \frac{\partial f_2}{\partial x_2} &= -2 \\ 
+  \end{aligned}
+  $$
+  de esta manera $$
+  J = \begin{pmatrix} -1+3x_1^2 & 0 \\ 0 & -2 \end{pmatrix} 
+  $$
+  En $(0,0)$:
+  $$
+  \left. J \right|_{(0,0)} = \begin{pmatrix} -1 & 0 \\ 0 & -2 \end{pmatrix}  
+  $$ dado que es una matriz diagonal tenemos que los eigenvalores son los elementos de la diagonal:$$
+  \lambda_1=-1,\ \lambda_2=-2
+  $$
+  como $\lambda_1,\lambda_2$ son negativos, entonces $(0,0)$ corresponde a un punto de equilibrio de tipo \textbf{nodo estable}.
+
+  Para $(1,0),(-1,0)$ :
+
+  $$
+    \left. J \right|_{(1,0),(-1,0)} = \begin{pmatrix} 2 & 0 \\ 0 & -2 \end{pmatrix},
+  $$
+  por lo que $$
+  \lambda_1=2,\lambda_2=-2
+  $$
+  dado que $\lambda_1>0$ y $\lambda_2<0$ tenemos un nodo silla. 
+
+  \begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.5\textwidth]{vdpolbien.pdf}
+    \caption{Retrato fase del sistema no lineal del ejemplo \ref{ejemplo lin6 1}  }
+    \label{lin1}
+  \end{figure}
+
+  Al conjunto de condiciones iniciales que nos llevan al punto de equilibrio estable se le llama \textbf{la cuenca de atracción del punto de equilibrio estable.} A las lineas paralelas al eje $x_2$ sobre $-1,1$ es  \textbf{la variedad estable}, en la figura \ref{lin1} a estas rectas se les llaman \textbf{separatrices}
+  \end{ejemplo}
+
+  \begin{ejemplo} \label{eje7l}  Sea el sistema $$
+  \begin{aligned}
+    \dot{x} &= (y-x)(1-x-y) \\ 
+    \dot{y} &= x(2+y) \\ 
+  \end{aligned}
+  $$
+  El retrato fase estará dado por la figura \ref{lin2}, al contorno rojo se le va a denominar solución \textbf{heteroclinica.}.
+
+  \begin{tcolorbox}[colback=Black!4,colframe=White]
+  \begin{definicion}[Solución heteroclinica]
+    Es una solución que une a dos puntos de equilibrio, ie , en el $\lim_{t \to \infty} $ eso te lleva a un punto de equilibrio y cuando $\lim_{n \to -\infty} $ te lleva a otro punto de equilibrio.
+
+  \end{definicion}
+  \end{tcolorbox}
+
+  \begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.5\textwidth]{rfnl623.pdf}
+    \caption{Retrato fase del ejemplo \ref{eje7l}}
+    \label{lin2}
+  \end{figure}
+    
+  \end{ejemplo}
+
+\begin{ejemplo} Sea el sistema:
+  $$
+  \begin{aligned}
+    \dot{x} &= -y+ax(x^2+y^2) \\
+    \dot{y} &= x + ay(x^2+y^2) \\ 
+  \end{aligned}
+  $$  
+  Sus matriz jacobiana estará dada por:
+  $$
+  \left. J \right|_{(0,0)} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} 
+  $$
+  y sus eigenvalores estarán dados por:
+
+  $$
+  \begin{aligned}
+    \lambda^2+1 &= 0 \\ 
+    \lambda^2 &= -1 \\ 
+    \lambda &= \pm i \\ 
+  \end{aligned}
+  $$
+  por lo tanto $\operatorname{Re}(\lambda)=0$, lo que significa que debería de ser un punto centro en el sistema lineal, pero en el sistema no lineal no sabemos que es, pues no está bien definido, para saber que está pasando debemos hacer el siguiente cambio de variable $$
+  \begin{aligned}
+    x &= r\cos\theta \\ 
+    y &= r\sin\theta \\ 
+    r^2 &= x^2+y^2 \\ 
+    \tan\theta &= \frac{y}{x} \\ 
+  \end{aligned}
+  $$
+  y resolviendo tenemos que $$
+  \dot{r}=ar^3=f(r)
+  $$
+  por lo que el único punto de equilibrio está dado por $r^*=0$
+  lo que nos lleva a que
+  $$
+  \begin{aligned}
+    \frac{df}{dr} &= 3ar^2 \\
+    \left. \frac{df}{dr} \right|_{r^*=0} &=0
+  \end{aligned}
+  $$
+  de nuevo en el sistema no lineal no podemos saber que está pasando en ese punto de equilibrio.
+
+  \begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.7\textwidth]{lin2} 
+    \caption{$ar^3 ,\ a<0$}
+  \end{figure}
+
+  \begin{figure}[htpb]
+    \centering
+    \incfig[0.5]{lin3ej}
+    \caption{$ar^3,\ a>0$}
+  \end{figure}
+
+
+  \begin{figure}[H]
+    \begin{subfigure}[b]{0.49\textwidth}
+      \includegraphics[width=\textwidth, height=\textwidth]{arcb1.pdf}
+      \caption{$a>0$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\textwidth}
+      \includegraphics[width=\textwidth, height=\textwidth]{arcb2.pdf}
+      \caption{$a<0$}
+    \end{subfigure}
+    \caption{Retrato fase del sistema $\dot{r}=ar^3$}
+  \end{figure}
+  
+\end{ejemplo}
+

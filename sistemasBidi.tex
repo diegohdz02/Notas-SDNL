@@ -1,0 +1,232 @@
+\chapter{Sistemas bidimensionales}
+\section{Sistema lineal en 2 dimensiones}
+$$
+\begin{aligned}
+  \dot{x}_1&=ax_1+x_2,  \\
+  \dot{x}_2 &= cx_1 + dx_2 \\
+\end{aligned} \ 
+\begin{aligned}
+    x_1(0)&=u_0 \\
+  x_2(0)&=v_0  
+\end{aligned}
+$$
+
+Reescribiendo nuestro sistema de manera vectorial:
+
+$$
+\begin{aligned}
+  \vec{x}(t)&=
+\begin{pmatrix} 
+x_1(t) \\
+x_2(t)
+\end{pmatrix} \\
+ \dot{\vec{x}} &= A \vec{x} 
+ \\  \vec{x}(0) &= \vec{x_0}  \\ 
+\end{aligned}
+$$
+
+donde $$
+A = \begin{pmatrix} a & b \\ c & d \end{pmatrix} 
+$$
+$$
+\vec{x}: \mathbb{R} \mapsto \mathbb{R}^2
+$$
+a lo que le llamamos curvas parametrizadas.
+\begin{figure}[ht]
+    \centering
+    \incfig[0.3]{sistemalineal}
+    \caption{Sistema lineal}
+    \label{fig:sistemalineal}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \incfig{curvas-parametrizadas}
+    \caption{Curva parametrizada}
+    \label{fig:curvas-parametrizadas}
+\end{figure}
+\begin{tcolorbox}[colback=Black!4,colframe=White] 
+\begin{nota}[Vector velocidad]
+  El vector velocidad siempre es tangente a la trayectoria y se calcula obteniendo la derivada a cada punto:
+  $$
+  \begin{aligned}
+    \vec{v} &= \frac{d}{dt} \vec{x} \\
+    &= \frac{d}{dt}(x_1,x_2) \\
+    &= \left( \frac{dx_1}{dt}, \frac{dx_2}{dt} \right)  \\ 
+    &= (\dot{x_1}, \dot{x_2}) \\ 
+  \end{aligned}
+  $$
+  de esta manera
+  $$
+  \vec{v}=(\dot{x_1}, \dot{x_2}) = (ax_1+bx_2, cx_1+dx_2)
+  $$
+   estas serán las tangentes a las trayectorias, por lo que podemos reconstruir la trayectoria como las tangentes a todo $\vec{v}$.
+
+\end{nota}
+\end{tcolorbox}
+
+\begin{ejemplo}[Resorte con una masa] Sea un resorte con una masa m.
+
+  \begin{tcolorbox}[colback=Black!4, colframe=White]
+  \begin{recordatorio}[Ley de Hooke]
+  $$
+  T=-kx
+  $$
+  \end{recordatorio}
+  \end{tcolorbox}
+  $$
+  \begin{aligned}
+    m \ddot{x} &= F \\
+    m\ddot{x} &= -kx 
+  \end{aligned}
+  $$
+  haciendo un cambio de variable:
+  $$
+  \begin{aligned}
+    x_1 &\equiv x \\
+    x_2 &\equiv \dot{x}
+  \end{aligned}
+  $$
+  por lo que
+  $$
+  \dot{x_2}= \ddot{x} 
+  $$
+  de esta manera $m\dot{x_2}=-kx_1$.
+
+  Organizando nuestras ecuaciones tenemos:
+
+  $$
+  \begin{aligned}
+    \dot{x_1} &= x_2 \\
+    \dot{x_2} &= -\frac{k}{m}x_1 \\
+  \end{aligned}
+  $$
+  lo que implica que
+  $$
+   \dot{x_2}=-\omega^2x_1 , \ \text{donde } \omega^2=\frac{k}{m}  \text{ (notación) }
+  $$
+  $$
+  \begin{aligned}
+    \dot{\vec{x}}= \begin{pmatrix} 0 & 1 \\ -\omega^2 & 0 \end{pmatrix} \vec{x}  
+  \end{aligned}
+  $$
+  Encontrando los vectores velocidad:
+  $$
+  \begin{aligned}
+    \vec{v}=\begin{pmatrix} x_2-\omega^2x_1 \end{pmatrix}  
+  \end{aligned}
+  $$
+
+\begin{figure}[ht]
+    \centering
+    \incfig[0.5]{vectoresvel}
+    \caption{Vectores velocidad $\vec{v}=(x_2,-\omega^2x_1)$ para los puntos $(0,1),(1,0),(0,-1),(-1,0)$}
+    \label{fig:vectoresvel}
+\end{figure}
+
+\begin{figure}[!tbp]
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth, height=\textwidth]{sb1}
+    \caption{Campo vectorial de velocidades con $\omega^2=2$}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth, height=\textwidth]{sb2}
+    \caption{Trayectorias de las soluciones.}
+  \end{subfigure}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \incfig[0.4]{proyeccionx2}
+    \caption{Proyección de $x_2$ respecto a alguna curva cerrada del ejemplo 1.}
+    \label{fig:proyeccionx2}
+\end{figure}
+
+
+notemos que en $(0,0)$ es un punto de equilibrio, pues la velocidad es cero.
+
+ \begin{tcolorbox}[colback=Black!4,colframe=White] 
+\begin{nota}
+
+  $(0,0)$ es un punto de equilibrio para cualquier punto lineal.
+  
+\end{nota}
+\end{tcolorbox}
+
+\end{ejemplo}
+
+\begin{ejemplo} Consideremos el siguiente sistema lineal $$
+  \dot{\vec{x}} = \begin{pmatrix} a & 0 \\ 0 & -1 \end{pmatrix} \vec{x}
+$$
+con $a \in \mathbb{R}$ y $\vec{x}=\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} $.
+
+Reescribiendo nuestro sistema:
+
+$$
+\begin{aligned}
+  \dot{x_1} &= ax_1 \\ 
+  \dot{x_2} &= -x_2 \\ 
+\end{aligned}
+$$
+es un sistema desacoplado, porque para la ecuación de $x_1$ no le importa la solución de $x_2$ y viceversa.
+
+Soluciones:
+
+$$
+\begin{aligned}
+  x_1(t) &= k_1e^{at} \\
+  x_2(t) &= k_2e^{-t} \\ 
+\end{aligned}
+$$
+  si tenemos $\vec{x}(0)=\vec{x_0}$, entonces
+
+  $$
+  \vec{x}(0)=\begin{pmatrix} x_1(0) \\ x_2(0) \end{pmatrix} = \begin{pmatrix} k_1 \\ k_2 \end{pmatrix} = \vec{x_0}
+  $$
+
+  Caso I: $a<-1$. Si $a<-1$ entonces  $x_1(t)$ decrece más rápido que $x_2(t)$, por lo que se va a pegar a cero mucho más rápido, y ambas va a tender a $(0,0)$. Notemos que cuando $\lim_{t \to \infty} $ las trayectorias son paralelas a $x_2$ mientras que cuando $\lim_{n \to -\infty} $ las trayectorias son paralelas a $x_1$.
+
+  \begin{tcolorbox}[colback=Black!4,colframe=White] 
+  \begin{nota}[Nodo estable]
+    Al $(0,0)$ le llamaremos nodo estable porque no importa si empezamos un poco alejado de el, siempre vamos a terminar en el  $(0,0)$
+  \end{nota}
+\end{tcolorbox}
+
+  Caso II:  $a=-1$. En este caso tendremos que $x_1(t)=x_2(t)$, por lo que nuestras trayectorias serán rectas. Tendremos un nodo estrella estable pues no hay ninguna deformación en las trayectorias.
+   \vspace{2mm}
+  
+  Caso III: $-1<a<0$. Tendremos el caso contrario al caso I pues ahora  $x_1(t)$ será menos decreciente que $x_2(t)$.
+  \vspace{2mm}
+  
+  Caso IV: $a=0$. En este caso  $x_1(t)=k_1$ por lo que su valor depende únicamente de la condición inicial, mientras que  $x_2(t)$ si va a decrecer exponencialmente.  Notemos que todo el eje $x$ es una linea de puntos de equilibrio estable.
+\vspace{2mm}
+
+  Caso V:  $a>0$. En este caso $x_1(t)$ va a tender a infinito mientras que $x_2(t)$ va a tender a cero. No importa donde empezamos siempre nos vamos a acercar hacia el eje $x$ por lo mismo que  $x_2(t)$ tiende a cero. En este caso tenemos 2 curvas importantes. Si empezamos con una condición inicial $x_1(0)=0$ entonces $x_1(t)=0$ por lo que no jugaría ningún papel, yéndonos a $(0,0)$, a esa linea que nos llevan al  $(0,0)$ se llama  \textbf{la variedad estable}, mientras que al eje $x$ se le llama  \textbf{la variedad inestable} (no hay nada que nos atraiga, todo nos repele). A esta geometría se le llama \textbf{punto silla}. Y en general el punto silla siempre es inestable.                 
+
+  \begin{figure}[!tbp]
+    \begin{subfigure}[b]{0.4\textwidth}
+      \includegraphics[width=\textwidth, height=\textwidth]{sb3}
+      \caption{$a<-1$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.4\textwidth}
+      \includegraphics[width=\textwidth, height=\textwidth]{sb4}
+      \caption{$a=-1$}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.4\textwidth}
+      \includegraphics[width=\textwidth, height=\textwidth]{sb5}
+      \caption{$-1<a<0$}
+    \end{subfigure} \hfill 
+     \begin{subfigure}[b]{0.4\textwidth}
+      \includegraphics[width=\textwidth, height=\textwidth]{sb6}
+      \caption{$a=0$}
+    \end{subfigure}
+    \begin{subfigure}{0.4\textwidth}
+      \includegraphics[width=\textwidth, height=\textwidth]{sb7}
+      \caption{$a>0$}
+    \end{subfigure}
+  \end{figure}
+\end{ejemplo}
+
+

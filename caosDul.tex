@@ -1,0 +1,59 @@
+\section{Caos y atractores extraños}
+
+\begin{comment}
+	Cuando tenemos un atractor extraño tenemos caos.
+	
+\end{comment}
+
+\textbf{Ecuaciones de Hénon}
+\begin{align*}
+  x_{n+1} &= y_n+1-ax_{n}^2 \\
+	y_{n+1}&= bx_n
+\end{align*}
+con $a,b$ parámetros y $0<b<1$.
+
+Eligiendo $b=0.3$ y $a=1.4$ 
+
+\begin{tcolorbox}[colback=Black!4, colframe=White,arc=2mm]
+\begin{definicion}[Atractor]
+	Conjunto mínimo $A$ tal que soluciones en cierta región del espacio fase se acercan al conjunto cuando $t,n \to \infty$. 
+\end{definicion}
+\end{tcolorbox}
+
+Mecanismo general de los atractores extraños
+\begin{enumerate}
+	\item Acercar las soluciones al atractor (compresión)
+	\item Extender las soluciones (expansión)
+	\item Doblamiento de las soluciones sobre si mismas (compresión)
+\end{enumerate}
+
+Sistema tridimensional más sencillo con soluciones caóticas.
+
+\textbf{Sistema de Rossler}
+\begin{align*}
+  \dot{x} &= -y-z \\
+	\dot{y} &= x+ay \\
+	\dot{z}= b+z(x-c)
+\end{align*}
+con $a,b,c$ parámetros. Las parámetros del sistema anterior que se aprecian mejor son  $a=b=0.2$ variando  $c$.
+ 
+Condiciones que cumplen los máximos: $\dot{x}=0 \implies y(t)=-z(t)$, y para asegurnos que estamos tomando un máximo entonces $\ddot{x} <0$:
+\begin{align*}
+  \ddot{x} &= -\dot{y} - \dot{z} \\
+					 &= -x-ay-b-z(x-c)<0,
+\end{align*}
+variando $c$.
+
+ \section{Extracción del atractor}
+ \begin{enumerate}
+ 	\item Observaciones $x(t)$ 
+	\item Generamos una trayectoria tridimensional:
+		\begin{align*}
+		  \vec{y}(t) &= \left( x(t), x(t+\tau), x(t+\tau) \right)
+		\end{align*}
+		con $ \tau$ constante.
+	\item Si esto converge a un atractor extraño entonces mi sistema experimental es caótico. 
+ \end{enumerate}
+
+
+

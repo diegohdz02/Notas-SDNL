@@ -1,0 +1,122 @@
+\section{Sistemas y bifurcaciones}
+Sea el sistema
+\begin{align*}
+  x_{n+1} &= f_1(x_n,y_n) \\
+	y_{n+1} &= f_2(x_n,y_n) \\
+\end{align*}
+Notación
+\begin{equation*}
+  \vec{x}_{n+1} = \vec{f}(\vec{x}_{n}) 
+\end{equation*}
+
+\textbf{Soluciones de equilibrio}
+\begin{align*}
+	\vec{x}^{\star} = \vec{f}(\vec{x}^{\star}) \to x^{\star}&=f_1(x^{\star},y^{\star}) \\ y^{\star}&= f_2(x^{\star},y^{\star})
+\end{align*}
+
+\textbf{Sistemas lineales}
+\begin{equation*}
+  \vec{x}_{n+1}=A\vec{x}_n 
+\end{equation*}
+\textbf{Ansatz}
+\begin{equation*}
+  \vec{x}_n=psi \lambda^n
+\end{equation*}
+sustituyendo
+\begin{align*}
+  \xi\lambda^{n+1} &= A\vec{\xi}\lambda^{n} \\
+	\vec{\xi}\lambda \lambda^{n} &= A \vec{\xi}\lambda^{n} \\
+	\lambda\vec{\xi}&= A \vec{\xi}
+\end{align*}
+Si tenemos un sistema no lineal
+\begin{align*}
+  \vec{x}_{n+1} &= \vec{f}(\vec{x}_n) \quad (\vec{x}_n=\vec{x}^{\star}+ \delta \vec{x}_n )\\
+	x^{\star}+\delta x_{n+1} &= f_1(x^{\star}+\delta x_{n+1}, y^{\star}+ \delta y_{n+1})\\
+	y^{\star}+\delta y_{n+1} &= f_2(x^{\star}+\delta x_{n+1}, y^{\star}+ \delta y_{n+1})
+\end{align*}
+haciendo una doble serie de Fourier:
+\begin{align*}
+  x^{\star}+\delta x_{n+1} &\approx f_1(x^{\star},y^{\star})+\delta x_n \left. \frac{\partial f_1}{\partial x}  \right|_{x^{\star},y^{\star}} + \delta y_n \left. \frac{\partial f_1}{\partial y}  \right|_{x^{\star},y^{\star}} + O(\delta x_{n}^2) \\
+			y^{\star} + \delta y_{n+1} &= f_2(x^{\star},y^{\star})  
+\end{align*}
+\textcolor{blue}{terminar notas}
+
+La estabilidad depende de los eigenvalores
+
+\begin{ejemplo}
+	Sea el sistema
+	\begin{align*}
+	  y_{k+1} &= \frac{1}{2}y_k + \frac{1}{2}z_k+y_k(1-\tanh (y_k)) \\
+		z_{k+1}&=\frac{1}{4}y_k + \frac{1}{2}z_k
+	\end{align*}
+	\textbf{Puntos de equilibrio}	
+
+	\begin{align*}
+	  y^{\star} &= \frac{1}{2}y^{\star}+\frac{1}{2}z^{\star}+y^{\star}(1-\tanh(y^{\star}))\\
+		z^{\star}&=\frac{1}{4}y^{\star}+\frac{1}{2}z^{\star}
+	\end{align*}
+
+	de la segunda ecuación tenemos que
+	\begin{equation*}
+	  \frac{1}{2}z^{\star}=\frac{1}{4}y^{\star} \implies z^{\star}=\frac{1}{2}y^{\star},\ y^{\star}=2z^{\star} 
+	\end{equation*}
+	sustituyendo en la primera ecuación
+	\begin{align*}
+	  2z^{\star} &= z^{\star}+\frac{1}{2}z^{\star}+2z^{\star}(1-\tanh(2z^{\star})) \\
+		\frac{1}{2}z^{\star}&= 2z^{\star}\left( 1-\tanh(2z^{\star}) \right) \\
+		z^{\star}&=4z^{\star}\left( 1- \tanh(2z^{\star}) \right) 
+	\end{align*}
+	por lo que si $z_1^{\star}=0$ entonces $y_1^{\star}=0$ por lo tanto tenemos la primera solución de equilibrio. Si $z_1^{\star}\neq 0$ entonces
+	\begin{align*}
+	  1 &= 4\left( 1-\tanh (2z^{\star}) \right) \\
+		\frac{1}{4} &= 1-\tanh (2z^{\star})
+		\tanh (2z^{\star}) &= \frac{3}{4} \\
+		2z^{\star}&= arc\tan
+	\end{align*}
+
+	\textcolor{blue}{terminar}	
+
+	\begin{equation*}
+		\begin{split}
+			\frac{\partial f_1}{\partial y} &= \frac{1}{2}+1-\tanh(y)-y \sec h^2 y \\
+			\frac{\partial f_1}{\partial z} &=\frac{1}{2} \\
+			\frac{\partial f_2}{\partial y} &=\frac{1}{4}\\
+			\frac{\partial f_2}{\partial z}&=\frac{1}{2} 
+		\end{split}
+	\end{equation*}
+	\begin{equation*}
+	  \left. J \right|_{(0,0)} = \begin{pmatrix} \frac{3}{2} & \frac{1}{2} \\ \frac{1}{4} & \frac{1}{2} \end{pmatrix}  
+	\end{equation*}
+	por lo que
+	\begin{equation*}
+	  \operatorname{tr}J=2, \operatorname{det}J=\frac{5}{8} 
+	\end{equation*}
+	\begin{align*}
+	  \lambda_{1,2} &= \frac{2\pm \sqrt{4-4\cdot \frac{5}{8}}}{2} \\
+									&= 1 \pm \sqrt{1-\frac{5}{8}} \\
+									&= 1 \pm \sqrt{\frac{3}{8}}
+	\end{align*}
+	dado que $\frac{3}{8}<1 \implies \sqrt{\frac{3}{8}}<1$
+	\begin{equation*}
+	   \lambda_1=1+\sqrt{\frac{3}{8}}>1,\ \lambda_2 = 1-\sqrt{\frac{3}{8}}<1
+	\end{equation*}
+	por lo tanto tenemos un punto inestable. Para el segunda punto de equilibrio $0<\lambda_1,\ \lambda_2<1$, por lo tanto es estable.
+	
+\end{ejemplo}
+
+\begin{ejemplo}Sea el sistema
+	\begin{equation*}
+	  x_{n+1}= \sin(\omega x_n),\ \omega \in \mathbb{R}^{+} 
+	\end{equation*}
+	\textbf{Punto de equilibrio}
+
+	\begin{equation*}
+	  x^{\star}=\sin(\omega x^{\star}),\ x^{\star}=0 
+	\end{equation*}
+
+	\begin{equation*}
+	  \frac{df}{dx} = \cos(\omega x)\omega ,\ \left. \frac{df}{dx} \right|_{x=0}=\omega 
+	\end{equation*}
+
+	si $\omega<1 \implies x^{\star}=0$ es estable, si $\omega>1 \implies x^{\star}=0$ es inestable
+\end{ejemplo}

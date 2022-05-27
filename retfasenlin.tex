@@ -1,0 +1,131 @@
+\section{Retrato fase no lineal}
+
+\begin{tcolorbox}[colback=Black!4, colframe=White, arc = 0mm]
+\textbf{Caso lineal}
+$$
+\begin{aligned}
+  \dot{\vec{x}}=A \vec{x} 
+\end{aligned}
+$$
+donde $A$ es una matriz 2x2, y $\vec{x} = \begin{pmatrix} x_1(t) \\ x_2(t) \end{pmatrix} $, si $\operatorname{det} \neq 0 $ entonces $\vec{x}^*=\begin{pmatrix} 0 \\ 0 \end{pmatrix}. $  
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=Black!4, colframe=White, arc = 0mm]
+\textbf{Caso no lineal}
+ $$
+\begin{aligned}
+  \dot{x_1} &= f_1(x_1,x_2) \\ 
+  \dot{x_2} &= f_2(x_1,x_2) \\ 
+  \dot{\vec{x}}&=\vec{f}(\vec{x})
+\end{aligned}
+$$
+con $$
+ \vec{f}: \mathbb{R}^2 \to \mathbb{R}^2
+$$
+a lo que le llamamos campo vectorial.
+
+  \textbf{Características}
+
+  \begin{enumerate}
+    \item  $\begin{pmatrix} 0 \\ 0 \end{pmatrix} $ no necesariamente es un punto de equilibrio.
+      \item Hay más de un punto de equilibrio.
+	\item Cada punto de equilibrio tiene diferente estabilidad.
+	  \item Hay trayectorias en todo $\mathbb{R}^2$
+  \end{enumerate} 
+\end{tcolorbox}
+
+  
+\begin{ejemplo} Sea el sistema $$
+\begin{aligned}
+  \dot{x}_1 &= x_1+e^{-x_2} \\ 
+  \dot{x_2} &= -x_2 \\ 
+\end{aligned}
+$$
+entonces nuestro campo vectorial estará definido como se sigue $$
+\dot{\vec{x}}= \begin{pmatrix} x_1+e^{-x_2} \\ -x_2 \end{pmatrix} = \vec{f}(\vec{x})
+$$
+Sus puntos de equilibrio estarán dados por
+\begin{equation}
+  \begin{pmatrix} 0 \\ 0 \end{pmatrix} =  \vec{f}(\vec{x}^*)=\begin{pmatrix} x_1^*+e^{{-x_2}^*} \\ -x_2^* \end{pmatrix} 
+\end{equation}
+por lo que $-x_2^*=0$, es decir $x_2^*=0$, además se sigue que
+$$
+\begin{aligned}
+    x_1^*+e^{-x_2^*} &= 0 \\
+    x_1^* + e^{-0} &= 0 \\ 
+    x_1^*+1 &= 0 \\
+    x_1 ^* &= -1 
+\end{aligned}
+$$
+$$
+\vec{x}^* = (-1,0)
+$$
+
+\begin{tcolorbox}[colback=Black!4,colframe=White]
+\begin{definicion}[Ceroclinas] Curvas sobre las que $f_1=0$ o $f_2=0$
+\end{definicion}
+\end{tcolorbox}
+
+
+1ra ceroclina: $f_2=0 \implies x_2=0$ 
+
+2da ceroclina: $f_1=0$
+$$
+\begin{aligned}
+  x_1 + e^{-x_2}&=0 \\
+  e^{-x_2} &= -x_1 \\ 
+  -x_2 &= \ln(-x_1) \\ 
+  x_2 &= -\ln(-x_1) \\ 
+\end{aligned}
+$$
+\begin{figure}[H]
+ \centering
+ \subfloat[Dirección de los vectores velocidad del ejemplo 1]{
+   \label{ceroclin} 
+ \includegraphics[width=0.7\textwidth]{ceroclin.pdf}} \vfill
+ \subfloat[Trayectorias solución]{
+ \includegraphics[width=0.5\textwidth]{rtfnl.pdf}}
+\end{figure}
+para hacer la figura \ref{ceroclin} tenemos que hacer el siguiente análisis:
+
+\begin{enumerate}
+  \item Cuando $x_1=0$ entonces para la primera coordenada $x_1+e^{-x_2}=e^{-x_2} > 0 \ \forall x_2 \in \mathbb{R}$ por lo tanto la dirección de la velocidad es a la derecha, es por eso que en el cuadrante I las flechas horizontales $(x_1)$ va a la derecha. Por otro lado para la segunda coordenada $-x_2$, notemos que no depende de $x_1$ por lo tanto cuando $x_2>0 ,\ -x_2<0$ por lo tanto las flechas verticales apuntan hacia abajo. Y con estos dos vectores su vector resultante será la dirección del flujo.
+  \item Para $x_2<0$ y $x_1=0$ entonces $e^{-x_2}>0$ por lo tanto debe apuntar a la derecha y para $x_1<0$ entonces $x_2<0$ por lo tanto $-x_2>0$ por lo que debe apuntar hacia arriba.
+  \item Si $x_2=0$ entonces $x_1+e^{0}=x_1+1>0 \iff x_1>-1 $ análogamente tenemos que $x_1+1<0 \iff x_1<-1$
+  \item Por último, sobre $-ln(-x)$ la coordenada  $x_1+e^{-x_2}$ es cero, por lo que solo nos debemos de fijar que pasa sobre $-x_2$, por consiguiente para $x_2>0$ entonces $-x_2<0$ por lo que serán flechas que apunten hacia abajo, y para $x_2<0$ entonces $-x_2>0$ entonces serán flechas que apunten hacia arriba. Las demás áreas serán combinaciones de lo que pasa en las fronteras, así que solo debemos seguir el vector resultante que estas forman.             
+\end{enumerate}
+
+
+\end{ejemplo}
+
+\subsection{Teorema de existencia y unicidad en 2 dimensiones}
+
+\begin{tcolorbox}[colback=Black!4,colframe=White]
+\begin{teorema}[Teorema de existencia y unicidad]
+  Sea $\dot{\vec{x}}=\vec{f}(\vec{x})$, $\vec{x}(0)=\vec{x}(0)$ un problema de condiciones iniciales. Supongamos que $\vec{f}(\vec{x})$ es continua al igual que todas sus primeras derivadas, $$
+  \frac{\partial f_i}{\partial x_i}, 
+  $$ en una región abierta y conexa de $\mathbb{R}^{n}$, $D \subset \mathbb{R}^{n}$, $\vec{x}_0 \in D$, tal que el problema de condiciones iniciales tiene solución y es única en un subintervalo $t \in (-\tau,\tau),\ \tau>0$.
+  
+\end{teorema}
+\end{tcolorbox}
+
+\begin{figure}[ht]
+    \centering
+    \incfig{teun}
+    \caption{No son posibles si el teorema de existencia se cumple: no pueden existir dos curvas solución ni regiones donde no existan trayectorias, pues no existirían condiciones iniciales en dicha región. }
+    \label{fig:teun}
+\end{figure}
+
+\begin{tcolorbox}[colback=Black!4,colframe=White] 
+\begin{nota}[Ciclo límite]
+  En $\mathbb{R}^2$ si las soluciones están confinadas en el plano, decimos que hay un \textbf{ciclo límite}, como se ve en la figura \ref{vander}.
+  
+\end{nota}
+\end{tcolorbox}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{vanderPol.png}
+  \caption{Ecuación de van der Pol. Ejemplo de ciclo límite.}
+  \label{vander}                                                
+\end{figure}

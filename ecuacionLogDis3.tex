@@ -1,0 +1,74 @@
+\section{Ecuación logística discreta 3}
+\begin{equation*}
+  x_{n+1}=rx_n(1-x_n) 
+\end{equation*}
+\begin{comment}
+  las lineas blancas de la gráfica quieren decir 
+  el diagrama de órbitas nos dicen que para un valor de $r$ cuales son los valores que alcanzan la solución ya después que t tiende a infinito
+  tomando $r=3.7$ y en el eje  $x$ estamos graficando para tiempos muy grandes los valores que toman la solución, entonces 
+  
+  diagrama de órbitas, nosotros  simulamos x_n para n muy grande, para cada valor de r, con condiciones iniciales  aleatorias, graficamos un punto
+  en el valor de, para x<1 solo veíamos una linea en hasta x=1, para 1 a 3 teníamos un punto de equilibrio estable, por lo que solo vemos una sola linea
+  por que todas las condiciones iniciales convergían  al punto de equilibrio, para r=3 había un doblamiento de periodo, entonces ya no había punto de equilibrio estable
+  dependiendo de la condición inicial  el a_n podía quedar en el punto de arriba o de abajo, en 3.4 había otro doblamiento de periodo, entonces el ciclo de periodo 2 inestable 
+  se convertía en un ciclo de periodo 4.
+  Los manchones blancos son soluciones caóticas y se les llaman ventanas periódicas , lo azul son soluciones periódicas.
+
+  recuerda que las bifurcaciones en donde de la nada aparecen 2 puntos de equilibrio se le llama "nodo silla" 
+
+  Soluciones intermitentes: si nos fijamos en cierto punto en n, parece que la solución tiene cierta periocidad, pero despues de cierto n hace cosas aleatorias -> periodicas -> aleatoriedad -> periocidad
+
+  Gráfica tercer iterado para $r \simeq 3.79$ (3er iterado nos va a decir como se comporta la solución 3 puntos despues $x_n + 3$)
+
+
+\end{comment}
+
+Exponente de Lyapunov
+Caos; 1) Sensibilidad de condiciones iniciales
+$x_0$ 1a condición y $x_0+\delta_0$ segunda concidión tal que cada una resulta en una solución $x_n,x_n'$ respectivamente, tenemos que  $delta_n = \left| x_n - x_n' \right| $, supongamos que la separación entre las soluciones al tiempo en es exponencial, esto es
+\begin{equation*}
+  \left| \delta_n \right| \simeq \left| \delta_0 \right| e^{n \lambda}  
+\end{equation*}
+$\lambda$ se denomina exponente de Lyapunov.
+\begin{align*}
+  x_0 \to x_n & x_n = f^{n}(x_0) \\
+  x_0+\delta_0 \to x_n' & x_n' = f'(x_0+\delta_0)
+\end{align*}
+\begin{equation*}
+  \delta_n = \left| f^{n}(x_0)-f^{n}(x_0-\delta_0) \right|  = \left| f^{n}(x_0)-f^{n}(x_0+\delta_0) \right| 
+\end{equation*}
+\begin{equation*}
+  \lambda = \frac{1}{n} \ln \left| \frac{\delta_n}{\delta_0} \right| = \frac{1}{n} \ln \left| \frac{f^{n}(x_0+\delta_0)-f^n (x_0)}{\delta_0} \right|  
+\end{equation*}
+tomando $\lim_{\delta_0 \to 0} $:
+\begin{equation*}
+  \lambda = \lim_{\delta_0 \to \infty} \frac{1}{n} \ln \left| \left( f^{n} \right)' (x_0) \right|  
+\end{equation*}
+donde
+\begin{equation*}
+  \begin{split}
+    (f^{n})' &= [f(f(f(f)\cdots (f(x_0)))\cdots)]' \\
+             &= f'(f(f\cdots(x_0))\cdots)[f(f \cdots f(x_0))] \\
+             &= f'(f^{n-1}(x_0))[f^{n-1}] \\
+             &= \prod_{i=0}^{n-1} f'(x_i) 
+  \end{split}
+\end{equation*}
+Sustituyendo tenemos
+\begin{equation*}
+  \lambda = \frac{1}{n} \ln \left| \prod_{i=0}^{n-1} f'(x_i)   \right|  = \frac{1}{n} \sum_{i=1}^{n-1} \ln \left| f'(x_i) \right|   
+\end{equation*}
+si $\lambda>0$ tenemos soluciones caóticas, pues se separan exponencialmente con el tiempo, si $\lambda<0$ son soluciones no caótica
+
+Ec log
+\begin{equation*}
+  x_{n+1}=rx_n(1-x_n) 
+\end{equation*}
+
+Universalidad: La secuencia de soluciones periódicas es la misma.
+
+La proporción de valores del parámetro entre cada solución periódico (entre cada bifurcación de doblamiento de periodo es la misma) es decir, digamos que $r_n$ es el valor de  $r$ donde se da la  n-esima bifurcación de doblamiento de periodo, entonces la constante de Feigenbaum definida como
+ \begin{equation*}
+  \delta = \lim_{n \to \infty} \frac{r_n - r_{n-1}}{r_{n+1}-r_n} = 4.669 
+\end{equation*}
+
+

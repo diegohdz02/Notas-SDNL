@@ -1,0 +1,162 @@
+\chapter{Introducción a los sistemas dinámicos discretos}
+\begin{ejemplo} Sea el sistema dinámico
+	\begin{align*}
+	  \dot{r} &= r(1-r^2) \\
+	  \dot{\theta} &= 1 
+		\intertext{notemos que} 
+	  \theta(t) &= t+c 
+	\end{align*}
+	para simplificar las cuentas tomemos las condiciones iniciales con la solución empezando en $S$ son
+	\begin{equation*}
+	  \theta(0)=0 \implies \theta(0) = c = 0  
+	\end{equation*}
+
+	\begin{figure}[htpb]
+		\centering
+		\incfig[0.4]{isdm}
+		\caption{Espacio fase}
+	\end{figure}
+
+	por lo tanto $\theta(t)=t$. Los cruces se dan cuando $\theta(t)=2\pi n,\ n \in \mathbb{N},\ t=2\pi n$, y buscamos $x_{k+1}=P(x_k)$:
+	\begin{align*}
+		2\pi &= \int_{x_k}^{x_{k+1}}  d{t} \\
+				 &= \int_{x_k}^{x_{k+1}} \frac{dt}{dr} d{r} \\
+				 &= \int_{x_k}^{x_{k+1}} \frac{1}{\frac{dr}{dt}} d{r} \\
+				 &= \int_{x_k}^{x_{k+1}} \frac{1}{\dot{r}} d{r} \\
+				 &= \int_{x_k}^{x_{k+1}} \frac{dr}{r(1-r^2)} \\
+				 &= \int_{x_k}^{x_{k+1}} \left( \frac{A}{r}+\frac{Br}{1-r^2} \right)  d{r} \\
+				 &= \int_{x_k}^{x_{k+1}} \frac{A(1-r^2)+Br^2}{r(1-r^2)} d{r} \\
+				 &= \int_{x_k}^{x_{k+1}} \frac{A+r^2(B-A)}{r(1-r^2)} d{r}
+				 \intertext{de donde vemos que $A=1$ y  $B-A=0$ por lo que  $B=1$, por lo que}
+				 &= \int_{x_k}^{x_{k+1}} \left( \frac{1}{r} + \frac{r}{1-r^2} \right)  d{r} \\
+				 &= \int_{x_k}^{x_{k+1}}\frac{1}{r}  d{r} + \int_{x_k}^{x_{k+1}} \frac{1}{1-r^2}  d{r} \\
+				 &= \left. \ln \left( r \right)  \right|_{x_k}^{x_{k+1}} - \left. \frac{1}{2} \ln(1-r^2) \right|_{x_k}^{x_{k+1}}       
+	\end{align*}
+	por lo que
+	\begin{align*}
+		2\pi &= \ln(x_{k+1})-\ln(x_k) - \frac{1}{2}\ln(1-x_{k+1}^2) + \frac{1}{2} \ln(1-x_k^2) \\
+		4\pi &= 2\ln(x_{k+1})-2\ln(x_k) -\ln(1-x_{k+1}^2) + \ln(1-x_k^2) \\
+					 &= \ln(x_{k+1}^2) - \ln(x_k^2) - \ln(1-x^2_{k+1}) + \ln(1-x_k^2)  \\
+					 &= \ln \left[ \frac{x^2_{k+1}(1-x_k^2)}{x_k^2(1-x_{k+1}^2)} \right]
+					 \intertext{de esta manera}
+		e^{4\pi}&= \frac{x_{k+1}^2(1-x_k^2)}{x_k^2(1-x_{k+1}^2)}
+	\end{align*}
+	dado que buscamos una función tal que $x_{k+1}=P(x_k)$ entonces tenemos que pasar todo lo que dependa de $k+1$ de un lado y todo lo que dependa de $k$ del otro:
+
+	\begin{gather*}
+		\frac{x_{k+1}^2}{1-x_{k+1}^2} = \frac{e^{4\pi}}{1-x_{k}^2} \equiv f_k \\
+		x_{k+1}^2 = f_k(1-x_{k+1}^2)=f_k-f_kx_{k+1}^2 \\
+		x_{k+1}^2(1+f_k)=f_k \\
+	  x_{k+1}^2 = \frac{f_k}{1+f_k} \\
+		x_{k+1} = \sqrt{\frac{f_k}{1+f_k}}  \\
+		x_{k+1} = \sqrt{\frac{\frac{e^{4\pi}x^2_k}{1-x_k^2}}{1 + \frac{e^{4\pi}x_k^2}{1-x_k^2}}} \\
+		x_{k+1} = \frac{e^{2\pi}x_k}{\sqrt{1-x_k^2+e^{4\pi}x_k^2}} \\
+		x_{k+1} = \frac{e^{2\pi}x_k}{\sqrt{1-x_k^2(1-e^{4\pi})}}
+	\end{gather*}
+	Recordando que los puntos fijos son órbitas y son soluciones de equilibrio del sistema dinámico discreto. Y dado que las soluciones de equilibrio son soluciones constantes en este caso tenemos que
+	\begin{equation*}
+	  x_k = x^* 
+	\end{equation*}
+
+	sustituyendo llegamos a que $x^*=0$ o $x^*=1$. Si $x_k = x^*=0$ entonces
+	\begin{equation*}
+	   x_{k+1} = 0 \quad \therefore x_k=0 \ \forall k
+	\end{equation*}
+	Si  $x_k=x^*=1$ entonces
+	\begin{align*}
+		x_{k+1} &= \frac{e^{2\pi}}{\sqrt{1-(1-e^{4\pi})}} \\
+						&= \frac{e^{2\pi}}{\sqrt{1-1+e^{4\pi}}} \\
+						&= \frac{e^{2\pi}}{\sqrt{e^{4\pi}}} \\
+						&= \frac{e^{2\pi}}{e^{2\pi}} \\
+						&= 1
+	\end{align*}
+	entonces $x_{k+1}=1$, por lo tanto $x_k=1 \ \forall k$. Tenemos una solución de equilibrio y un ciclo límite en $r=1$. 
+
+\end{ejemplo}
+	 \begin{tcolorbox}[colback=Black!4, colframe=White,arc=2mm]
+	 \begin{definicion}[Ecuación en diferencias finitas]
+	 	Una ecuación en diferencias finitas también llamadas mapeo o recursión es una ecuación del tipo
+		\begin{equation*}
+		  x_{k+1} = f(x_k, x_{k-1}, x_{k-2}, \cdots). 
+		\end{equation*}
+	 \end{definicion}
+	 \end{tcolorbox}
+	 \begin{tcolorbox}[colback=Black!4, colframe=White,arc=2mm]
+	 \begin{definicion}[Orden de una ecuación]
+	 	El orden de una ecuación es igual al salto temporal más grande en la ecuación.
+	 \end{definicion}
+	 \end{tcolorbox}
+	 \begin{ejemplo}
+		 \begin{equation*}
+		   x_{k+1} = ax_{k} \text{ es de orden 1 } 
+		 \end{equation*}
+		 \begin{equation*}
+		   x_{k+1}=ax_{k-3} \text{ es de orden 4 } 
+		 \end{equation*}
+	 \end{ejemplo}
+	 \begin{tcolorbox}[colback=Black!4, colframe=White,arc=2mm]
+	 \begin{nota}De un orden superior podemos pasar a un sistema de orden 1
+	 \end{nota}
+	 \end{tcolorbox}
+	 \begin{ejemplo}
+	 	Sea \begin{equation*}
+	 	  x_{k+2} = ax_k 
+	 	\end{equation*}
+		haciendo un cambio de variable
+		\begin{equation*}
+		  y_k \equiv x_k \quad z_k \equiv  x_{k+1} = y_{k+1} \implies z_{k+1}=x_{k+2}
+		\end{equation*}
+
+		sustituyendo
+		\begin{align*}
+		  y_{k+1} &= z_k \\
+			z_{k+1} &= ay_k
+		\end{align*}
+	 \end{ejemplo}
+
+	 \begin{tcolorbox}[colback=Black!4, colframe=White,arc=2mm]
+	 \begin{definicion}[Soluciones de equilibrio]
+		 Una solución de equilibrio de un sdd es una solución constante $x_k = x^*,\ \forall k \in \mathbb{N}$.
+	 \end{definicion}
+	 \end{tcolorbox}
+	 Si $x_{k+1}=f(x_k)$ y $x_{k}=x^*$ es solución de equilibrio entonces $x^*=f(x^*)$ es una solución algebraica.
+
+	 \section{Ecuaciones en diferencias finitas lineales de 1er orden}
+	 \begin{equation*}
+	   x_{k+1}=\lambda x_{k},\ \lambda \in \mathbb{R} 
+	 \end{equation*}
+	 notemos que $x^*=0$ siempre es solución de equilibrio.
+
+	 Supongo que $x_{0}=c$ (condición inicial), por lo que
+	 \begin{equation*}
+		 \begin{split}
+			 x_1&=\lambda x_0 = c\lambda \\
+			x_2 &= \lambda x_1  = \lambda(\lambda c) = \lambda^2 c\\
+			x_3 &= \lambda x_2 = \lambda(\lambda^2 c) = \lambda^3c \\
+			\vdots& \\                            
+				x_k	&= c\lambda^{k}
+		 \end{split}
+	 \end{equation*}
+	 Las soluciones de la ecuación en diferencias finitas son funciones $x: \mathbb{N} \to \mathbb{R}$, si $\lambda \in [0,\infty)$
+	 \begin{align*}
+	   x_k &= c\lambda^{k} = c(\lambda)^{k} = c \left( e^{\ln\lambda} \right)^{k} \\
+				 &= c e^{\left( \ln\lambda \right)^{k} } = c e^{\alpha k},\ \alpha \equiv \ln\lambda
+	 \end{align*}
+	 \begin{itemize}
+	 	\item si $\lambda<1$ entonces $\alpha<0$ por lo que $x_k$ es una exponencial decreciente
+		\item 	 si $\lambda>1$ entonces $\alpha>0$ por lo que $x_k$ es una exponencial creciente
+		\item si $\lambda \in (-\infty,0)$
+	 \begin{equation*}
+		 \begin{split}
+			 x_k &= c \left[ (-1) |\lambda| \right]^{k}   \\  
+					 &= c \left[ e^{i\pi}e^{\ln |\lambda|} \right]^{k}  \\
+					 &= c e^{i \pi k} e^{\ln |\lambda|k}\\
+					 &= c(\cos\pi k + i \sin \pi k) e^{k \alpha} \\
+					 &= c(\cos \pi k) e^{k \alpha}
+		 \end{split}
+	 \end{equation*}
+	 la cual es una solución oscilatoria, si $|\lambda|<1$ entonces decrece, si $|\lambda|>1$ entonces crece.
+	 \end{itemize}
+
+
+

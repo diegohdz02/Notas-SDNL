@@ -1,0 +1,116 @@
+\chapter{Bifurcaciones}  
+\section{Bifurcación de nodo silla}
+La forma normal del sistema está dada por la ecuación
+\begin{equation*}
+  \dot{x} = r + x^2 
+\end{equation*}
+con $r$ constante, $x=x(t)$. 
+\begin{enumerate}[a)]
+	\item $r<0$
+
+    \textbf{Puntos de equilibrio.} Igualamos la ecuación a cero y resolvemos
+\begin{align*}
+r+x^{* 2} &=0 \\
+x^{* 2} &=-r \\
+\therefore x_{1,2}^{*} &=\pm \sqrt{-r}
+\end{align*}
+\textbf{Estabilidad de los puntos de equilibrio}
+
+Derivamos la función con respecto de $x$ y evaluar la derivada con respecto a los puntos de equilibrio:
+\begin{equation*}
+\frac{d f}{d x}=2 x,\left.\quad \frac{d f}{d x}\right|_{x^{*}}=2 x^{*}
+\end{equation*}
+para la primera raíz tenemos
+$$
+\left.\frac{d f}{d x}\right|_{x_{1}^{*}}=2 \sqrt{-r}>0
+$$
+por lo tanto es inestable, análogamente para la segunda raíz
+$$
+\left.\frac{d f}{d x}\right|_{x_{2}^{*}}=-2 \sqrt{-r}<0
+$$
+por lo tanto es estable.
+
+\item Si $r=0$
+  $$
+  \frac{d f}{d x}=2 x,\left.\frac{d f}{d x}\right|_{x^{*}}=0
+  $$
+  dado que es al mismo tiempo estable e inestable por ser idénticamente cero decimos que es un punto semi-estable.
+
+  \item Si $r>0$
+    
+    No tiene puntos de equilibrio y dado que siempre es creciente las soluciones tienden a infinito.
+\end{enumerate}
+
+\begin{figure}[H]
+ \centering
+ \subfloat[$r<0$]{
+ \includegraphics[width=0.3\textwidth]{nds-2.pdf}}
+ \subfloat[$r=0$]{
+ \includegraphics[width=0.3\textwidth]{nds-3.pdf}}
+ \subfloat[$r>0$]{
+ \includegraphics[width=0.3\textwidth]{nds-4.pdf}}
+\end{figure}
+
+\begin{tcolorbox}[colback=Black!4, colframe=White, arc=2mm]
+\begin{definicion}[Gráfica de bifurcación]
+  Gráfica donde se muestran los puntos de equilibrio y su estabilidad como función del parámetro. Representamos los puntos de equilibrio estables con líneas solidas y punteadas a los puntos inestables.
+\end{definicion}
+\end{tcolorbox}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{nds-1.pdf}
+  \caption{Gráfica de bifurcación para $\pm \sqrt{-r}$}
+\end{figure}
+
+\begin{tcolorbox}[colback=Black!4, colframe=White, arc=2mm]
+\begin{nota}[Caracterización de la bifurcación de nodo silla] Un modelo de ecuaciones diferenciales tiene una bifurcación de nodo silla si a medida que sus puntos de equilibrio se juntan desaparecen.
+\end{nota}
+\end{tcolorbox}
+\begin{tcolorbox}[colback=Black!4, colframe=White, arc=2mm]
+\begin{definicion}[Punto crítico]
+  Al punto donde se fusionan los puntos de equilibrio se llama punto crítico.
+\end{definicion}
+\end{tcolorbox}
+\begin{ejemplo} Muestra que la ecuación $\dot{x}=r-x-e^{-x}$ tiene una bifurcación de nodo silla y encuentra el punto crítico donde ocurre la bifurcación.
+\vspace{2mm}
+
+  \textbf{Solución}
+
+  Dado que la ecuación $r-x-e^{-x}$ es complicada de resolver, vamos a tomar las funciones
+  \begin{align*}
+    &F(x^*) = r-x^* \\
+    &G(x^*)=e^{-x^*} 
+  \end{align*}
+
+  \begin{figure}[H]
+   \centering
+   \subfloat[$r \simeq 0.93$]{
+   \includegraphics[width=0.45\textwidth]{nds-5.pdf}}
+   \subfloat[$r=2$]{
+   \includegraphics[width=0.45\textwidth]{nds-6.pdf}}
+  \end{figure} 
+
+  en $r=r_c, e^{-x}$ y $r-x$ son tangentes por lo que $F(x)=G(x)$ y además deben tener la misma pendiente por lo que  $F'(x)=G'(x)$ , de donde obtenemos las ecuaciones:
+  \begin{align*}
+    r-x &= e^{-x} \\
+    -1 &= -e^{-x} \\
+    1 &= e^{-x} \\
+    \ln(1) &= \ln(e^{-x}) \\
+    0 &= -x \\
+    \therefore x&=0 
+  \end{align*}
+  regresando a que $r-x=e^{-x}$ entonces $r=1$.
+
+  Para demostrar que tiene un punto de equilibrio nodo silla debemos llevar la ecuación a su forma normal, por lo que hacemos una expansión en series de taylor de la función exponencial:
+  $$
+\begin{aligned}
+\dot{x} &=r-x-e^{-x} \\
+&=r-x-\left(1-x+\frac{x^{2}}{2}+\ldots+\right) \\
+&=(r-1)-\frac{x^{2}}{2}+\theta\left(x^{3}\right) \\
+& \approx(r-1)-\frac{x^{2}}{2}
+\end{aligned}  
+  $$
+  recordando que la bifurcación se da en $r=0$ entonces por la forma normal tenemos que $r-1=0$ por lo tanto $r=1$.
+\end{ejemplo}
+
+  

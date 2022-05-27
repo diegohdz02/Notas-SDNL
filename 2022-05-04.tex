@@ -1,0 +1,99 @@
+\subsection{Reacciones de Belousow-Chabolismo}
+\begin{align*}
+  &\dot{x}=a-x - \frac{4xy}{1+x^2} \\
+  &\dot{y} = bx \left( 1- \frac{y}{1+x^2} \right) 
+\end{align*}
+con $a,b> 0$.
+
+\textbf{Ceroclinas}
+\begin{equation*}
+  \dot{x} = 0 = a-x- \frac{4xy}{1+x^2} 
+\end{equation*}
+\begin{equation*}
+	\frac{4xy}{1+x^2}=a-x \implies y = \frac{(a-x)(1+x^2)}{4x} 
+\end{equation*}
+\begin{equation*}
+  \dot{y} = 0 = 1 - \frac{y}{1+x^2} \implies y = 1+x^2 
+\end{equation*}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{4522-1.pdf}
+  \caption{Ceroclinas $\color{MidnightBlue}{1+x^2}$, $ \color{YellowOrange}{\frac{(4-x)(1+x^2)}{4x}}$ }
+\end{figure}
+\textbf{Puntos de equilibrio}
+\begin{gather*}
+	1+x^2 = \frac{(a-x)(1+x^2)}{4x} \implies 4x = a-x \\
+	\therefore x^* = \frac{a}{5} \\
+	\therefore y^*=1+ \left( \frac{a}{5} \right) ^2
+\end{gather*}
+
+\textbf{Matriz Jacobiana}
+
+\begin{align*}
+  \left. \frac{\partial f}{\partial x}  \right|_{x^*,y^*} &= -1 - \left( \frac{4y^*(1+x^{{*}^2})-2x(4x^*y^*)}{(1+x^{{*}^2})^2} \right) \\ 
+                                                          &= -1- \left( \frac{4y^*(1+x^{{*}^2})-8x^{{*}^2}y^*}{(1+x^{{*}^2})^2} \right) \\
+                                                          &= - \frac{(1+x^{{*}^2})^2-4y^*(1+x^{{*}^2})+8x^{{*}^2}y^*}{(1+x^{{*}^2})^2} \\
+                                                          &= \frac{-(1+x^{{*}^2})^2-4(1+x^{{*}^2})(1+x^{{*}^2})+8x^{{*}^2}(1+x^{{*}^2})}{(1+x^{{*}^2})^2} \\
+                                                          &= -1 - 4 + \frac{8x^{{*}^2}}{1+x^{{*}^2}} \\
+                                                          &= -5 + \frac{8x^{{*}^2}}{1+x^{{*}^2}}
+\end{align*}
+\begin{align*}
+  \left. \frac{\partial f}{\partial y}  \right|_{x^*,y^*} &= \frac{-4x^*}{1+x^{{*}^2}} \\
+    \left. \frac{\partial g}{\partial x}  \right|_{x^*,y^*} &= b \left( 1 - \frac{y^*}{1+x^{{*}^2}} \right) + bx^* \left( - \frac{y^*}{(1+x^{{*}^2})^2}(-2x^{{*}^2}) \right) \\
+                                                            &= b \left( 1 - \frac{y^*}{1+x^{{*}^2}} \right)+ \frac{2bx^{{*}^2}y^*}{(1+x^{{*}^2})^2} \\
+                                                            &= b \left( 1 - \frac{1+x^{{*}^2}}{1+x^{{*}^2}} \right) + \frac{2bx^{{*}^2}(1+x^{{*}^2})}{(1+x^{{*}^2})^2} \\
+                                                            &= \frac{2bx^{{*}^2}}{1+x^{{*}^2}}
+\end{align*}
+\begin{align*}
+  \left. \frac{\partial g}{\partial y}  \right|_{x^*,y^*} & = \frac{-bx^*}{1+x^{{*}^2}}  
+\end{align*}
+por lo tanto
+\begin{equation*}
+  J = \begin{pmatrix} -5 + \dfrac{8x^{{*}^2}}{1+x^{{*}^2}} &  -\dfrac{4x^*}{1+x^{{*}^2}} \\ \dfrac{2bx^{{*}^2}}{1+x^{{*}^2}} & -\dfrac{bx^*}{1+x^{{*}^2}} \end{pmatrix}  
+\end{equation*}
+\begin{align*}
+  \operatorname{det} J &= \frac{-b x^*}{1+x^{{*}^2}} \left( -5 + \frac{8x^{{*}^2}}{1+x^{{*}^2}} \right) + \frac{8bx^{{*}^3}}{(1+x^{{*}^2})^2}  \\
+  &= \frac{5bx^*}{1+x^{{*}^2}}-\frac{8bx^{{*}^3}}{(1+x^{{*}^2})^2} + \frac{8bx^{{*}^3}}{(1+x^{{*}^2})^2} \\
+  &= \frac{5bx^*}{1+x^{{*}^2}}
+\end{align*}
+dado que $a,b>0$ y $x^*=\dfrac{a}{5}$ entonces
+\begin{equation*}
+  \operatorname{det} J=\frac{5bx^*}{1+x^{{*}^2}} > 0 
+\end{equation*}
+por lo tanto no es un punto silla.
+\begin{align*}                      
+  \operatorname{tr}J &= -5+\frac{8bx^{{*}^2}}{1+x^{{*}^2}} - \frac{bx^*}{1+x^{{*}^2}} \\
+  &=\frac{-5(1+x^{{*}^2})+8bx^{{*}^2}-bx^*}{1+x^{{*}^2}} \\
+  &=\frac{-5 -5x^{{*}^2}+8x^{{*}^2}-bx^*}{1+x^{{*}^2}} \\
+  &=\frac{3x^{{*}^2}-bx^*-5}{1+x^{{*}^2}}
+\end{align*}
+si pedimos que $\operatorname{tr}J>0$ entonces
+\begin{align*}
+   0 &< 3x^{{*}^2}-bx^*-5 \\
+  bx^*&<3x^{{*}^2}-5 \\
+  b&<\frac{3x^{{*}^2}-5}{x^*} \\
+  b&<3x^*-\frac{5}{x^*} \\
+  \intertext{sustituyendo $x^*=\dfrac{a}{5}$} 
+  b&<\frac{3a}{5}-\frac{25}{a}
+\end{align*}
+por lo tanto habría un \textbf{ciclo límite} y si $$b>\dfrac{3a}{5}-\dfrac{25}{5}$$ tendríamos un \textbf{punto de equilibrio estable.}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.4\textwidth]{4522-2.pdf}
+  \caption{La región azul representa aquellos puntos que cumplen $b<\frac{3a}{5}-\frac{25}{a}$, por lo que tendríamos un ciclo limite}
+\end{figure}
+\begin{figure}[H]  
+  \centering
+  \includegraphics[width=0.8\textwidth]{4522-3} 
+  \caption{Diagrama de bifurcación.}
+    \label{4522-3}
+\end{figure}
+por la figura (\ref{4522-3}) tenemos entonces que es una bifurcación de Hopf Supercrítica.  
+\begin{figure}[H]
+ \centering
+  \subfloat[$b<b_c$]{
+    \includegraphics[width=0.49\textwidth]{4522-4}}
+  \subfloat[$b>b_c$]{
+    \includegraphics[width=0.49\textwidth]{4522-5}}
+\end{figure} 
+

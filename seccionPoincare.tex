@@ -1,0 +1,45 @@
+\section{Sección de Poincaré}
+
+Vamos a encontrar una solución (una sola) del sistema $\vec{\dot{x}}=\vec{f}(\vec{x})$, en lugar de graficarla vamos a definir una superficie, un hiperplano $n-1$ dimensional $S$, al que llamaremos \textbf{sección de Poincaré}. Este plano no puede ser tangente a la solución $\vec{x}(t)$ ya que nos vamos a fijar en las intersecciones de la solución con el hiperplano $S$. A la $k-\text{ésima}$ intersección de la solución $\vec{x}(t)$ con el plano $S$ lo llamamos $\vec{x}_k$.
+
+\begin{figure}[H]
+ \centering
+  \subfloat[Intersecciones de las soluciones $\vec{x}(t)$ en el hiperplano S]{
+    \incfig[0.3]{sp1}}
+  \subfloat[]{
+    \incfig[0.3]{sp2}}
+\end{figure} 
+
+Queremos encontrar una función $P: \mathbb{R}^{n-1} \to \mathbb{R}^{n-1}$ tal que $\vec{x}_{k+1}=P(\vec{x}_k)$ a esta función se le llama  \textbf{recursión de Poincaré}. Si encuentro $\vec{x}^*$ tal que $P(\vec{x}^*)=\vec{x}^*$ entonces si $\vec{x}_1=\vec{x}^*$ tenemos que $\vec{x_2}=P(\vec{x_1})=P(\vec{x}^*)=\vec{x}^*$ es decir que $\vec{x}_2=x^*$, por lo tanto $\vec{x_k}=\vec{x}^* \ \forall k \ge 1$. A $\vec{x_k}=\vec{x}^*$ se le llama \textbf{una solución de equilibrio del sistema dinámico discreto $\vec{x}_{k+1}=P(\vec{x}_k)$}. 
+
+\begin{tcolorbox}[colback=Black!4, colframe=White,arc=2mm]
+\begin{nota}
+	Para responder la pregunta de si hay ciclos o no en $\dot{\vec{x}}=\vec{f}(\vec{x})$ tenemos que ver si $\vec{x}_{k+1}=P(\vec{x}_k)$ tiene soluciones de equilibrio.
+\end{nota}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=Black!4, colframe=White,arc=2mm]
+\begin{nota}
+	Una solución de equilibrio $\vec{x_k}=\vec{x}^*$ es \textbf{estable} si para una condición inicial cercana a $\vec{x}^*$la solución $\vec{x}_k \to \vec{x}^*$ cuando $k \to \infty$.  Es \textbf{inestable} si para una condición inicial cerca de a $\vec{x}^*$, $\vec{x}_k$ se aleja de $\vec{x}^*$ cuando $k \to \infty$.
+\end{nota}
+\end{tcolorbox}
+\begin{tcolorbox}[colback=Black!4, colframe=White,arc=2mm]
+\begin{nota}Si tenemos un punto de equilibrio estable entonces tenemos un ciclo límite estable y por el contrario si es inestable tendríamos un punto de equilibrio inestable. 
+\end{nota}
+\end{tcolorbox}
+El problema de la estabilidad de ciclos límite se convierten en estabilidad de puntos de equilibrio de $\vec{x}_{k+1}=P(\vec{x}_k)$.
+\begin{figure}[htb]
+ \centering
+  \subfloat[]{
+    \includegraphics[width=0.4\textwidth]{sp4}} \hfill
+  \subfloat[Los puntos azules representan tiempos cortos y los rojos tiempos largos, dado que las intersecciones están saltando, no están convergiendo y por lo tanto no tenemos un ciclo límite.]{
+    \includegraphics[width=0.49\textwidth]{sp5}}
+		\caption{Ejemplo de una solución de un sistema dinámico no lineal que corta al plano $S$}
+\end{figure} 
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.4\textwidth]{sp3}
+	\caption{Ejemplo de una solución periódica; por lo tanto tenemos un ciclo límite.}
+\end{figure}
+
+

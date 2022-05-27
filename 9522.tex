@@ -1,0 +1,243 @@
+\section{Sistemas conservativos y reversibles}
+\subsection{Sistemas conservativos}
+
+	Supongamos que tenemos un sistema dinámico y queremos saber como se mueve este sistema. Por la segunda ley de Newton:
+	\begin{equation*}
+	  m \ddot{x} = F(x) 
+	\end{equation*}
+donde $F(x)$ no depende de la fricción ni explícitamente del tiempo, pues solo depende de $t$ a través de  $x$.
+Recordando la definición de potencial:
+ \begin{equation*}
+  F= -\frac{dV}{dx} 
+\end{equation*}
+donde $V$ es el potencial del sistema, por lo que
+ \begin{equation*}
+  V = - \int_{}^{} F d{x},   
+\end{equation*}
+de esta manera tenemos que 
+\begin{gather*}
+  m \ddot{x} = -\frac{dV}{dx} \\
+  m \ddot{x} + \frac{dV}{dx} = 0
+\end{gather*}
+multiplicando por $\dot{x}$
+\begin{align*}
+  m \dot{x} \ddot{x} + \frac{dV}{dx} \dot{x}&=0 
+\end{align*}
+notemos que 
+\begin{align*}
+	m \dot{x} \ddot{x} + \frac{dV}{dx} \dot{x}  &= \frac{d}{dt} \left[ \frac{1}{2}m \dot{x}^2 + V(x) \right] \\
+	&= \frac{d}{dt} E(x(t)) \\
+	&= 0   
+\end{align*}
+esto implica que la energía es constante en el tiempo.
+\begin{tcolorbox}[colback=Black!4, colframe=White,arc=2mm]
+\begin{definicion}[Cantidad conservada]
+	Si un sistema dinámico a tiempo continuo tiene una cantidad $E(\vec{x}(t))$ tal que $\frac{d}{dt}E(\vec{x}(t))=0 \ \forall t$ entonces a  $E$ se le llama  \textbf{cantidad conservada, constante de movimiento o la 1ra integral del sistema} y el sistema se llama \textbf{conservativo}.
+
+	Requerimiento: $E$ como función de $t$ es constante pero  $E$ como función de  $x$ no debe ser constante. 
+\end{definicion}
+\end{tcolorbox}
+\begin{tcolorbox}[colback=Black!4, colframe=White,arc=2mm]
+\begin{teorema}
+Si tenemos un sistema conservativo entonces el sistema no tiene puntos de equilibrio atractores. 
+\end{teorema}
+\end{tcolorbox}
+Idea de la demostración:
+
+Sea  $A$ una cuenca de atracción, entonces  $\forall x_0 \in A,\ x(t)$ con  $x(0)=x_0$, entonces:
+\begin{align*}
+  \lim_{t \to \infty} x(t) &= x^* \\
+  \lim_{t \to \infty} E(x(t)) &= E(x^*) = \text{cte}
+\end{align*}
+pero $E(t)$ es constante, esto implica que  $E(x(t))=E(x^*)$ es constante para toda $t$, entonces  $E(x(t))=E(x^*)=cte, \forall x \in A$, lo cual es una contradicción a que $E$ como función de  $x$ no debe ser constante.
+
+\begin{ejemplo}Consideremos un sistema mecánico con $m=1$ y  \begin{equation*}
+	V(x) = -\frac{1}{2}x^2+\frac{1}{4}x^{4} 
+\end{equation*}
+prueba que es un sistema conservativo y encuentra los puntos de equilibrio.
+	
+\textbf{Solución}
+
+\begin{equation*}
+  F=-\frac{dV}{dx} = - (-x+x^3)=x-x^3 
+\end{equation*}
+\begin{align*}
+  m \ddot{x} &= F \\
+  m \ddot{x}&= x-x^3 \\
+  \ddot{x} &= x-x^3
+\end{align*}
+haciendo un cambio de variable con $y \equiv \dot{x}$ entonces $\dot{y} \equiv \ddot{x}$ por lo tanto tenemos que
+\begin{equation}
+  \label{scr-eq1} 
+  \begin{split}
+    \dot{x} &= y \\
+    \dot{y}&=x-x^3 
+  \end{split}
+\end{equation}
+\begin{equation*}
+  \begin{split}
+    E(\vec{x}(t))&=\frac{1}{2}my^2-\frac{1}{2}x^2+\frac{1}{4}x^{4} \\
+                 &=\frac{1}{2}y^2-\frac{1}{2}x^2+\frac{1}{4}x^{4}  
+  \end{split}
+\end{equation*}
+\textbf{Puntos de equilibrio}
+\begin{equation*}
+  y^*=0 
+\end{equation*}
+por otro lado
+\begin{align*}
+  x(1-x^2) &= 0 
+\end{align*}
+por lo tanto $x^*=0$ o $x^*=\pm 1$, de esta manera tenemos tres puntos de equilibrio, $(0,0), (1,0), (-1,0)$.
+\end{ejemplo}
+
+\textbf{Estabilidad de los puntos de equilibrio}
+
+\begin{equation*}
+	J= \begin{pmatrix} 0 & 1 \\ 1-3x^2 & 0 \end{pmatrix} 
+\end{equation*}
+evaluando los puntos de equilibrio
+\begin{equation*}
+  \left. J \right|_{(1,0)} = \begin{pmatrix} 0 &  1 \\ -2 & 0 \end{pmatrix} = \left. J \right|_{-1,0} 
+\end{equation*}
+por lo tanto $ \operatorname{tr}J=0$ y $ \operatorname{det} J = 2$, y recordando que la linea que divide a las espirales inestables a espirales estables es un centro, pero la no linealidad puede hacer que esos centros no sean curvas cerradas, si no que decaigan muy lentamente, por lo que podemos asegurar que realmente sea un centro. 
+
+Para $(0,0)$
+
+\begin{equation*}
+  \left. J \right|_{(0,0)} = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}    
+\end{equation*}
+dado que $\operatorname{tr}J=0$ y $\operatorname{det}=-1$ tenemos un \textbf{punto silla}.
+
+Para que $E(x,y)$ sea una constante necesitamos que las curvas de nivel sean trayectorias de las soluciones, por lo que basta ver las trayectorias de $E(x,y)$:
+
+\begin{figure}[H]
+ \centering
+  \subfloat[Curvas de nivel de $E(\vec{x}(t))$]{
+    \includegraphics[width=0.4\textwidth]{scr1}}
+  \subfloat[Diagrama de flujo del sistema (\ref{scr-eq1})]{
+   \label{}
+    \includegraphics[width=0.4\textwidth]{scr2}}
+    \caption{}
+ \label{scr-im1}
+\end{figure} 
+En la figura (\ref{scr-im1}) podemos apreciar que todas las soluciones son cerradas.
+
+\begin{tcolorbox}[colback=Black!4, colframe=White,arc=2mm]
+\begin{teorema} Si tenemos un centro en un sistema conservativo entonces el punto de equilibrio sí es un centro (la no linealidad no lo deforma).
+  \vspace{2mm}
+
+  Sea $\dot{\vec{x}} = \vec{f}(\vec{x})$ un sistema conservativo. Supongamos que $x^*$ es una solución de equilibrio que es un mínimo de $E(\vec{x})$, entonces $x^*$ es un centro no lineal y cerca de el las soluciones son completamente periódicas.
+\end{teorema}
+\end{tcolorbox}
+
+\subsection{Sistemas reversibles}
+\begin{equation*}
+  m \ddot{x} = F(x) 
+  \end{equation*} 
+  podemos escribir el sistema como
+  \begin{align*}
+    \dot{x} &= y \\
+    \dot{y} &= \frac{1}{m} F(x)
+  \end{align*}       
+haciendo una transformación
+\begin{align*}
+  T &= -t \\
+  Y &= -y
+\end{align*}
+
+\begin{align*}
+  \frac{d}{dt} &= \frac{dT}{dt} \frac{d}{dT} \\
+  &= -1 \frac{d}{dT} \\
+  &= -\frac{d}{dt}
+\end{align*}
+\begin{align*}
+  \dot{x} &= \frac{dx}{dt} \\
+  &= -\frac{dx}{dT} \\
+  &= -Y \\ 
+  \therefore \frac{dx}{dT} &= Y
+\end{align*}
+\begin{align*}
+  \dot{y} &= \frac{dy}{dt} \\
+          &= -\frac{dy}{dT} \\
+          &= -\frac{d}{dT}(-Y) \\
+          &= \frac{d}{dT}Y \\
+          &= \frac{1}{m} F(x)
+\end{align*}
+por lo tanto nos queda el sistema
+  \begin{align*}
+    \frac{dx}{dT} &= Y \\
+    \frac{dY}{dT}&= \frac{1}{m} F(x) 
+  \end{align*}
+  notemos que la transformación que estamos aplicando es una inversión del tiempo, y nos está quedando el mismo sistema que el original, a partir de $T$.
+\begin{tcolorbox}[colback=Black!4, colframe=White,arc=2mm]
+\begin{definicion}[Sistema reversible] Sea $R: \mathbb{R}^2 \to \mathbb{R}^2$ tal que \begin{equation*}
+  R(R(\vec{x}))=\vec{x} 
+\end{equation*}
+entonces un sistema $\dot{\vec{x}} = \vec{f}(\vec{x})$ es reversible si es invariante ante la transformación $t \to -T$ y $\vec{x} \to R(\vec{x})$
+  
+\end{definicion}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=Black!4, colframe=White,arc=2mm]
+\begin{teorema}\label{scr-t1}  Si $\vec{x}^*$ es un centro en el sistema linealizado y $\dot{\vec{x}} = \vec{f}(\vec{x})$ es un sistema reversible $ \implies \vec{x}^*$ también es un centro en el sistema no lineal. 
+\end{teorema} 
+\end{tcolorbox}
+
+\begin{ejemplo} \label{scr-ej2}  Sea el sistema
+\begin{align*}
+  \dot{x} &= y - y^3 \\
+  \dot{y} &= -x-y^2
+\end{align*}  
+mostrar que es un sistema reversible y tenemos un centro no lineal.
+
+\textbf{Solución}
+
+Tenemos la transformación $T=-t, Y=-y$ por lo que  $\frac{d}{dt} \to -\frac{d}{dT}$ de esta manera
+\begin{align*}
+  \dot{x} &= -\frac{d}{dT}x \\
+  &= -Y - (-Y)^3 \\
+  -\frac{d}{dT}x&= -Y+Y^3  \\
+  \frac{d}{dT}x&=Y-Y^3
+\end{align*}
+para $\dot{y}$ tenemos
+\begin{align*}
+  \dot{y} &= -\frac{d}{dT}y \\
+  &= -\frac{d}{dT}(-Y) \\
+  &= -x-(-Y)^2 
+\end{align*}
+por lo tanto
+\begin{equation*}
+   \frac{dY}{dT} = -x-Y^2
+\end{equation*}
+llegando entonces al sistema
+\begin{align*}
+         \frac{dx}{dT}&=Y-Y^3 \\
+     \frac{dY}{dT} &= -x-Y^2
+\end{align*}
+esto implica que el sistema es reversible. Falta probar que tenemos un centro no lineal, pero por el teorema (\ref{scr-t1}) solo debemos probar que $\vec{x}^*$ es un centro en el sistema linealizado. Linealizando con la matriz jacobiana 
+\begin{equation*}
+  J = \begin{pmatrix} 0 & 1-3y^2 \\ -1 & -2y \end{pmatrix}  
+\end{equation*}
+notemos que $(0,0)$ es un punto de equilibrio del sistema
+ \begin{equation*}
+  \left. J \right|_{(0,0)} = \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}  
+\end{equation*}
+por lo que $\operatorname{tr}J=0$ y $\operatorname{det}=1$, por lo que tenemos un centro y por el teorema anterior $(0,0)$ es un centro del sistema no lineal.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{scr3}
+  \caption{Diagrama de flujo del ejemplo (\ref{scr-ej2}) }
+  \label{scr3-im} 
+\end{figure}
+Notemos en la figura \ref{scr3-im} la variedad estable del punta A es a su vez el la variedad inestable del punto B, y a estas soluciones que te llevan al otro punto silla, a este tipo de trayectorias se les llaman heteroclinas. 
+\end{ejemplo}
+
+
+
+
+
+
+
+

@@ -1,0 +1,198 @@
+\subsection{Ciclos 2}
+
+
+\begin{tcolorbox}[colback=Black!4, colframe=White, arc=2mm]
+  \begin{teorema}[Criterio de Dulac] 
+  Sea $\dot{\vec{x}} = \vec{f}(\vec{x})$ un sistema de ecuaciones diferenciales no lineales donde $\vec{f}$ es un campo vectorial diferenciable y continuo en una región $B$. Si existe $g: \mathbb{R}^2 \mapsto \mathbb{R}$ tal que en $B ,\ \nabla \cdot (g \vec{f})$ no cambia de signo entonces no hay ciclos en $B$.
+  \end{teorema}
+\end{tcolorbox}
+\begin{tcolorbox}[colback=Black!4, colframe=White, arc=2mm]
+\begin{recordatorio}$$
+\begin{aligned}
+  \operatorname{div}(g \vec{f}) &= \nabla \cdot (g \vec{f}) = \frac{\partial (gf_1)}{\partial x_1} + \frac{\partial (gf_2)}{\partial x_2}  \\  
+\end{aligned}   
+$$
+\end{recordatorio}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=Black!4, colframe=White, arc=2mm]
+\begin{demostracion}
+Supongamos que existe un ciclo tal que tiene una trayectoria cerrada en $B$. Denotamos por  $A$ a la región contenida dentro de  $C$ y existe  $g:\mathbb{R}^2 \mapsto \mathbb{R}$ tal que $\nabla \cdot (g \vec{f})$ no cambia de signo.
+
+Integrando la divergencia y utilizando el teorema de la divergencia en el plano:
+$$
+\begin{aligned}
+  \iint_{{A}}^{{}} {\nabla \cdot (g \vec{f})} \: d{A} &= \oint_{{C}}^{{}} {(g \vec{f})\cdot \vec{n}} \: d{l}  \\
+  &= \oint_{{C}}^{{}} {g \vec{f} \cdot \vec{n}} \: d{l} \\ 
+  &= \oint_{{C}}^{{}} {g(\dot{\vec{x}}\cdot\vec{n})} \: d{l} \\
+  &= 0 \bot \\ 
+\end{aligned}
+$$
+donde la última igualdad tiene lugar dado que $\dot{\vec{x}} \perp \vec{n}$, por lo tanto el producto punto es cero, esto una contradicción dado que en general $\iint_{{A}}^{{}} {\nabla \cdot (g \vec{f})} \: d{A} $ no siempre es cero.    
+\end{demostracion}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=Black!4, colframe=White, arc=2mm]
+\begin{recordatorio}[Teorema de la divergencia en el plano]
+  Sea $D \subset \mathbb{R}^2$ una región en la que el teorema de Green es válido, y sea $\partial D$ su frontera. Sea  $n$ la normal unitaria exterior a  $\partial D$. Si  $c:[a,b] \to \mathbb{R}^2, t \mapsto c(t)=(x(t),y(t))$ es una parametrización orientada positivamente de $\partial D$, n viene dada por:  $$
+  n = \frac{y'(t), -x'(t)}{\sqrt{[x'(t)]^2+[y'(t)]^2}}
+  $$
+  (véase figura \ref{teon}). Sea $F = Pi + Qj$ un campo vectorial  $C^{1}$ sobre $D$. Entonces  $$
+  \int_{{\partial D}}^{{}} {F \cdot n} \: d{s} = \iint_{{D}}^{{}} {\operatorname{div}F} \: d{A}
+  $$
+\end{recordatorio}
+\end{tcolorbox}
+
+
+\begin{figure}[htpb]
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth, height=\textwidth]{teon}
+    \caption{n es la normal unitaria exterior a $\partial D$}
+    \label{teon}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth, height=\textwidth]{ciclos2teo1}
+    \caption{Geometría de la demostración del criterio de Dulac}
+  \end{subfigure}
+\end{figure}
+
+\begin{ejemplo} \label{cicloseje1} Demuestra que el sistema
+  \begin{align*}
+    \dot{x} &= x \left( 2-x-y \right) =f_1 \\ 
+    \dot{y} &= y(4-x^2-x)=f_2 \\ 
+  \end{align*}
+  no tiene ciclos.
+  \begin{tcolorbox}[colback=Black!4, colframe=White, arc = 2mm]
+  \textbf{Solución}
+  tomando $g(x,y)=\frac{1}{xy}$ :
+  \begin{align*}
+    gf_1 &= \frac{1}{xy}x \left( 2-x-y \right)  = \frac{2-x-y}{y} \\
+    fi_2 &= \frac{y(4-x^2-x)}{xy} = \frac{4-x^2-x}{x} \\ 
+  \end{align*}
+  por lo tanto 
+  $$
+  \nabla \cdot (g \vec{f}) = \frac{\partial gf_1}{\partial x} + \frac{\partial gf_2}{\partial y}  = -\frac{1}{y} < 0
+  $$
+  para toda la región $y>0$. En esta región no cambia de signo por lo que $\dot{\vec{x}}=\vec{f}(\vec{x})$ no tiene ciclos en $y>0$.
+  \end{tcolorbox} 
+  \begin{figure}[H]
+   \centering
+   \subfloat[Retrato fase]{
+   \includegraphics[width=0.5\textwidth]{ciclos2ej1.png}} \vfill
+   \subfloat[Solución númerica $x$]{
+   \includegraphics[width=0.5\textwidth]{ciclos2ej12.png}}
+   \subfloat[Solución númerica $y$]{
+   \includegraphics[width=0.5\textwidth]{ciclos2ej13.png}}
+      \caption{Gráficas ejemplo. No hay ciclos dado que no hay una solución numérica cerrada.}
+  \end{figure}
+\end{ejemplo}
+\begin{ejemplo} \label{ciclos2eje2} Demuestra que el sistema
+  \begin{align*}
+    \dot{x} &= y \\ 
+    \dot{y} &=  -x-y+x^2+y^2 
+  \end{align*}
+  no tiene ciclos.
+  \begin{tcolorbox}[colback=Black!4, colframe=White, arc = 2mm]
+  \textbf{Solución}
+ 
+  tomando $g(x,y)= e^{-2x}$, entonces la divergencia está dada por: 
+  $$
+  \begin{aligned}
+    \nabla \cdot (g \vec{f}) &= \partial x gf_1 + \partial y gf_2 \\ &= \frac{\partial (ye^{-2x})}{\partial x} + \frac{\partial \left[ e^{-2x}(-x-y+x^2+y^2) \right] }{\partial y}  \\ 
+    &= -2ye^{-2x}+e^{-2x}(-1+2y) \\
+    &= -2y+e^{-2x}-e^{-2x}+2ye^{-2x}  \\
+    &= -e^{-2x} <0 ,\ \forall x \in \mathbb{R}  \\ 
+  \end{aligned}
+  $$         
+  \end{tcolorbox} 
+\end{ejemplo}
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[width=0.4\textwidth]{ciclos2eje2}
+  \caption{Campo de trayectorias ejemplo \ref{ciclos2eje2}}
+\end{figure}
+
+\begin{tcolorbox}[colback=Black!4,colframe=White, arc = 2mm]
+  \begin{teorema}[Teorema de Poincaré-Bendixson] \label{poincareciclos2}
+  Sea $\vec{f}(\vec{x})$ campo vectorial continuo y diferenciable en una región $B \subset \mathbb{R}^2$ tal que $\vec{f}(\vec{x})\neq 0$, $\dot{\vec{x}}=\vec{f}(\vec{x})$ tiene soluciones al problema con condiciones iniciales $\vec{x}(0)=\vec{y}$ tal que $$\forall \vec{y}\in B ,\ \vec{x}(t)\in B ,\ \forall t \ge 0$$ esto implica que existe un ciclo en $B$. 
+\end{teorema}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=Black!4, colframe=White, arc=2mm]
+\begin{nota}[Teorema de Poincaré-Bendixson]
+  El teorema de Poincaré establece que no debe haber puntos de equilibrio, y además que todo punto con condiciones iniciales en $B$, su trayectoria debe estar contenida también en  $B$, como se muestra en la figura \ref{ciclos2teo2}.
+  
+\end{nota}
+\end{tcolorbox}
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[width=0.3\textwidth]{ciclos2teo2}
+  \caption{Teorema \ref{poincareciclos2}: Toda solución con condiciones iniciales en $B$ debe quedarse contenida en $B$, por lo que solo puede aproximarse a un ciclo.}
+  \label{ciclos2teo2}
+\end{figure}
+
+\begin{ejemplo} Demuestra que el sistema \label{ejemplopoincare2}
+  $$
+  \begin{aligned}
+    \dot{r} &= r(1-r^2)+\mu r \cos\theta \\ 
+    \dot{\theta} &= 1 \\ 
+  \end{aligned}
+  \implies\theta(t) = t+c ,\ \mu \ge 0
+  $$
+  no tiene ciclos utilizando el teorema de Poincaré-Bendixson.
+
+  \begin{tcolorbox}[colback=Black!4, colframe=White, arc = 2mm]
+  \textbf{Solución}
+ 
+  Queremos una región donde las soluciones no puedan salir de ahí nunca, recordando que se cumple el teorema de existencia y unicidad, entonces nunca se pueden cruzar las soluciones, por lo que no podría ir en contra del flujo.
+
+Si $\dot{r}>0$ las soluciones van hacia afuera, mientras que si $\dot{r}<0$ las soluciones van hacia adentro.
+
+$$
+\begin{aligned}
+  \dot{r} &= r(1-r^2)+\mu r \cos\theta \quad \cos\theta \ge -1\\
+	  &> r(1-r^2)-\mu r \\
+\end{aligned}
+$$
+  si encontramos un lugar donde $r(1-r^2)-\mu r >0$ por transitividad encontraríamos donde $r(1-r^2)+\mu r \cos\theta>0$. Supongamos que $r \neq 0$ entonces $$
+  \begin{aligned}
+    1-r^2-\mu&>0 \\
+    r^2 &< 1-\mu \\
+    r_e &< \sqrt{1-\mu}
+  \end{aligned} \implies \mu<1
+  $$
+  en esta región $\dot{r}>0$.
+
+  Para el otro caso:
+  $$
+  \begin{aligned}
+    \dot{r} &= r(1-r^2)+\mu r \cos\theta \\
+	    &< r(1-r^2) + \mu r \\
+	    &< 0
+  \end{aligned}
+  $$
+  si $r\neq 0$ entonces  $r_i > \sqrt{1+\mu}$ por lo que $r_e < r_i$, si nos tomamos un anillo  $$
+    \sqrt{1-\mu} < r < \sqrt{1+\mu} 
+  $$
+  en esta región se cumple el teorema pues en $\dot{r}<0$ las soluciones crecen hacia adentro mientras que en $\dot{r}>0$ las soluciones crecen hacia afuera. Por lo tanto para $\mu<1$ hay ciclos límite.  
+  \end{tcolorbox} 
+
+  \begin{figure}[!tbp]
+    \begin{subfigure}[b]{0.5\textwidth}
+      \includegraphics[width=\textwidth]{ciclos2eje3}
+      \caption{$\mu = \frac{1}{2}$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.5\textwidth}
+      \includegraphics[width=\textwidth]{ciclos2eje32}
+      \caption{$\mu=5$}
+    \end{subfigure}
+    \caption{Ciclos límite del ejemplo \ref{ejemplopoincare2}.}
+  \end{figure}
+
+
+\end{ejemplo}
+

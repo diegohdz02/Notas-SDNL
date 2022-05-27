@@ -1,0 +1,106 @@
+\section{Ecuaciones en diferencias no lineales}
+
+\begin{comment}
+	\begin{table}[H]
+		\centering
+		\caption{caption}
+		\label{tab:label}
+	
+		\begin{tabular}{c}
+			Ecuaciones en diferenciales
+			\begin{itemize}
+				\item Puntos de equilibrio
+							\begin{equation*}
+							  \dot{x}=0 
+							\end{equation*}
+				\item No tenemos oscilaciones en 1D
+				\item $x^*$ es estable si $r<0$
+				 \item $x^*$ es inestable si $r>0$
+	
+			\end{itemize}
+		\end{tabular}
+	\end{table}
+\end{comment}
+
+Una ecuación en diferencias no lineal se puede escribir como $x_{n+1}=f(x_n)$ con $f$ no lineal. Recordando que los puntos de equilibrio son soluciones constantes:
+ \begin{align*}
+  x_n &= x^* \ \forall n \\
+	x_{n+1}&=x^*
+\end{align*}
+por lo que
+\begin{equation*}
+  x^*=f(x^*) 
+\end{equation*}
+podemos encontrar los puntos de equilibrio en la intersección entre la identidad y $f(x)$
+
+\textbf{Estabilidad}
+
+Sea $x_{n} \equiv x^* + \tilde{x}_n$, donde $x^*$ es un punto de equilibrio y $\tilde{x}_n$ es una desviación pequeña, sustituyendo
+\begin{equation*}
+  x^* + \tilde{x}_{n+1} = f(x^*+\tilde{x}_n) 
+\end{equation*}
+	haciendo una aproximación en series de Taylor alrededor de $x^*$
+\begin{align*}
+												& \simeq f(x^*) + \tilde{x}_n \left. \frac{df}{dx} \right|_{x^*} \quad \lambda \equiv \left. \frac{df}{dx} \right|_{x^*} \\
+												&= f(x^*) + \lambda \tilde{x}_n \\
+												&= x^* + \lambda \tilde{x}_n
+\end{align*}
+por lo tanto
+\begin{equation*}
+  \tilde{x}_{n+1} = \lambda \tilde{x}_n 
+\end{equation*}
+Entonces:
+
+\begin{itemize}
+	\item \begin{equation*}
+  \left| \left. \frac{df}{dx} \right|_{x^*}  \right| < 1 \implies x^* \text{ es estable } 
+\end{equation*} 
+\item \begin{equation*}
+  \left| \left. \frac{df}{dx} \right|_{x^*}  \right|  >1 \implies x^* \text{ es inestable }
+\end{equation*}
+\item \begin{equation*}
+			  \left. \frac{df}{dx} \right|_{x^*}<0 \implies \text{ las soluciones oscilan cerca de $x^*$ }  
+			\end{equation*} 
+\item \begin{equation*}
+			   \left. \frac{df}{dx} \right|_{x^*}  = 1 \text{ no podemos determinar la estabilidad de esta forma } 
+			\end{equation*}
+\end{itemize}
+
+\begin{ejemplo}
+	\begin{equation*}
+	  x_{n+1}=x_n^2 
+	\end{equation*}
+	\textcolor{blue}{insertar gráfica}
+	Estabilidad de los puntos de equilibrio
+
+	\begin{align*}
+	  \frac{df}{dx} &= 2x \\
+		\left. \frac{df}{dx} \right|_{x^*=0} &= 0
+	\end{align*}
+	por lo tanto $x^*=0$ es un punto de equilibrio estable, por otro lado
+	\begin{align*}
+		\left. 	  \frac{df}{dx}  \right|_{x^*=1} &= 2 
+	\end{align*}
+	por lo tanto $x^*=1$ es inestable.
+
+	Método gráfico para comprobar la estabilidad de los puntos de equilibrio: \textbf{Cobwebbing}
+
+	
+\end{ejemplo}
+
+\begin{ejemplo}
+	\begin{equation*}
+	  x_{n+1}=\cos(x_n),\ x^*=cos(x^*)=0.7 
+	\end{equation*}
+
+	\begin{equation*}
+	  \begin{split}
+	  	\frac{df}{dx} &= -\sin x \\
+			\left. \frac{df}{dx} \right|_{0.7} &\approx -0.64  
+	  \end{split} 
+	\end{equation*}
+	por lo tanto tenemos un punto de equilibrio estable oscilatorio 
+
+\end{ejemplo}
+
+
